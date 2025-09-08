@@ -1,5 +1,5 @@
 import ServiceItem from "@/components/service-item";
-import { BarChart3, Cloud, Shield, Users, Zap, TrendingUp } from "lucide-react";
+import { BarChart3, Cloud, Users, Zap } from "lucide-react";
 
 const services = [
   {
@@ -15,12 +15,6 @@ const services = [
       "Keep all your business data synchronized across multiple devices and locations in real-time. Never miss important updates or lose critical information.",
   },
   {
-    icon: Shield,
-    title: "Enterprise-Grade Security",
-    description:
-      "Bank-level encryption and security protocols protect your sensitive business data. Multi-factor authentication and regular security audits ensure maximum protection.",
-  },
-  {
     icon: Users,
     title: "Multi-User Collaboration",
     description:
@@ -31,12 +25,6 @@ const services = [
     title: "Lightning-Fast Performance",
     description:
       "Experience blazing-fast transaction processing and instant data retrieval. Our optimized cloud infrastructure ensures minimal downtime and maximum efficiency.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Advanced Analytics & Insights",
-    description:
-      "Gain valuable business insights with our advanced analytics dashboard. Track performance metrics, identify trends, and make data-driven decisions.",
   },
 ];
 

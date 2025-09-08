@@ -10,11 +10,6 @@ export default function AboutUs() {
       description: "Access your data anywhere, anytime with our secure cloud infrastructure",
     },
     {
-      icon: <Shield className="w-6 h-6" />,
-      title: "Enterprise Security",
-      description: "Bank-level security protocols to protect your business data",
-    },
-    {
       icon: <Users className="w-6 h-6" />,
       title: "Multi-User Support",
       description: "Collaborate seamlessly with your team across multiple locations",
@@ -26,11 +21,11 @@ export default function AboutUs() {
     "Automatic updates and maintenance",
     "Lower upfront costs compared to traditional systems",
     "Scalable solution that grows with your business",
-    "24/7 customer support and training",
+    "Customer support and training",
   ];
 
   return (
-    <div className="bg-gradient-to-b from-background to-accent/5">
+    <div className="bg-gradient-to-b from-background to-accent/5 pb-5">
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <div className="text-center mb-20">
@@ -42,8 +37,7 @@ export default function AboutUs() {
             Explore Your Next Potential <span className="text-primary">with Us</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            POBLE comprises cloud-based multi-modular solutions that specifically target retail,
-            restaurant, and stock-based businesses.
+            POBLE comprises cloud-based multi-modular solutions.
           </p>
         </div>
 
@@ -146,71 +140,71 @@ export default function AboutUs() {
         </div>
 
         {/* User-Friendly System */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="space-y-6">
-            <div className="space-y-4">
-              <h3 className="text-2xl md:text-3xl font-bold">
-                Securing Customers with <span className="text-primary">User-Friendly Design</span>
-              </h3>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Business owners often struggle with complex POS systems and worry about setup costs.
-                POBLE&#39;s intuitive design attracts users with its simplicity and ease of use.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Our simple tutorial mode builds user confidence and encourages feedback for
-                continuous improvement. This two-way communication enhances our development process.
-              </p>
-            </div>
+        {/*<div className="grid lg:grid-cols-2 gap-16 items-center">*/}
+        {/*  <div className="space-y-6">*/}
+        {/*    <div className="space-y-4">*/}
+        {/*      <h3 className="text-2xl md:text-3xl font-bold">*/}
+        {/*        Securing Customers with <span className="text-primary">User-Friendly Design</span>*/}
+        {/*      </h3>*/}
+        {/*      <p className="text-lg text-muted-foreground leading-relaxed">*/}
+        {/*        Business owners often struggle with complex POS systems and worry about setup costs.*/}
+        {/*        POBLE&#39;s intuitive design attracts users with its simplicity and ease of use.*/}
+        {/*      </p>*/}
+        {/*      <p className="text-lg text-muted-foreground leading-relaxed">*/}
+        {/*        Our simple tutorial mode builds user confidence and encourages feedback for*/}
+        {/*        continuous improvement. This two-way communication enhances our development process.*/}
+        {/*      </p>*/}
+        {/*    </div>*/}
 
-            <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg p-6 border border-accent/20">
-              <h4 className="font-semibold mb-4">Cost Comparison</h4>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <h5 className="font-medium text-destructive">Traditional POS</h5>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• High upfront costs</li>
-                    <li>• Hardware installation fees</li>
-                    <li>• Manual maintenance costs</li>
-                    <li>• Technician requirements</li>
-                  </ul>
-                </div>
-                <div className="space-y-2">
-                  <h5 className="font-medium text-primary">POBLE Cloud POS</h5>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• Minimal upfront investment</li>
-                    <li>• Low service fees</li>
-                    <li>• Automatic updates</li>
-                    <li>• Use existing devices</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+        {/*    <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg p-6 border border-accent/20">*/}
+        {/*      <h4 className="font-semibold mb-4">Cost Comparison</h4>*/}
+        {/*      <div className="grid md:grid-cols-2 gap-6">*/}
+        {/*        <div className="space-y-2">*/}
+        {/*          <h5 className="font-medium text-destructive">Traditional POS</h5>*/}
+        {/*          <ul className="text-sm text-muted-foreground space-y-1">*/}
+        {/*            <li>• High upfront costs</li>*/}
+        {/*            <li>• Hardware installation fees</li>*/}
+        {/*            <li>• Manual maintenance costs</li>*/}
+        {/*            <li>• Technician requirements</li>*/}
+        {/*          </ul>*/}
+        {/*        </div>*/}
+        {/*        <div className="space-y-2">*/}
+        {/*          <h5 className="font-medium text-primary">POBLE Cloud POS</h5>*/}
+        {/*          <ul className="text-sm text-muted-foreground space-y-1">*/}
+        {/*            <li>• Minimal upfront investment</li>*/}
+        {/*            <li>• Low service fees</li>*/}
+        {/*            <li>• Automatic updates</li>*/}
+        {/*            <li>• Use existing devices</li>*/}
+        {/*          </ul>*/}
+        {/*        </div>*/}
+        {/*      </div>*/}
+        {/*    </div>*/}
 
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-              Learn More About Our Solutions
-            </Button>
-          </div>
+        {/*    <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">*/}
+        {/*      Learn More About Our Solutions*/}
+        {/*    </Button>*/}
+        {/*  </div>*/}
 
-          <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-r from-accent/20 to-primary/30 rounded-3xl blur-2xl"></div>
-            <div className="relative bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-accent/20">
-              <Image
-                src="/about-extra-2.svg"
-                alt="User-friendly POS system interface"
-                width={500}
-                height={400}
-                className="w-full h-auto rounded-lg"
-              />
-            </div>
+        {/*  <div className="relative">*/}
+        {/*    <div className="absolute -inset-4 bg-gradient-to-r from-accent/20 to-primary/30 rounded-3xl blur-2xl"></div>*/}
+        {/*    <div className="relative bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-accent/20">*/}
+        {/*      <Image*/}
+        {/*        src="/about-extra-2.svg"*/}
+        {/*        alt="User-friendly POS system interface"*/}
+        {/*        width={500}*/}
+        {/*        height={400}*/}
+        {/*        className="w-full h-auto rounded-lg"*/}
+        {/*      />*/}
+        {/*    </div>*/}
 
-            <div className="absolute -top-4 -right-4 bg-card border border-accent/20 rounded-lg p-3 shadow-lg backdrop-blur-sm">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-primary rounded-full"></div>
-                <span className="text-sm font-medium">Easy Setup</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/*    <div className="absolute -top-4 -right-4 bg-card border border-accent/20 rounded-lg p-3 shadow-lg backdrop-blur-sm">*/}
+        {/*      <div className="flex items-center gap-2">*/}
+        {/*        <div className="w-2 h-2 bg-primary rounded-full"></div>*/}
+        {/*        <span className="text-sm font-medium">Easy Setup</span>*/}
+        {/*      </div>*/}
+        {/*    </div>*/}
+        {/*  </div>*/}
+        {/*</div>*/}
       </div>
     </div>
   );

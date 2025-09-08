@@ -48,9 +48,9 @@ export default function TermsAndConditions() {
             Terms & <span className="text-primary">Conditions</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Your privacy is important to us. It is POBLE&#39;s policy to respect your privacy regarding
-            any information we may collect from you across our website, http://www.poble.com.au, and
-            other sites we own and operate.
+            Your privacy is important to us. It is POBLE&#39;s policy to respect your privacy
+            regarding any information we may collect from you across our website,
+            http://www.poble.com.au, and other sites we own and operate.
           </p>
         </div>
 

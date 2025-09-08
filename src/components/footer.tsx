@@ -73,8 +73,7 @@ export default function Footer() {
             <div>
               <h3 className="text-2xl font-bold mb-6 text-primary">POBLE</h3>
               <p className="text-slate-300 leading-relaxed mb-6">
-                Cloud-based multi-modular solutions specifically targeting retail, restaurant, and
-                stock-based businesses.
+                Cloud-based multi-modular solutions specifically targeting retail, restaurant.
               </p>
 
               {/* Accent decoration */}

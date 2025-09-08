@@ -1,13 +1,4 @@
-import {
-  Monitor,
-  Smartphone,
-  ChefHat,
-  Users,
-  CreditCard,
-  BarChart3,
-  Settings,
-  Wifi,
-} from "lucide-react";
+import { BarChart3, Monitor, Settings, Users, Wifi } from "lucide-react";
 
 const solutions = [
   {
@@ -16,39 +7,9 @@ const solutions = [
     subtitle: "Point of Sale",
     description:
       "Complete point-of-sale solution with inventory management, sales tracking, and customer management. Perfect for retail and restaurant businesses.",
-    features: [
-      "Real-time inventory",
-      "Sales analytics",
-      "Customer database",
-      "Multi-payment support",
-    ],
+    features: ["Sales analytics", "Customer database", "Tyro payment support"],
     color: "from-blue-500/20 to-cyan-500/20",
     iconColor: "text-blue-600",
-  },
-  {
-    icon: Smartphone,
-    title: "KIOSK Solution",
-    subtitle: "Self-Service Kiosk",
-    description:
-      "Interactive self-service kiosks that reduce wait times and improve customer experience. Ideal for quick-service restaurants and retail.",
-    features: ["Touch interface", "Order customization", "Payment integration", "Queue management"],
-    color: "from-purple-500/20 to-pink-500/20",
-    iconColor: "text-purple-600",
-  },
-  {
-    icon: ChefHat,
-    title: "KDS System",
-    subtitle: "Kitchen Display System",
-    description:
-      "Digital kitchen display system that streamlines order management and improves kitchen efficiency with real-time order tracking.",
-    features: [
-      "Order prioritization",
-      "Prep time tracking",
-      "Kitchen workflow",
-      "Real-time updates",
-    ],
-    color: "from-orange-500/20 to-red-500/20",
-    iconColor: "text-orange-600",
   },
   {
     icon: Users,
@@ -56,29 +17,9 @@ const solutions = [
     subtitle: "Smart Queueing",
     description:
       "Advanced queue management system that optimizes customer flow and reduces perceived wait times with digital ticketing.",
-    features: [
-      "Digital tickets",
-      "Wait time estimation",
-      "SMS notifications",
-      "Analytics dashboard",
-    ],
+    features: ["SMS notifications", "Real-time dashboard"],
     color: "from-green-500/20 to-emerald-500/20",
     iconColor: "text-green-600",
-  },
-  {
-    icon: CreditCard,
-    title: "Payment Gateway",
-    subtitle: "Secure Payments",
-    description:
-      "Integrated payment processing with support for multiple payment methods including cards, digital wallets, and contactless payments.",
-    features: [
-      "Multi-payment support",
-      "Secure transactions",
-      "Real-time processing",
-      "Fraud protection",
-    ],
-    color: "from-indigo-500/20 to-blue-500/20",
-    iconColor: "text-indigo-600",
   },
   {
     icon: BarChart3,
@@ -86,19 +27,9 @@ const solutions = [
     subtitle: "Business Intelligence",
     description:
       "Comprehensive analytics and reporting tools that provide insights into sales performance, customer behavior, and operational efficiency.",
-    features: ["Sales reports", "Customer insights", "Performance metrics", "Custom dashboards"],
+    features: ["Sales reports", "Customer insights", "Performance metrics"],
     color: "from-teal-500/20 to-cyan-500/20",
     iconColor: "text-teal-600",
-  },
-  {
-    icon: Settings,
-    title: "Inventory Management",
-    subtitle: "Stock Control",
-    description:
-      "Advanced inventory management system with real-time stock tracking, automated reordering, and supplier management.",
-    features: ["Stock tracking", "Auto-reordering", "Supplier management", "Cost analysis"],
-    color: "from-amber-500/20 to-yellow-500/20",
-    iconColor: "text-amber-600",
   },
   {
     icon: Wifi,
@@ -106,9 +37,9 @@ const solutions = [
     subtitle: "Connected Solutions",
     description:
       "Seamless cloud integration that connects all your systems, enabling real-time data synchronization across multiple locations.",
-    features: ["Multi-location sync", "Cloud backup", "Remote access", "API integration"],
-    color: "from-slate-500/20 to-gray-500/20",
-    iconColor: "text-slate-600",
+    features: ["Multi-location sync", "Remote access", "API integration"],
+    color: "from-amber-500/20 to-yellow-500/20",
+    iconColor: "text-amber-600",
   },
 ];
 

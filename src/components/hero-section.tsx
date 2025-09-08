@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
@@ -25,35 +27,38 @@ export default function HeroSection() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 size="lg"
-                className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground"
+                className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground hover:cursor-pointer"
+                onClick={() => {
+                  window.open("https://backoffice.poble.com.au", "_blank");
+                }}
               >
                 Get Started Free
               </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="text-lg px-8 py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
-              >
-                Watch Demo
-              </Button>
+              {/*<Button*/}
+              {/*  variant="outline"*/}
+              {/*  size="lg"*/}
+              {/*  className="text-lg px-8 py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"*/}
+              {/*>*/}
+              {/*  Watch Demo*/}
+              {/*</Button>*/}
             </div>
 
-            <div className="pt-8">
-              <p className="text-sm text-muted-foreground mb-4">
-                Trusted by 10,000+ businesses worldwide
-              </p>
-              <div className="flex items-center gap-6 opacity-60">
-                <div className="h-8 w-20 bg-muted rounded flex items-center justify-center text-xs font-medium">
-                  Partner 1
-                </div>
-                <div className="h-8 w-20 bg-muted rounded flex items-center justify-center text-xs font-medium">
-                  Partner 2
-                </div>
-                <div className="h-8 w-20 bg-muted rounded flex items-center justify-center text-xs font-medium">
-                  Partner 3
-                </div>
-              </div>
-            </div>
+            {/*<div className="pt-8">*/}
+            {/*  <p className="text-sm text-muted-foreground mb-4">*/}
+            {/*    Trusted by 10,000+ businesses worldwide*/}
+            {/*  </p>*/}
+            {/*  <div className="flex items-center gap-6 opacity-60">*/}
+            {/*    <div className="h-8 w-20 bg-muted rounded flex items-center justify-center text-xs font-medium">*/}
+            {/*      Partner 1*/}
+            {/*    </div>*/}
+            {/*    <div className="h-8 w-20 bg-muted rounded flex items-center justify-center text-xs font-medium">*/}
+            {/*      Partner 2*/}
+            {/*    </div>*/}
+            {/*    <div className="h-8 w-20 bg-muted rounded flex items-center justify-center text-xs font-medium">*/}
+            {/*      Partner 3*/}
+            {/*    </div>*/}
+            {/*  </div>*/}
+            {/*</div>*/}
           </div>
 
           {/* Right Content - Image */}

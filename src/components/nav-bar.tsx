@@ -27,7 +27,7 @@ export default function NavBar() {
             <Button
               key={item.name}
               variant="ghost"
-              className="text-foreground/80 hover:text-foreground hover:bg-accent/70 font-medium transition-colors"
+              className="text-foreground/80 hover:text-foreground hover:bg-accent/100 font-medium transition-colors"
               asChild
             >
               <a href={item.href}>{item.name}</a>
@@ -41,7 +41,7 @@ export default function NavBar() {
             variant="ghost"
             size="sm"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-foreground/80 hover:text-foreground hover:bg-accent/10"
+            className="text-foreground/80 hover:text-foreground hover:bg-accent/100"
           >
             {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>

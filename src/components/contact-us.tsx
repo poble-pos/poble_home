@@ -39,7 +39,7 @@ export default function ContactUs() {
   ];
 
   return (
-    <div className="bg-gradient-to-b from-background to-accent/5">
+    <div className="bg-gradient-to-b from-background to-accent/5 pb-5">
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <div className="text-center mb-16">
