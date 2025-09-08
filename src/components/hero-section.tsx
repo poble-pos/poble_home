@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 export default function HeroSection() {
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-accent/10 to-background"></div>
       <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-accent/5"></div>
 
