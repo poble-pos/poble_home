@@ -1,21 +1,21 @@
-import Navbar from "@/components/Navbar";
-import HeroSection from "@/components/HeroSection";
-import AboutUs from "@/components/AboutUs";
-import Services from "@/components/Services";
-import Solutions from "@/components/Solutions";
-import ContactUs from "@/components/ContactUs";
-import TermsAndConditions from "@/components/TermsAndConditions";
-import Footer from "@/components/Footer";
+import NavBar from "@/components/nav-bar";
+import HeroSection from "@/components/hero-section";
+import AboutUs from "@/components/about-us";
+import Services from "@/components/services";
+import Solution from "@/components/solution";
+import ContactUs from "@/components/contact-us";
+import TermsAndConditions from "@/components/terms-and-conditions";
+import Footer from "@/components/footer";
 
 export default function Home() {
   return (
     <div>
-      <Navbar />
-      <main className={"w-full mx-auto max-w-7xl"}>
+      <NavBar />
+      <main className={"w-full mx-auto"}>
         <HeroSection />
         <AboutUs />
         <Services />
-        <Solutions />
+        <Solution />
         <ContactUs />
         <TermsAndConditions />
       </main>

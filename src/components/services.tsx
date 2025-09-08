@@ -1,4 +1,4 @@
-import ServiceItem from "@/components/ServiceItem";
+import ServiceItem from "@/components/service-item";
 
 export default function Services() {
   return (

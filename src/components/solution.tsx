@@ -1,4 +1,4 @@
-export default function Solutions() {
+export default function Solution() {
   return (
     <div>
       <div>Our Solutions</div>
