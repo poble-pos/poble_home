@@ -122,3 +122,9 @@ export interface StripeMetaData {
   isMultiple?: string;
   isOneOff?: string;
 }
+
+export interface StripeOneOffCartItem {
+  stripePriceId: string;
+  stripeProductId: string;
+  quantity: number;
+}

@@ -21,10 +21,11 @@ export default function NavBar() {
           <Image
             src="/logo.png"
             alt="POS Solution Logo"
-            width={140}
-            height={40}
-            className="h-11"
+            width={120}
+            height={30}
             onClick={() => router.push("/")}
+            className={"w-auto h-auto"}
+            priority
           />
         </div>
 

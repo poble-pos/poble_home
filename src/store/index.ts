@@ -7,6 +7,7 @@ interface UseCartInfo {
   addItem: (item: StripeProduct) => void;
   removeItem: (iteId: string) => void;
   emptyItem: (iteId: string) => void;
+  emptyCart: () => void;
   getTotalPrice: () => number;
 }
 
@@ -49,6 +50,11 @@ export const useCart = create<UseCartInfo>()(
 
         set({
           currentItems: items.filter((item) => item.id !== itemId),
+        });
+      },
+      emptyCart: () => {
+        set({
+          currentItems: [],
         });
       },
       getTotalPrice: () => {

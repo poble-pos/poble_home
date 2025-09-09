@@ -18,7 +18,7 @@ export default function CartButton() {
       return acc + item.quantity || 0;
     }, 0) || 0;
 
-  if (totalQuantity === 0 || pathname === "/cart") {
+  if (totalQuantity === 0 || pathname === "/cart" || pathname === "/payment-success") {
     return <></>;
   }
 

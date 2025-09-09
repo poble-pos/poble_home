@@ -1,20 +1,46 @@
 "use client";
 
-import React from "react";
-import { ArrowLeft, CreditCard, LucideTrash, Minus, Plus, ShoppingCart } from "lucide-react";
+import React, { useState } from "react";
+import {
+  ArrowLeft,
+  CreditCard,
+  Loader2Icon,
+  LucideTrash,
+  Minus,
+  Plus,
+  ShoppingCart,
+} from "lucide-react";
 import { useCart } from "@/store";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { createPaymentLink } from "@/lib/restApis";
+import Image from "next/image";
 
-export default function CheckoutPage() {
+export default function CartPage() {
   const router = useRouter();
   const { currentItems, addItem, emptyItem, removeItem, getTotalPrice } = useCart();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const formatPrice = (amount: number) => {
-    return new Intl.NumberFormat("en-AU", {
-      style: "currency",
-      currency: "AUD",
-    }).format(amount / 100);
+  const checkoutHandler = async () => {
+    setIsLoading(true);
+
+    const items = currentItems || [];
+
+    const stripeOneOffCartItem = items.map((item) => {
+      return {
+        stripePriceId: item.defaultPriceId,
+        stripeProductId: item.id,
+        quantity: item.quantity,
+      };
+    });
+
+    const paymentLink = await createPaymentLink({
+      successUrl: `${location.origin}/payment-success`,
+      cancelUrl: `${location.origin}/cart`,
+      items: stripeOneOffCartItem,
+    });
+
+    location.href = paymentLink;
   };
 
   if (currentItems?.length === 0) {
@@ -26,7 +52,7 @@ export default function CheckoutPage() {
           <p className="text-gray-600 mb-6">Add some products to get started</p>
           <button
             onClick={() => router.push("/hardware")}
-            className="bg-slate-800 text-white px-6 py-3 rounded-lg font-medium transition-colors hover:cursor-pointer"
+            className="bg-slate-800 text-white px-6 py-2 rounded-lg font-medium transition-colors hover:cursor-pointer text-md"
           >
             Continue Shopping
           </button>
@@ -36,8 +62,6 @@ export default function CheckoutPage() {
   }
 
   const totalPrice = getTotalPrice() / 100;
-  const gst = totalPrice * 0.1;
-  const subTotal = totalPrice * 0.9;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
@@ -46,7 +70,7 @@ export default function CheckoutPage() {
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-6">
             <button
-              onClick={() => router.back()}
+              onClick={() => router.push("/hardware")}
               className="p-2 hover:bg-gray-100 rounded-lg transition-colors hover:cursor-pointer"
             >
               <ArrowLeft className="w-5 h-5" />
@@ -67,11 +91,7 @@ export default function CheckoutPage() {
                   >
                     <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center">
                       {item.images.length > 0 ? (
-                        <img
-                          src={item.images[0]}
-                          alt={item.name}
-                          className="w-full h-full object-cover rounded-lg"
-                        />
+                        <Image src={item.images[0]} alt={item.name} width={100} height={100} />
                       ) : (
                         <div className="w-8 h-8 bg-gray-300 rounded" />
                       )}
@@ -81,7 +101,7 @@ export default function CheckoutPage() {
                       <h3 className="font-semibold text-gray-900">{item.name}</h3>
                       <p className="text-sm text-gray-600">{item.description}</p>
                       <p className="font-bold text-black mt-2">
-                        {formatPrice(item.defaultPrice.unitAmount)}
+                        ${(item.defaultPrice.unitAmount / 100).toFixed(2)}
                       </p>
                     </div>
 
@@ -111,26 +131,32 @@ export default function CheckoutPage() {
                 ))}
               </div>
               <button
-                onClick={() => router.back()}
+                onClick={() => router.push("/hardware")}
                 className="w-full mt-10 bg-slate-800 text-white py-3 rounded-lg font-medium transition-colors hover:cursor-pointer"
               >
                 Continue to Shipping
               </button>
             </div>
           </div>
-
           {/* Order Summary */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sticky top-20">
               <h3 className="text-lg font-bold mb-4">Order Summary</h3>
-
               <div className="space-y-3 mb-6">
-                <div className="flex justify-between text-sm">
-                  <span>Subtotal</span>${subTotal.toFixed(2)}
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span>GST (10%)</span>${gst.toFixed(2)}
-                </div>
+                {currentItems?.map((item) => {
+                  return (
+                    <div key={item.id}>
+                      <div className="flex justify-between text-sm">
+                        <span>
+                          {item.name} x {item.quantity}
+                        </span>
+                        <span>
+                          ${((item.defaultPrice.unitAmount * item.quantity) / 100).toFixed(2)}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
                 <div className="border-t pt-3">
                   <div className="flex justify-between font-bold text-lg">
                     <span>Total</span>
@@ -138,12 +164,16 @@ export default function CheckoutPage() {
                   </div>
                 </div>
               </div>
-              <div className="">
-                <Button className={"w-full hover:cursor-pointer"} size={"lg"}>
-                  <CreditCard />
-                  Checkout
-                </Button>
-              </div>
+              <Button
+                className={"w-full hover:cursor-pointer"}
+                size={"lg"}
+                onClick={checkoutHandler}
+                disabled={isLoading}
+              >
+                {isLoading && <Loader2Icon className={"animate-spin"} />}
+                <CreditCard />
+                Checkout
+              </Button>
             </div>
           </div>
         </div>

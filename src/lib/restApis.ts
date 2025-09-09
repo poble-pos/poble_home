@@ -1,4 +1,4 @@
-import { StripeProduct } from "@/lib/interfaces";
+import { StripeOneOffCartItem, StripeProduct } from "@/lib/interfaces";
 
 export async function fetchStripeOneOffProductList({
   limit = 100,
@@ -20,7 +20,7 @@ export async function fetchStripeOneOffProductList({
   });
 
   const res = await fetch(
-    `http://localhost:5080/api/v1/Subscription/products?${params.toString()}`,
+    `${process.env.NEXT_PUBLIC_API_END_POINT}/api/v1/Subscription/products?${params.toString()}`,
     {
       method: "GET",
       headers: {
@@ -36,4 +36,37 @@ export async function fetchStripeOneOffProductList({
   const data = await res.json();
 
   return data as StripeProduct[];
+}
+
+export async function createPaymentLink({
+  successUrl,
+  cancelUrl,
+  items,
+}: {
+  successUrl: string;
+  cancelUrl: string;
+  items: StripeOneOffCartItem[];
+}) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_END_POINT}/api/v1/Subscription/createPaymentLink`,
+    {
+      method: "POST",
+      body: JSON.stringify({
+        successUrl,
+        cancelUrl,
+        items,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
+  );
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch products: ${res.statusText}`);
+  }
+
+  const data = await res.text();
+
+  return data as string;
 }

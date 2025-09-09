@@ -1,6 +1,5 @@
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { CheckCircle, Cloud, Shield, Users } from "lucide-react";
+import { CheckCircle, Cloud, Users } from "lucide-react";
 
 export default function AboutUs() {
   const features = [

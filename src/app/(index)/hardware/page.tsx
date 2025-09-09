@@ -6,8 +6,6 @@ import { fetchStripeOneOffProductList } from "@/lib/restApis";
 export default async function HardwarePage() {
   const stripeOneOffProductList = await fetchStripeOneOffProductList({});
 
-  console.log(stripeOneOffProductList);
-
   return (
     <div className="bg-gradient-to-b from-background to-accent/5 min-h-screen">
       <div className="container mx-auto px-4">
