@@ -22,10 +22,10 @@ export default function NavBar() {
             src="/logo.png"
             alt="POS Solution Logo"
             width={120}
-            height={30}
+            height={39}
             onClick={() => router.push("/")}
-            className={"w-auto h-auto"}
             priority
+            className={"object-contain"}
           />
         </div>
 
