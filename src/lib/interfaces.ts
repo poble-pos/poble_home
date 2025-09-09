@@ -114,7 +114,11 @@ export interface StripeProduct {
   stripeResponse: any | null;
 }
 
-interface StripeMetaData {
+export interface StripeProductWithQuantity extends StripeProduct {
+  quantity: number;
+}
+
+export interface StripeMetaData {
   isMultiple?: string;
   isOneOff?: string;
 }
