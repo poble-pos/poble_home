@@ -4,7 +4,7 @@ export async function fetchStripeOneOffProductList({
   limit = 100,
   starting_after = "",
   isActive = true,
-  testMode = true,
+  testMode = false,
 }: {
   limit?: number;
   starting_after?: string;
