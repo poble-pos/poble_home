@@ -42,8 +42,6 @@ export default function Services() {
             drive growth with cutting-edge technology.
           </p>
         </div>
-
-        {/* Services Grid */}
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {services.map((service, index) => (
             <ServiceItem

@@ -9,12 +9,9 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
+import { navigationItems } from "@/lib";
 
-interface Props {
-  navigationItems: { name: string; link: string }[];
-}
-
-export default function DesktopNavigation({ navigationItems }: Props) {
+export default function DesktopNavigation() {
   return (
     <div className="hidden md:flex items-center gap-3">
       <NavigationMenu viewport={false}>

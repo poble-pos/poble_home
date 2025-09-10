@@ -12,13 +12,6 @@ export default function NavBar() {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const navigationItems = [
-    { name: "Hardware", link: "/hardware" },
-    { name: "Pricing", link: "/pricing" },
-    { name: "About Us", link: "/about-us" },
-    { name: "Contact Us", link: "/contact-us" },
-  ];
-
   return (
     <div className="border-b sticky top-0 left-0 right-0 w-full bg-background/80 backdrop-blur-md z-50">
       <div className="w-full max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
@@ -34,7 +27,7 @@ export default function NavBar() {
           />
         </div>
         {/* Desktop Navigation */}
-        <DesktopNavigation navigationItems={navigationItems} />
+        <DesktopNavigation />
         {/* Mobile Menu Button */}
         <div className="md:hidden">
           <Button
@@ -48,9 +41,7 @@ export default function NavBar() {
         </div>
       </div>
       {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <MobileNavigation navigationItems={navigationItems} setIsMenuOpen={setIsMenuOpen} />
-      )}
+      {isMenuOpen && <MobileNavigation setIsMenuOpen={setIsMenuOpen} />}
     </div>
   );
 }

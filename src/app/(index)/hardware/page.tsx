@@ -2,6 +2,42 @@ import React from "react";
 import { Package } from "lucide-react";
 import ProductCard from "@/components/product-card";
 import { fetchStripeOneOffProductList } from "@/lib/restApis";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Poble - POS products",
+  description:
+    "Explore Poble's range of POS hardware, including terminals, printers, scanners, and accessories to optimize your business operations.",
+  creator: "Poble",
+  keywords: [
+    "Poble",
+    "POS hardware",
+    "POS terminals",
+    "receipt printers",
+    "barcode scanners",
+    "retail POS equipment",
+    "restaurant POS hardware",
+    "business solutions",
+  ],
+  authors: [{ name: "Poble", url: "https://poble.com.au" }],
+  openGraph: {
+    title: "Poble POS Hardware - Terminals, Printers, Scanners",
+    description:
+      "Discover high-quality POS hardware from Poble to enhance sales, inventory, and customer management for your business.",
+    url: "https://poble.com.au/hardware",
+    siteName: "Poble",
+    type: "website",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Poble POS Hardware Products",
+      },
+    ],
+    locale: "en_US",
+  },
+};
 
 export default async function HardwarePage() {
   const stripeOneOffProductList = await fetchStripeOneOffProductList({});

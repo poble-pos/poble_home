@@ -1,4 +1,4 @@
-import { BarChart3, Monitor, Settings, Users, Wifi } from "lucide-react";
+import { BarChart3, Monitor, Users, Wifi } from "lucide-react";
 
 const solutions = [
   {
@@ -57,9 +57,8 @@ export default function Solution() {
             business operations and enhance customer experience.
           </p>
         </div>
-
         {/* Solutions Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16 ">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16 ">
           {solutions.map((solution, index) => (
             <div key={index} className="group relative">
               {/* Background gradient effect */}
@@ -69,7 +68,7 @@ export default function Solution() {
 
               {/* Main card */}
               <div
-                className={`relative border rounded-xl p-6 h-full transition-all duration-300 group-hover:border group-hover:shadow-lg group-hover:-translate-y-1 bg-white hover:bg-transparent`}
+                className={`relative rounded-xl p-6 h-full transition-all duration-300 group-hover:shadow-lg group-hover:-translate-y-1 bg-white hover:bg-transparent shadow`}
               >
                 {/* Icon */}
                 <div className="mb-4">
@@ -83,46 +82,21 @@ export default function Solution() {
                 {/* Content */}
                 <div className="space-y-3">
                   <div>
-                    <h3 className="text-xl font-bold text-foreground transition-colors duration-300">
+                    <h3 className="text-2xl font-bold text-foreground transition-colors duration-300">
                       {solution.title}
                     </h3>
-                    <p className="text-sm text-gray-400 font-medium">{solution.subtitle}</p>
+                    <p className="text-gray-400 font-medium">{solution.subtitle}</p>
                   </div>
-
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {solution.description}
-                  </p>
-
+                  <p className="text-muted-foreground leading-relaxed">{solution.description}</p>
                   {/* Features */}
                   <div className="space-y-1">
                     {solution.features.map((feature, featureIndex) => (
-                      <div
-                        key={featureIndex}
-                        className="flex items-center gap-2 text-xs text-muted-foreground"
-                      >
-                        <div className="w-1 h-1 bg-primary rounded-full"></div>
-                        <span>{feature}</span>
+                      <div key={featureIndex} className="flex items-center gap-2 text-sm">
+                        <div className="w-1 h-1 bg-black rounded-full"></div>
+                        <span className={"font-semibold"}>{feature}</span>
                       </div>
                     ))}
                   </div>
-
-                  {/* Learn more indicator */}
-                  {/*<div className="flex items-center gap-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 pt-2">*/}
-                  {/*  <span className="text-xs font-medium">Learn more</span>*/}
-                  {/*  <svg*/}
-                  {/*    className="w-3 h-3 transform group-hover:translate-x-1 transition-transform duration-300"*/}
-                  {/*    fill="none"*/}
-                  {/*    stroke="currentColor"*/}
-                  {/*    viewBox="0 0 24 24"*/}
-                  {/*  >*/}
-                  {/*    <path*/}
-                  {/*      strokeLinecap="round"*/}
-                  {/*      strokeLinejoin="round"*/}
-                  {/*      strokeWidth={2}*/}
-                  {/*      d="M9 5l7 7-7 7"*/}
-                  {/*    />*/}
-                  {/*  </svg>*/}
-                  {/*</div>*/}
                 </div>
               </div>
             </div>

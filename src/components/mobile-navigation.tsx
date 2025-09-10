@@ -4,13 +4,13 @@ import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Dispatch, SetStateAction } from "react";
+import { navigationItems } from "@/lib";
 
 interface Props {
-  navigationItems: { name: string; link: string }[];
   setIsMenuOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function MobileNavigation({ navigationItems, setIsMenuOpen }: Props) {
+export default function MobileNavigation({ setIsMenuOpen }: Props) {
   return (
     <div className="md:hidden border-t border shadow-lg bg-background/95 backdrop-blur-md">
       <div className="flex flex-col gap-5 p-5">

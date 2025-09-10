@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 export default function ContactUsContent() {
   const contactMethods = [
@@ -41,7 +41,7 @@ export default function ContactUsContent() {
   ];
 
   return (
-    <div className="bg-gradient-to-b from-background to-accent/5 pb-5">
+    <div className="">
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <div className="text-center mb-16">
@@ -53,7 +53,6 @@ export default function ContactUsContent() {
             POBLE&#39;s cloud-based solutions can help you achieve your business goals.
           </p>
         </div>
-
         {/* Contact Methods Grid */}
         <div className="grid md:grid-cols-3 gap-8 mb-16 w-full max-w-5xl mx-auto">
           {contactMethods.map((method, index) => (
@@ -62,58 +61,40 @@ export default function ContactUsContent() {
               <div
                 className={`absolute -inset-1 bg-gradient-to-r ${method.color} rounded-2xl blur-sm opacity-0 transition-opacity duration-300`}
               ></div>
-
               {/* Main card */}
-              <div className="relative bg-card/50 backdrop-blur-sm rounded-xl p-8 h-full border border-accent/20 transition-all duration-300">
-                {/* Icon */}
-                <div className="mb-6">
-                  <div
-                    className={`w-16 h-16 bg-gradient-to-br ${method.color} rounded-2xl flex items-center justify-center transition-transform duration-300`}
-                  >
-                    <method.icon className={`w-8 h-8 ${method.iconColor}`} />
-                  </div>
-                </div>
-
-                {/* Content */}
+              <div className="relative rounded-xl p-8 h-full border transition-all duration-300 shadow">
                 <div className="space-y-4">
                   <div>
                     <h3 className="text-xl font-bold text-foreground mb-1">{method.title}</h3>
-                    <p className="text-sm text-primary font-medium">{method.subtitle}</p>
                   </div>
-
-                  <div className="space-y-3">
-                    <p className="text-lg font-semibold text-foreground">{method.value}</p>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {method.description}
-                    </p>
+                  <div className="space-y-3 text-slate-700">
+                    <div className={"flex items-center gap-2 justify-start"}>
+                      <span>
+                        <method.icon className={`w-5 h-5 text-primary`} />
+                      </span>
+                      <span className="text-lg font-medium">{method.value}</span>
+                    </div>
+                    <p className="text-sm leading-relaxed text-gray-500">{method.description}</p>
                   </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
-
-        {/* Additional Information Section */}
+        {/* Business Hours */}
         <div className="grid lg:grid-cols-1 gap-12 mb-16 w-full mx-auto max-w-5xl">
-          {/* Business Hours */}
           <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-r from-primary/10 to-accent/20 rounded-3xl blur-2xl opacity-50"></div>
-            <div className="relative bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-accent/20">
+            <div className="relative backdrop-blur-sm rounded-2xl p-8 border shadow">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <Clock className="w-6 h-6 text-primary" />
-                </div>
                 <div>
                   <h3 className="text-xl font-bold">Business Hours</h3>
-                  <p className="text-sm text-muted-foreground">When you can reach us</p>
                 </div>
               </div>
-
               <div className="space-y-4">
                 {businessHours.map((schedule, index) => (
                   <div
                     key={index}
-                    className="flex justify-between items-center py-2 border-b border-accent/10 last:border-0"
+                    className="flex justify-between items-center py-2 border-b last:border-0"
                   >
                     <span className="text-muted-foreground font-medium">{schedule.day}</span>
                     <span className="text-foreground font-semibold">{schedule.hours}</span>
