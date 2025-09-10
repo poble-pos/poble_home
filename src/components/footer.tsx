@@ -1,7 +1,13 @@
+"use client";
+
 import React from "react";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 export default function Footer() {
+  const router = useRouter();
+
   return (
     <footer className="relative bg-slate-900 text-white overflow-hidden">
       {/* Background Effects */}
@@ -15,7 +21,6 @@ export default function Footer() {
           }}
         ></div>
       </div>
-
       <div className="relative z-10">
         <div className="container mx-auto px-4 py-16">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
@@ -90,12 +95,20 @@ export default function Footer() {
               <div className="text-slate-400 text-sm">
                 © {new Date().getFullYear()} Copyright Poble. All Rights Reserved
               </div>
-
               <div className="flex items-center gap-4">
                 <div className="w-8 h-px bg-gradient-to-r from-transparent via-yellow-400 to-transparent"></div>
                 <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
                 <div className="w-8 h-px bg-gradient-to-r from-transparent via-yellow-400 to-transparent"></div>
               </div>
+              <Button
+                className="text-slate-400 text-sm hover:cursor-pointer"
+                variant={"link"}
+                onClick={() => {
+                  router.push("/terms-and-conditions");
+                }}
+              >
+                Terms & Conditions
+              </Button>
             </div>
           </div>
         </div>

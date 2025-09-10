@@ -28,10 +28,6 @@ export default function AboutUs() {
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <Users className="w-4 h-4" />
-            About POBLE
-          </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-balance leading-tight mb-6">
             Explore Your Next Potential <span className="text-primary">with Us</span>
           </h2>
@@ -76,7 +72,6 @@ export default function AboutUs() {
           </div>
 
           <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-accent/30 rounded-3xl blur-2xl"></div>
             <div className="relative bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-accent/20">
               <Image
                 src="/about-img.svg"
@@ -92,7 +87,6 @@ export default function AboutUs() {
         {/* Cloud System Benefits */}
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
           <div className="relative order-2 lg:order-1">
-            <div className="absolute -inset-4 bg-gradient-to-r from-accent/20 to-primary/30 rounded-3xl blur-2xl"></div>
             <div className="relative bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-accent/20">
               <Image
                 src="/about-extra-1.svg"

@@ -1,7 +1,9 @@
+"use client";
+
 import React from "react";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
-export default function ContactUs() {
+export default function ContactUsContent() {
   const contactMethods = [
     {
       icon: MapPin,

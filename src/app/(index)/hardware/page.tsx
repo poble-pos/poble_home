@@ -23,7 +23,6 @@ export default async function HardwarePage() {
             for professionals, gamers, and tech enthusiasts.
           </p>
         </div>
-
         {/* Products Section */}
         <div className="mb-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
