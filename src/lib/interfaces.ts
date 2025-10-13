@@ -2,11 +2,11 @@ interface DefaultPrice {
   id: string;
   object: string;
   active: boolean;
-  billingScheme: string;
+  billing_scheme: string;
   created: string;
   currency: string;
-  currencyOptions: null;
-  customUnitAmount: null;
+  currency_options: null;
+  custom_unit_amount: null;
   deleted: null;
   livemode: boolean;
   lookupKey: null;
@@ -14,51 +14,11 @@ interface DefaultPrice {
   nickname: null;
   productId: string;
   product?: StripeProduct;
-  recurring: {
-    aggregateUsage: null;
-    interval: string;
-    intervalCount: number;
-    trialPeriodDays: null;
-    usageType: string;
-    rawjObject: {
-      aggregate_usage: any[];
-      interval: any[];
-      interval_count: any[];
-      meter: any[];
-      trial_period_days: any[];
-      usage_type: any[];
-    };
-    stripeResponse: null;
-  };
-  taxBehavior: string;
+  tax_behavior: string;
   tiers: null;
-  tiersMode: null;
-  transformQuantity: null;
   type: string;
-  unitAmount: number;
-  unitAmountDecimal: number;
-  rawjObject: {
-    id: any[];
-    object: any[];
-    active: any[];
-    billing_scheme: any[];
-    created: any[];
-    currency: any[];
-    custom_unit_amount: any[];
-    livemode: any[];
-    lookup_key: any[];
-    metadata: any[];
-    nickname: any[];
-    product: any[];
-    recurring: any[][][];
-    tax_behavior: any[];
-    tiers_mode: any[];
-    transform_quantity: any[];
-    type: any[];
-    unit_amount: any[];
-    unit_amount_decimal: any[];
-  };
-  stripeResponse: null;
+  unit_amount: number;
+  unit_amount_decimal: number;
 }
 
 interface RawjObject {
@@ -92,26 +52,21 @@ export interface StripeProduct {
   attributes: any[];
   caption: string | null;
   created: string;
-  deactivateOn: string | null;
-  defaultPriceId: string;
-  defaultPrice: DefaultPrice;
+  default_price: DefaultPrice;
   deleted: boolean | null;
   description: string;
   images: string[];
   livemode: boolean;
   metadata: StripeMetaData;
   name: string;
-  packageDimensions: any | null;
+  package_dimensions: any | null;
   shippable: boolean | null;
-  statementDescriptor: string | null;
-  taxCodeId: string | null;
-  taxCode: string | null;
+  statement_descriptor: string | null;
+  tax_code: string | null;
   type: string;
-  unitLabel: string | null;
+  unit_label: string | null;
   updated: string;
   url: string | null;
-  rawjObject: RawjObject;
-  stripeResponse: any | null;
 }
 
 export interface StripeProductWithQuantity extends StripeProduct {

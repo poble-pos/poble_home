@@ -61,7 +61,7 @@ export const useCart = create<UseCartInfo>()(
         const items = get().currentItems || [];
 
         const totalPrice = items.reduce((total, item) => {
-          return total + item.defaultPrice.unitAmount * item.quantity;
+          return total + item.default_price.unit_amount * item.quantity;
         }, 0);
 
         return totalPrice;

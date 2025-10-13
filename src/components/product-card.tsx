@@ -39,7 +39,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <div className="flex items-center justify-between mt-auto">
             <div className="flex items-center space-x-2">
               <span className="text-2xl font-bold">
-                ${(product.defaultPrice.unitAmount / 100).toFixed(2)}
+                ${(product.default_price.unit_amount / 100).toFixed(2)}
               </span>
             </div>
             <Button

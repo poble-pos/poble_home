@@ -3,7 +3,7 @@ import "./globals.css";
 import { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://poble.com.au'),
+  metadataBase: new URL("https://poble.com.au"),
   title: "Poble",
   description:
     "Poble provides modern, reliable, and easy-to-use POS systems to help businesses manage sales, inventory, and customer experience efficiently.",

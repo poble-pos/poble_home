@@ -21,7 +21,7 @@ export default function CartContent() {
 
     const stripeOneOffCartItem = items.map((item) => {
       return {
-        stripePriceId: item.defaultPriceId,
+        stripePriceId: item.default_price.id,
         stripeProductId: item.id,
         quantity: item.quantity,
       };
@@ -80,7 +80,7 @@ export default function CartContent() {
                       <h3 className="font-semibold text-gray-900">{item.name}</h3>
                       <p className="text-sm text-gray-600">{item.description}</p>
                       <p className="font-bold text-black mt-2">
-                        ${(item.defaultPrice.unitAmount / 100).toFixed(2)}
+                        ${(item.default_price.unit_amount / 100).toFixed(2)}
                       </p>
                     </div>
 
@@ -130,7 +130,7 @@ export default function CartContent() {
                           {item.name} x {item.quantity}
                         </span>
                         <span>
-                          ${((item.defaultPrice.unitAmount * item.quantity) / 100).toFixed(2)}
+                          ${((item.default_price.unit_amount * item.quantity) / 100).toFixed(2)}
                         </span>
                       </div>
                     </div>
