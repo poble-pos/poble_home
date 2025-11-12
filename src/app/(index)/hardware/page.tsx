@@ -42,7 +42,9 @@ export const metadata: Metadata = {
 export default async function HardwarePage() {
   const stripeOneOffProductList = await fetchStripeOneOffProductList({});
 
-  console.log(stripeOneOffProductList);
+  const filteredStripeOneOffProductList = stripeOneOffProductList.filter((stripeProduct) => {
+    return stripeProduct.metadata.isOneOff === "true";
+  });
 
   return (
     <div className="bg-gradient-to-b from-background to-accent/5 min-h-screen">
@@ -64,7 +66,7 @@ export default async function HardwarePage() {
         {/* Products Section */}
         <div className="mb-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {stripeOneOffProductList.map((product) => (
+            {filteredStripeOneOffProductList.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
