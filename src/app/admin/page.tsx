@@ -60,16 +60,13 @@ export default function AdminDashboard() {
         setTimeout(() => setToast(null), 3000);
     };
 
-    // 1. Guard Protection
+    const selectedSection = siteContent.sections.find(s => s.id === selectedSectionId);
+
     useEffect(() => {
         if (!isLoggedIn) {
             router.push('/admin/login');
         }
     }, [isLoggedIn, router]);
-
-    if (!isLoggedIn) return null;
-
-    const selectedSection = siteContent.sections.find(s => s.id === selectedSectionId);
 
     // 2. Sync local content when section changes
     useEffect(() => {
@@ -81,13 +78,15 @@ export default function AdminDashboard() {
             setLocalContent(content);
             setShowSuccess(false);
         }
-    }, [selectedSectionId, siteContent]);
+    }, [selectedSectionId, siteContent, selectedSection]);
 
     // 3. Sync local sections when site content changes (e.g. after publish or initial load)
     useEffect(() => {
         setLocalSections(siteContent.sections);
         setShowLayoutSuccess(false);
     }, [siteContent.sections]);
+
+    if (!isLoggedIn) return null;
 
     const handleSave = async () => {
         setIsSaving(true);

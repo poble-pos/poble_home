@@ -26,14 +26,14 @@ export default function TermsPage() {
 
                     <div className="prose prose-slate prose-lg max-w-none prose-headings:font-black prose-headings:text-poble-charcoal prose-p:text-slate-600 prose-p:leading-loose prose-li:text-slate-600 prose-li:leading-relaxed prose-a:text-blue-600 hover:prose-a:text-blue-800 transition-colors space-y-6">
                         <p className="lead text-xl text-slate-700 font-medium leading-relaxed">
-                            Welcome to <strong>poble</strong>. These Terms of Service ("Terms") constitute a legally binding agreement between you ("Customer", "Client", or "you") and <strong>ECNESOFT PTY LTD</strong> ("Provider", "we", "us", or "our") governing your access to and use of the poble Point of Sale (POS) software and related services.
+                            Welcome to <strong>poble</strong>. These Terms of Service (&quot;Terms&quot;) constitute a legally binding agreement between you (&quot;Customer&quot;, &quot;Client&quot;, or &quot;you&quot;) and <strong>ECNESOFT PTY LTD</strong> (&quot;Provider&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) governing your access to and use of the poble Point of Sale (POS) software and related services.
                         </p>
 
                         <hr className="border-slate-100 my-12" />
 
                         <h3>1. Acceptance of Terms</h3>
                         <p>
-                            By registering for, accessing, or using the poble platform ("Service"), you acknowledge that you have read, understood, and agree to be bound by these Terms. If you are entering into this agreement on behalf of a company or other legal entity, you represent that you have the authority to bind such entity to these Terms.
+                            By registering for, accessing, or using the poble platform (&quot;Service&quot;), you acknowledge that you have read, understood, and agree to be bound by these Terms. If you are entering into this agreement on behalf of a company or other legal entity, you represent that you have the authority to bind such entity to these Terms.
                         </p>
 
                         <h3>2. Grant of License</h3>
@@ -51,7 +51,7 @@ export default function TermsPage() {
 
                         <h3>3. Free Trial and Promotional Periods</h3>
                         <p>
-                            We may offer a free trial or promotional access period ("Trial Period") for the Service.
+                            We may offer a free trial or promotional access period (&quot;Trial Period&quot;) for the Service.
                         </p>
                         <ul className="space-y-2">
                             <li><strong>Duration:</strong> The specific duration of your Trial Period will be specified at the time of sign-up or in your specific Order Form (e.g., 30 days, 90 days).</li>
@@ -77,7 +77,7 @@ export default function TermsPage() {
                             <strong>Our IP:</strong> ECNESOFT PTY LTD retains all rights, title, and interest in and to the Service, including all related intellectual property rights.
                         </p>
                         <p>
-                            <strong>Your Data:</strong> You retain all rights to the data you input into the Service ("Customer Data"). You grant us a license to host, copy, transmit, and display your data strictly as necessary to provide the Service.
+                            <strong>Your Data:</strong> You retain all rights to the data you input into the Service (&quot;Customer Data&quot;). You grant us a license to host, copy, transmit, and display your data strictly as necessary to provide the Service.
                         </p>
 
                         <h3>7. Limitation of Liability</h3>
@@ -86,7 +86,7 @@ export default function TermsPage() {
                         </p>
                         <ul className="space-y-2">
                             <li><strong>Re-supply:</strong> Our liability for any breach of a consumer guarantee is limited to the re-supply of the services or payment of the cost of having the services supplied again.</li>
-                            <li><strong>Access & Reliability:</strong> We do not guarantee that the Service will be uninterrupted or error-free. The Service is provided on an "AS IS" and "AS AVAILABLE" basis.</li>
+                            <li><strong>Access & Reliability:</strong> We do not guarantee that the Service will be uninterrupted or error-free. The Service is provided on an &quot;AS IS&quot; and &quot;AS AVAILABLE&quot; basis.</li>
                             <li><strong>Cap on Liability:</strong> Our aggregate liability arising out of or related to these Terms shall not exceed the total amount paid by you hereunder in the twelve (12) months preceding the incident.</li>
                         </ul>
 

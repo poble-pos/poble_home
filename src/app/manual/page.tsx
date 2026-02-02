@@ -69,7 +69,7 @@ const MANUAL_DATA = {
                             <ul className="list-disc pl-5 space-y-2 text-slate-600">
                                 <li><strong>테이블 선택:</strong> 원하는 테이블을 탭하여 주문을 시작하세요.</li>
                                 <li><strong>메뉴 선택:</strong> 카테고리별로 정리된 메뉴를 터치하여 추가합니다. 옵션(Modifier) 창이 자동으로 팝업됩니다.</li>
-                                <li><strong>주문 전송:</strong> 'Send' 버튼을 누르면 주방 프린터로 주문서가 전송됩니다.</li>
+                                <li><strong>주문 전송:</strong> &apos;Send&apos; 버튼을 누르면 주방 프린터로 주문서가 전송됩니다.</li>
                             </ul>
                         </div>
                     )
@@ -110,7 +110,7 @@ const MANUAL_DATA = {
                             </div>
                             <ol className="list-decimal pl-5 space-y-2 text-slate-600">
                                 <li>설정 &gt; 프린터 메뉴로 이동합니다.</li>
-                                <li>'프린터 검색'을 눌러 사용 가능한 프린터를 찾습니다.</li>
+                                <li>&apos;프린터 검색&apos;을 눌러 사용 가능한 프린터를 찾습니다.</li>
                                 <li>프린터를 선택하고 역할을 지정합니다 (예: 계산대, 주방, 바).</li>
                             </ol>
                         </div>
@@ -139,7 +139,7 @@ const MANUAL_DATA = {
                     content: (
                         <div className="space-y-4">
                             <p>배달 주문을 POS에서 직접 확인하고 주방으로 보낼 수 있습니다.</p>
-                            <p>연동 설정은 대시보드의 'Integrations' 메뉴에서 Uber Eats 로그인을 통해 활성화할 수 있습니다.</p>
+                            <p>연동 설정은 대시보드의 &apos;Integrations&apos; 메뉴에서 Uber Eats 로그인을 통해 활성화할 수 있습니다.</p>
                         </div>
                     )
                 }
@@ -200,7 +200,7 @@ const MANUAL_DATA = {
                             <ul className="list-disc pl-5 space-y-2 text-slate-600">
                                 <li><strong>Table Selection:</strong> Tap a table to start an order.</li>
                                 <li><strong>Menu Selection:</strong> Tap menus organized by category to add them. A modifier window pops up automatically.</li>
-                                <li><strong>Send Order:</strong> Press the 'Send' button to transmit the order ticket to the kitchen printer.</li>
+                                <li><strong>Send Order:</strong> Press the &apos;Send&apos; button to transmit the order ticket to the kitchen printer.</li>
                             </ul>
                         </div>
                     )
@@ -241,7 +241,7 @@ const MANUAL_DATA = {
                             </div>
                             <ol className="list-decimal pl-5 space-y-2 text-slate-600">
                                 <li>Go to Settings &gt; Printer menu.</li>
-                                <li>Tap 'Search Printers' to find available printers.</li>
+                                <li>Tap &apos;Search Printers&apos; to find available printers.</li>
                                 <li>Select a printer and assign a role (e.g., Cashier, Kitchen, Bar).</li>
                             </ol>
                         </div>
@@ -270,7 +270,7 @@ const MANUAL_DATA = {
                     content: (
                         <div className="space-y-4">
                             <p>Check delivery orders directly on the POS and send them to the kitchen.</p>
-                            <p>Integration settings can be enabled via Uber Eats login in the 'Integrations' menu of the dashboard.</p>
+                            <p>Integration settings can be enabled via Uber Eats login in the &apos;Integrations&apos; menu of the dashboard.</p>
                         </div>
                     )
                 }

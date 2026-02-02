@@ -25,7 +25,7 @@ export default function CookiesPage() {
 
                     <div className="prose prose-slate prose-lg max-w-none prose-headings:font-black prose-headings:text-poble-charcoal prose-p:text-slate-600 prose-p:leading-loose prose-li:text-slate-600 prose-li:leading-relaxed prose-a:text-blue-600 hover:prose-a:text-blue-800 transition-colors space-y-6">
                         <p className="lead text-xl text-slate-700 font-medium leading-relaxed">
-                            This Cookie Policy explains how <strong>ECNESOFT PTY LTD</strong> ("we", "us", or "our") uses cookies and similar tracking technologies when you use the <strong>poble</strong> website and SaaS platform.
+                            This Cookie Policy explains how <strong>ECNESOFT PTY LTD</strong> (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) uses cookies and similar tracking technologies when you use the <strong>poble</strong> website and SaaS platform.
                         </p>
 
                         <hr className="border-slate-100 my-12" />
@@ -35,12 +35,12 @@ export default function CookiesPage() {
                             Cookies are small data files that are placed on your computer or mobile device when you visit a website. They are widely used by website owners in order to make their websites work, or to work more efficiently, as well as to provide reporting information.
                         </p>
                         <p>
-                            Cookies set by the website owner (us) are called "first-party cookies". Cookies set by parties other than the website owner are called "third-party cookies".
+                            Cookies set by the website owner (us) are called &quot;first-party cookies&quot;. Cookies set by parties other than the website owner are called &quot;third-party cookies&quot;.
                         </p>
 
                         <h3>2. How We Use Cookies</h3>
                         <p>
-                            We use cookies for several reasons. Some cookies are required for technical reasons in order for our Platform to operate, and we refer to these as "essential" or "strictly necessary" cookies. Other cookies enable us to track and target the interests of our users to enhance the experience on our Platform.
+                            We use cookies for several reasons. Some cookies are required for technical reasons in order for our Platform to operate, and we refer to these as &quot;essential&quot; or &quot;strictly necessary&quot; cookies. Other cookies enable us to track and target the interests of our users to enhance the experience on our Platform.
                         </p>
 
                         <div className="not-prose grid gap-6 my-10">
