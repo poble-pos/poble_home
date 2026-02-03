@@ -82,7 +82,7 @@ export default function CookiesPage() {
                                 <strong>Browser Controls:</strong> You can set or amend your web browser controls to accept or refuse cookies. If you choose to reject cookies, you may still use our website, though your access to some functionality and areas of our website (especially the Dashboard) may be restricted.
                             </li>
                             <li>
-                                <strong>Opt-out of Analytics:</strong> To opt out of being tracked by Google Analytics across all websites, visit <a href="http://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">http://tools.google.com/dlpage/gaoptout</a>.
+                                <strong>Opt-out of Analytics:</strong> To opt out of being tracked by Google Analytics across all websites, visit <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">https://tools.google.com/dlpage/gaoptout</a>.
                             </li>
                         </ul>
 

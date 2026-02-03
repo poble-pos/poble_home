@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAdmin } from '@/context/AdminContext';
 import { Logo } from '@/components/Logo';
+import { verifyCredentials } from '@/app/actions/auth';
 import { Lock, User, ArrowRight, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -24,13 +25,29 @@ export default function AdminLoginPage() {
         // Tactical delay for "security feel"
         await new Promise(resolve => setTimeout(resolve, 800));
 
-        // Simple hardcoded check for demo/reference
-        // In production, this would be an API call to Supabase/Auth service
-        if (username === 'admin' && password === 'poble123') {
-            setIsLoggedIn(true);
-            router.push('/admin');
-        } else {
-            setError('Invalid credentials. Please contact IT for access.');
+        if (!username || !password) {
+            setError('Please enter both username and password.');
+            setIsLoading(false);
+            return;
+        }
+
+        try {
+            const formData = new FormData();
+            formData.append('username', username);
+            formData.append('password', password);
+
+            const result = await verifyCredentials(formData);
+
+            if (result.success) {
+                setIsLoggedIn(true);
+                router.push('/admin');
+            } else {
+                setError(result.message || 'Invalid credentials. Please contact IT for access.');
+                setIsLoading(false);
+            }
+        } catch (err) {
+            console.error('Login error:', err);
+            setError('An unexpected error occurred. Please try again.');
             setIsLoading(false);
         }
     };

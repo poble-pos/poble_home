@@ -8,6 +8,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, ShoppingBag, ClipboardList, BarChart2, Settings, Monitor, CheckCircle2, Trash2, Bell, User } from 'lucide-react';
 import { useAdmin } from '@/context/AdminContext';
+import DOMPurify from 'isomorphic-dompurify';
 
 interface MenuItem {
     id: string;
@@ -74,12 +75,12 @@ export const Hero: React.FC = () => {
                     {/* Primary Proposition */}
                     <div className="max-w-2xl animate-in fade-in slide-in-from-left-8 duration-700 relative z-20">
                         <h1 className="text-5xl sm:text-5xl md:text-[5rem] lg:text-[5rem] xl:text-[5.5rem] font-black tracking-tighter text-poble-charcoal leading-[0.9] mb-8 lg:mb-10 font-heading"
-                            dangerouslySetInnerHTML={{ __html: content.title?.replace('Clutter', '<span class="text-poble-gold">Clutter</span>').replace('Speed', '<span class="text-slate-300 inline-block transform -skew-x-[8deg]">Speed</span>') || '' }}>
+                            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.title?.replace('Clutter', '<span class="text-poble-gold">Clutter</span>').replace('Speed', '<span class="text-slate-300 inline-block transform -skew-x-[8deg]">Speed</span>') || '') }}>
                         </h1>
 
                         <div className="mb-6 lg:mb-8 font-sans">
                             <p className="text-xl text-poble-charcoal leading-relaxed max-w-2xl font-bold"
-                                dangerouslySetInnerHTML={{ __html: content.description || '' }}>
+                                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.description || '') }}>
                             </p>
                             <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mt-4 lg:mt-6 opacity-80">
                                 *Compatible with iPad 7th Gen and later.
