@@ -70,7 +70,7 @@ export const INITIAL_SITE_CONTENT: SiteConfig = {
             visible: true,
             order: 1,
             content: {
-                title: 'Make Every Second Count',
+                title: 'Make Every Second Count!',
                 subtitle: 'Built for the reality of your day. With poble, we remove the friction from your counter, so your team stays focused on every customer and every cup.',
                 feature1_title: 'The Balancing Act',
                 feature1_desc: 'End your day in seconds. Automated reconciliation ensures your dockets and payments always match, without the manual grind.',
