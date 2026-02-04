@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Instagram, Twitter, Facebook, Phone, Mail, Clock, MapPin } from 'lucide-react';
+import { Instagram, Facebook, Phone, Mail, Clock, MapPin } from 'lucide-react';
 import { Logo } from './Logo';
 
 export const Footer: React.FC = () => {
@@ -13,9 +13,13 @@ export const Footer: React.FC = () => {
                     <div className="col-span-1 md:col-span-3 lg:col-span-1 flex flex-col md:flex-row lg:flex-col justify-between md:justify-start items-start md:items-center lg:items-start md:gap-12 lg:gap-0">
                         <Logo className="h-16 mb-10 md:mb-0 lg:mb-10 lg:ml-0" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} />
                         <div className="flex gap-4">
-                            <a href="#" title="Instagram" className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:text-poble-gold hover:border-poble-gold transition-all"><Instagram className="w-5 h-5" /></a>
-                            <a href="#" title="Twitter" className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:text-poble-gold hover:border-poble-gold transition-all"><Twitter className="w-5 h-5" /></a>
-                            <a href="#" title="Facebook" className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:text-poble-gold hover:border-poble-gold transition-all"><Facebook className="w-5 h-5" /></a>
+                            <a href="https://www.instagram.com/poblepos/" title="Instagram" className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:text-poble-gold hover:border-poble-gold transition-all"><Instagram className="w-5 h-5" /></a>
+                            <a href="https://x.com/poble_official" title="X" className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:text-poble-gold hover:border-poble-gold transition-all">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" className="w-5 h-5 fill-current">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                </svg>
+                            </a>
+                            <a href="https://www.facebook.com/poble.official" title="Facebook" className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:text-poble-gold hover:border-poble-gold transition-all"><Facebook className="w-5 h-5" /></a>
                         </div>
                     </div>
 
