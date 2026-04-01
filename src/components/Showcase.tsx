@@ -31,6 +31,8 @@ export const Showcase: React.FC = () => {
 
     return (
         <section className="py-24 bg-[#1a1a1a] text-white overflow-hidden border-y border-white/5 relative">
+            {/* Line grid overlay */}
+            <div className="absolute inset-0 pointer-events-none opacity-20" style={{ backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.15) 1px, transparent 1px)', backgroundSize: '400px 400px' }} />
             {/* Dark Aesthetic Overlays */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-[#3a3a3a] via-[#2a2a2a] to-[#1a1a1a] opacity-80 pointer-events-none"></div>
             <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/40 to-transparent z-0 pointer-events-none"></div>

@@ -50,8 +50,10 @@ export const FAQ: React.FC<FAQProps> = ({ className, content: propContent }) => 
     const items = config.faq?.filter((f: any) => f.visible !== false) || defaultFaqItems;
 
     return (
-        <section id="faq" className={className || "py-24 bg-white border-b border-slate-100"}>
-            <div className="max-w-7xl mx-auto px-6">
+        <section id="faq" className={className || "py-24 bg-white border-b border-slate-100 relative overflow-hidden"}>
+            {/* Line grid overlay */}
+            <div className="absolute inset-0 pointer-events-none opacity-60" style={{ backgroundImage: 'linear-gradient(to right, #dce4ea 1px, transparent 1px), linear-gradient(to bottom, #dce4ea 1px, transparent 1px)', backgroundSize: '400px 400px' }} />
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
                     {/* Left Column: Title & Description */}
                     <div className="lg:col-span-5 flex flex-col justify-center order-1 lg:order-1">

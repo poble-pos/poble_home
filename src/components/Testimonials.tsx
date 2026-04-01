@@ -52,6 +52,8 @@ export const Testimonials: React.FC = () => {
     "Join hundreds of cafes, bars and restaurants that have switched to poble for a faster, simpler service.";
   return (
     <section className="py-24 bg-slate-50 border-y border-slate-100 overflow-hidden relative">
+      {/* Line grid overlay */}
+      <div className="absolute inset-0 pointer-events-none opacity-60" style={{ backgroundImage: 'linear-gradient(to right, #dce4ea 1px, transparent 1px), linear-gradient(to bottom, #dce4ea 1px, transparent 1px)', backgroundSize: '400px 400px' }} />
       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-white rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2 opacity-60 pointer-events-none"></div>
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-poble-gold/5 rounded-full blur-[100px] translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
 

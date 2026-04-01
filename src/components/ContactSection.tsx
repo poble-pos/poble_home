@@ -56,13 +56,13 @@ const InputField: React.FC<InputFieldProps> = ({
     const hasError = touched && (error || (isFieldRequired && !value?.trim()));
 
     return (
-        <div className="space-y-2">
-            <div className="flex justify-between items-center ml-1">
-                <label className={`block text-[10px] font-black uppercase tracking-[0.2em] transition-colors ${hasError ? 'text-rose-500' : 'text-poble-charcoal'}`}>
+        <div className="space-y-1.5">
+            <div className="flex justify-between items-center">
+                <label className={`block text-[10px] font-black uppercase tracking-[0.2em] transition-colors ${hasError ? 'text-rose-400' : 'text-white/40'}`}>
                     {label}{isFieldRequired && '*'}
                 </label>
                 {touched && error && error !== "Required" && (
-                    <span className="text-[9px] font-black text-rose-500 uppercase tracking-wider animate-in fade-in duration-300">
+                    <span className="text-[9px] font-black text-rose-400 uppercase tracking-wider animate-in fade-in duration-300">
                         {error}
                     </span>
                 )}
@@ -74,7 +74,7 @@ const InputField: React.FC<InputFieldProps> = ({
                 placeholder={placeholder}
                 onChange={onChange}
                 onBlur={onBlur}
-                className={`w-full bg-slate-50 border rounded-2xl px-5 py-4 text-poble-charcoal placeholder:text-slate-300 focus:outline-none focus:ring-2 transition-all font-bold text-sm ${hasError ? 'border-rose-200 focus:ring-rose-100 focus:border-rose-400' : 'border-slate-200 focus:ring-poble-gold/20 focus:border-poble-gold'}`}
+                className={`w-full bg-[#1e1e1e] border px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:ring-1 transition-all font-bold text-sm ${hasError ? 'border-rose-500 focus:ring-rose-500' : 'border-white/10 focus:ring-[#febc2e] focus:border-[#febc2e]'}`}
             />
         </div>
     );
@@ -171,195 +171,133 @@ export const ContactSection: React.FC = () => {
     };
 
     return (
-        <section id="contact" className="scroll-mt-28 py-24 bg-white border-y border-slate-100 relative overflow-hidden">
-            {/* Background design tokens */}
-            <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-amber-50/50 rounded-full blur-3xl pointer-events-none"></div>
+        <section id="contact" className="scroll-mt-28 py-24 relative overflow-hidden" style={{ background: '#0d0d0d', fontFamily: 'monospace' }}>
+            {/* Line grid overlay */}
+            <div className="absolute inset-0 pointer-events-none opacity-10" style={{ backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.15) 1px, transparent 1px)', backgroundSize: '400px 400px' }} />
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <div className="grid lg:grid-cols-[2fr_3fr] gap-16 lg:gap-24 items-start">
+
+                    {/* Left panel — terminal info */}
                     <div className="animate-in fade-in slide-in-from-left-4 duration-700 lg:sticky lg:top-40">
-                        <span className="text-poble-gold font-black uppercase tracking-[0.3em] text-xs mb-6 block">Expert Consultation</span>
-                        <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-8 leading-[1.1] text-poble-charcoal font-heading">
+                        <p className="text-[#4ade80] text-xs font-black uppercase tracking-[0.3em] mb-6">
+                            <span className="text-white/30">venue@poble:~$</span> connect --expert
+                        </p>
+                        <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-8 leading-[1.1] text-white font-heading">
                             {title.includes("Expert") ? (
                                 <>
                                     {title.split("Expert")[0]}
-                                    <span className="text-slate-400">Expert</span>
+                                    <span className="text-[#febc2e]">Expert</span>
                                     {title.split("Expert")[1]}
                                 </>
                             ) : title}
                         </h2>
-                        <div className="w-12 h-1 bg-poble-gold/60 mb-10"></div>
-                        <p className="text-xl text-poble-charcoal font-bold mb-12 max-w-md leading-relaxed tracking-tight">
+                        <div className="w-12 h-1 bg-[#febc2e]/60 mb-10"></div>
+                        <p className="text-base text-white/50 font-bold mb-12 max-w-md leading-relaxed tracking-tight">
                             {description}
                         </p>
 
-                        <div className="space-y-8">
-                            <a href={`tel:${phone.replace(/\s/g, "")}`} className="flex items-center gap-5 group cursor-pointer w-fit">
-                                <div className="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center shrink-0 border border-slate-100 group-hover:border-poble-gold transition-all duration-300">
-                                    <Phone className="w-4 h-4 text-poble-gold" />
+                        <div className="space-y-6">
+                            <a href={`tel:${phone.replace(/\s/g, "")}`} className="flex items-center gap-4 group cursor-pointer w-fit">
+                                <div className="w-10 h-10 flex items-center justify-center shrink-0 border border-white/10 group-hover:border-[#febc2e] transition-all duration-300">
+                                    <Phone className="w-4 h-4 text-[#febc2e]" />
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-1">Contact Sales</span>
-                                    <span className="text-xl font-black text-poble-charcoal group-hover:text-poble-gold transition-colors">{phone}</span>
+                                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/30 mb-0.5">// contact sales</span>
+                                    <span className="text-lg font-black text-white group-hover:text-[#febc2e] transition-colors">{phone}</span>
                                 </div>
                             </a>
-                            <a href={`mailto:${email}`} className="flex items-center gap-5 group cursor-pointer w-fit">
-                                <div className="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center shrink-0 border border-slate-100 group-hover:border-poble-gold transition-all duration-300">
-                                    <Mail className="w-4 h-4 text-poble-gold" />
+                            <a href={`mailto:${email}`} className="flex items-center gap-4 group cursor-pointer w-fit">
+                                <div className="w-10 h-10 flex items-center justify-center shrink-0 border border-white/10 group-hover:border-[#febc2e] transition-all duration-300">
+                                    <Mail className="w-4 h-4 text-[#febc2e]" />
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-1">Email Enquiry</span>
-                                    <span className="text-xl font-black text-poble-charcoal group-hover:text-poble-gold transition-colors lowercase">{email}</span>
+                                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/30 mb-0.5">// email enquiry</span>
+                                    <span className="text-lg font-black text-white group-hover:text-[#febc2e] transition-colors lowercase">{email}</span>
                                 </div>
                             </a>
                         </div>
                     </div>
 
+                    {/* Right panel — terminal form window */}
                     <div className="relative animate-in fade-in slide-in-from-right-4 duration-700 delay-200">
-                        <div className="bg-slate-50 border-2 border-slate-100 rounded-[2.5rem] p-8 md:p-12 relative transition-all duration-500 hover:border-poble-gold/40 hover:bg-white hover:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.05)]">
-                            <form className="space-y-8" onSubmit={handleSubmit}>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <InputField
-                                        label="First Name"
-                                        name="firstName"
-                                        placeholder="Given name"
-                                        required
-                                        value={formData.firstName}
-                                        onChange={handleChange}
-                                        onBlur={() => handleBlur('firstName')}
-                                        touched={touched.firstName || false}
-                                        error={errors.firstName || ''}
-                                    />
-                                    <InputField
-                                        label="Last Name"
-                                        name="lastName"
-                                        placeholder="Surname"
-                                        required
-                                        value={formData.lastName}
-                                        onChange={handleChange}
-                                        onBlur={() => handleBlur('lastName')}
-                                        touched={touched.lastName || false}
-                                        error={errors.lastName || ''}
-                                    />
-                                </div>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <InputField
-                                        label="Email Address"
-                                        name="email"
-                                        type="email"
-                                        placeholder="name@venue.com.au"
-                                        required
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        onBlur={() => handleBlur('email')}
-                                        touched={touched.email || false}
-                                        error={errors.email || ''}
-                                    />
-                                    <InputField
-                                        label="Phone Number"
-                                        name="phone"
-                                        type="tel"
-                                        placeholder="0400 000 000"
-                                        required
-                                        value={formData.phone}
-                                        onChange={handleChange}
-                                        onBlur={() => handleBlur('phone')}
-                                        touched={touched.phone || false}
-                                        error={errors.phone || ''}
-                                    />
-                                </div>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <InputField
-                                        label="Business Name"
-                                        name="businessName"
-                                        placeholder="Venue Name"
-                                        required
-                                        value={formData.businessName}
-                                        onChange={handleChange}
-                                        onBlur={() => handleBlur('businessName')}
-                                        touched={touched.businessName || false}
-                                        error={errors.businessName || ''}
-                                    />
-                                    <InputField
-                                        label="Postal Code"
-                                        name="postalCode"
-                                        placeholder="2000"
-                                        required
-                                        value={formData.postalCode}
-                                        onChange={handleChange}
-                                        onBlur={() => handleBlur('postalCode')}
-                                        touched={touched.postalCode || false}
-                                        error={errors.postalCode || ''}
-                                    />
-                                </div>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div className="space-y-2">
-                                        <div className="flex justify-between items-center ml-1">
-                                            <label className={`block text-[10px] font-black uppercase tracking-[0.2em] transition-colors ${touched.businessType && (errors.businessType || !formData.businessType.trim()) ? 'text-rose-500' : 'text-poble-charcoal'}`}>
-                                                Business Type*
-                                            </label>
+                        <div className="rounded-xl overflow-hidden border border-white/10 shadow-2xl">
+                            {/* Title bar */}
+                            <div className="bg-[#1e1e1e] px-5 py-3 flex items-center gap-2 border-b border-white/5">
+                                <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
+                                <span className="w-3 h-3 rounded-full bg-[#febc2e]" />
+                                <span className="w-3 h-3 rounded-full bg-[#28c840]" />
+                                <span className="ml-4 text-[11px] text-white/30 tracking-widest uppercase">poble — enquiry.sh</span>
+                            </div>
+
+                            {/* Form body */}
+                            <div className="bg-[#141414] px-8 py-10">
+                                <p className="text-[#4ade80] text-xs mb-6"><span className="text-white/30">venue@poble:~$</span> <span className="text-white/60">./submit-enquiry.sh</span></p>
+                                <form className="space-y-6" onSubmit={handleSubmit}>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <InputField label="First Name" name="firstName" placeholder="Given name" required value={formData.firstName} onChange={handleChange} onBlur={() => handleBlur('firstName')} touched={touched.firstName || false} error={errors.firstName || ''} />
+                                        <InputField label="Last Name" name="lastName" placeholder="Surname" required value={formData.lastName} onChange={handleChange} onBlur={() => handleBlur('lastName')} touched={touched.lastName || false} error={errors.lastName || ''} />
+                                    </div>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <InputField label="Email Address" name="email" type="email" placeholder="name@venue.com.au" required value={formData.email} onChange={handleChange} onBlur={() => handleBlur('email')} touched={touched.email || false} error={errors.email || ''} />
+                                        <InputField label="Phone Number" name="phone" type="tel" placeholder="0400 000 000" required value={formData.phone} onChange={handleChange} onBlur={() => handleBlur('phone')} touched={touched.phone || false} error={errors.phone || ''} />
+                                    </div>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <InputField label="Business Name" name="businessName" placeholder="Venue Name" required value={formData.businessName} onChange={handleChange} onBlur={() => handleBlur('businessName')} touched={touched.businessName || false} error={errors.businessName || ''} />
+                                        <InputField label="Postal Code" name="postalCode" placeholder="2000" required value={formData.postalCode} onChange={handleChange} onBlur={() => handleBlur('postalCode')} touched={touched.postalCode || false} error={errors.postalCode || ''} />
+                                    </div>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div className="space-y-2">
+                                            <div className="flex justify-between items-center">
+                                                <label className={`block text-[10px] font-black uppercase tracking-[0.2em] transition-colors ${touched.businessType && (errors.businessType || !formData.businessType.trim()) ? 'text-rose-400' : 'text-white/40'}`}>Business Type*</label>
+                                            </div>
+                                            <div className="relative">
+                                                <select name="businessType" title="Business Type" value={formData.businessType} onChange={handleChange} onBlur={() => handleBlur('businessType')}
+                                                    className={`w-full bg-[#1e1e1e] border px-4 py-3 text-white/70 focus:outline-none focus:ring-1 transition-all font-bold text-sm appearance-none ${touched.businessType && errors.businessType ? 'border-rose-500 focus:ring-rose-500' : 'border-white/10 focus:ring-[#febc2e] focus:border-[#febc2e]'}`}>
+                                                    <option value="">Select Type</option>
+                                                    <option value="cafe_bakery">Cafe / Bakery</option>
+                                                    <option value="takeaway_fastfood">Takeaway / Fast Food</option>
+                                                    <option value="restaurant">Restaurant</option>
+                                                    <option value="retail_other">Retail / Other</option>
+                                                </select>
+                                                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-white/30">
+                                                    <ArrowRight className="w-4 h-4 rotate-90" />
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="relative">
-                                            <select
-                                                name="businessType"
-                                                title="Business Type"
-                                                value={formData.businessType}
-                                                onChange={handleChange}
-                                                onBlur={() => handleBlur('businessType')}
-                                                className={`w-full bg-slate-50 border rounded-2xl px-5 py-4 text-poble-charcoal focus:outline-none focus:ring-2 transition-all font-bold text-sm appearance-none ${touched.businessType && errors.businessType ? 'border-rose-200 focus:ring-rose-100 focus:border-rose-400' : 'border-slate-200 focus:ring-poble-gold/20 focus:border-poble-gold'}`}
-                                            >
-                                                <option value="">Select Type</option>
-                                                <option value="cafe_bakery">Cafe / Bakery</option>
-                                                <option value="takeaway_fastfood">Takeaway / Fast Food</option>
-                                                <option value="restaurant">Restaurant</option>
-                                                <option value="retail_other">Retail / Other</option>
-                                            </select>
-                                            <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
-                                                <ArrowRight className="w-4 h-4 rotate-90" />
+                                        <div className="space-y-2">
+                                            <div className="flex justify-between items-center">
+                                                <label className={`block text-[10px] font-black uppercase tracking-[0.2em] transition-colors ${touched.annualRevenue && (errors.annualRevenue || !formData.annualRevenue.trim()) ? 'text-rose-400' : 'text-white/40'}`}>Annual Revenue*</label>
+                                            </div>
+                                            <div className="relative">
+                                                <select name="annualRevenue" title="Annual Revenue" value={formData.annualRevenue} onChange={handleChange} onBlur={() => handleBlur('annualRevenue')}
+                                                    className={`w-full bg-[#1e1e1e] border px-4 py-3 text-white/70 focus:outline-none focus:ring-1 transition-all font-bold text-sm appearance-none ${touched.annualRevenue && errors.annualRevenue ? 'border-rose-500 focus:ring-rose-500' : 'border-white/10 focus:ring-[#febc2e] focus:border-[#febc2e]'}`}>
+                                                    <option value="">Select Revenue</option>
+                                                    <option value="new_business">New Business (Pre-revenue)</option>
+                                                    <option value="lt_200k">Less than $200k</option>
+                                                    <option value="200k_500k">$200k - $500k</option>
+                                                    <option value="500k_1m">$500k - $1M</option>
+                                                    <option value="gt_1m">$1M+</option>
+                                                </select>
+                                                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-white/30">
+                                                    <ArrowRight className="w-4 h-4 rotate-90" />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="space-y-2">
-                                        <div className="flex justify-between items-center ml-1">
-                                            <label className={`block text-[10px] font-black uppercase tracking-[0.2em] transition-colors ${touched.annualRevenue && (errors.annualRevenue || !formData.annualRevenue.trim()) ? 'text-rose-500' : 'text-poble-charcoal'}`}>
-                                                Annual Revenue*
-                                            </label>
-                                        </div>
-                                        <div className="relative">
-                                            <select
-                                                name="annualRevenue"
-                                                title="Annual Revenue"
-                                                value={formData.annualRevenue}
-                                                onChange={handleChange}
-                                                onBlur={() => handleBlur('annualRevenue')}
-                                                className={`w-full bg-slate-50 border rounded-2xl px-5 py-4 text-poble-charcoal focus:outline-none focus:ring-2 transition-all font-bold text-sm appearance-none ${touched.annualRevenue && errors.annualRevenue ? 'border-rose-200 focus:ring-rose-100 focus:border-rose-400' : 'border-slate-200 focus:ring-poble-gold/20 focus:border-poble-gold'}`}
-                                            >
-                                                <option value="">Select Revenue</option>
-                                                <option value="new_business">New Business (Pre-revenue)</option>
-                                                <option value="lt_200k">Less than $200k</option>
-                                                <option value="200k_500k">$200k - $500k</option>
-                                                <option value="500k_1m">$500k - $1M</option>
-                                                <option value="gt_1m">$1M+</option>
-                                            </select>
-                                            <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
-                                                <ArrowRight className="w-4 h-4 rotate-90" />
-                                            </div>
-                                        </div>
+                                    <div className="space-y-4 pt-2">
+                                        <p className="text-[10px] font-bold text-white/20 leading-relaxed text-center">
+                                            {/* By submitting you agree to receive updates from poble. Unsubscribe anytime. */}
+                                            By submitting, you agree to receive helpful updates from <span className="font-logo">poble</span>. Unsubscribe anytime.
+                                        </p>
+                                        <button type="submit"
+                                            className="bg-[#febc2e] text-[#0d0d0d] w-full py-4 font-black text-sm tracking-widest uppercase hover:bg-white transition-all active:scale-[0.98] cursor-pointer flex items-center justify-center gap-4 group">
+                                            Send Enquiry
+                                            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                                        </button>
                                     </div>
-                                </div>
-                                <div className="space-y-4 pt-4">
-                                    <p className="text-xs font-bold text-slate-400 leading-relaxed text-center px-4">
-                                        By submitting, you agree to receive helpful updates, promotional offers, and marketing materials from <span className="font-logo">poble</span>. You can unsubscribe anytime.
-                                    </p>
-                                    <button
-                                        type="submit"
-                                        className="bg-teal-600 text-white w-full py-4 rounded-full font-extrabold text-lg tracking-tight hover:bg-poble-charcoal hover:text-white transition-all shadow-xl active:scale-[0.98] shadow-slate-200 cursor-pointer flex items-center justify-center gap-4 group"
-                                    >
-                                        Send Enquiry
-                                        <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-                                    </button>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

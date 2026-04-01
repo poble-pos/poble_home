@@ -38,8 +38,7 @@ export const PricingSection: React.FC = () => {
     const description = config.description || "Everything your venue needs for one transparent price.";
 
     return (
-        <section id="pricing" className="py-24 relative overflow-hidden bg-white border-b border-slate-100">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none opacity-[0.03] bg-dot-pattern"></div>
+        <section id="pricing" className="py-24 relative overflow-hidden bg-white border-b border-slate-100 font-inter" style={{ letterSpacing: '-0.04em' }}>
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <div className="text-center mb-20 animate-in fade-in slide-in-from-bottom-4 duration-700">

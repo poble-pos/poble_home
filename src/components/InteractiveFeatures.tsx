@@ -38,13 +38,13 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
     uiMockup,
     image,
 }) => {
+    const faceBase = "absolute inset-0 p-10 flex flex-col rounded-[2.5rem] overflow-hidden";
+    const backfaceHidden: React.CSSProperties = { backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' };
+
     return (
         <div
-            className={`group border-2 rounded-[2.5rem] transition-all duration-500 overflow-hidden select-none cursor-pointer
-      ${isExpanded
-                    ? "border-poble-gold bg-white shadow-[0_40px_80px_-15px_rgba(255,184,0,0.15)]"
-                    : "border-slate-100 bg-slate-50 hover:border-poble-gold/40 hover:bg-white hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)]"
-                }`}
+            className="select-none cursor-pointer h-[560px]"
+            style={{ perspective: '1200px' }}
             onMouseEnter={onHoverStart}
             onMouseLeave={onHoverEnd}
             onFocus={onHoverStart}
@@ -54,63 +54,74 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
             tabIndex={0}
             aria-expanded={isExpanded}
         >
-            <div className="p-10 flex flex-col h-[560px]">
-                <div className="flex items-start gap-5 mb-8">
-                    <div className="flex flex-col items-center gap-4 shrink-0">
-                        <div
-                            className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500 ${isExpanded
-                                ? "bg-poble-gold text-poble-charcoal shadow-lg shadow-poble-gold/20"
-                                : "bg-white text-slate-400 border border-slate-100 group-hover:text-poble-gold"
-                                }`}
-                        >
+            {/* Flipper */}
+            <div
+                className="relative w-full h-full"
+                style={{
+                    transformStyle: 'preserve-3d',
+                    transition: 'transform 0.65s cubic-bezier(0.4, 0, 0.2, 1)',
+                    transform: isExpanded ? 'rotateY(180deg)' : 'rotateY(0deg)',
+                }}
+            >
+                {/* ── FRONT ── */}
+                <div
+                    className={`${faceBase} border-2 border-slate-100 bg-slate-50`}
+                    style={backfaceHidden}
+                >
+                    <div className="flex items-start gap-5 mb-8">
+                        <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-white text-slate-400 border border-slate-100 shrink-0">
                             <Icon className="w-6 h-6" strokeWidth={2.5} />
                         </div>
-
-                        <div className={`w-9 h-9 rounded-full border-2 flex items-center justify-center transition-all duration-500 shadow-sm ${isExpanded
-                            ? 'bg-white border-slate-200 text-slate-400'
-                            : 'bg-poble-gold border-poble-gold text-poble-charcoal shadow-poble-gold/20'
-                            }`}>
-                            {isExpanded ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
-                        </div>
+                        <h3 className="text-2xl font-black text-poble-charcoal tracking-tight leading-[1.1] font-heading pt-1.5">
+                            {title[0]} <br />
+                            <span className="text-slate-500">{title[1]}</span>
+                        </h3>
                     </div>
 
-                    <h3 className="text-2xl font-black text-poble-charcoal tracking-tight leading-[1.1] font-heading pt-1.5">
-                        {title[0]} <br />
-                        <span className="text-slate-500">{title[1]}</span>
-                    </h3>
-                </div>
-
-                <div className="relative h-[170px]">
-                    <p
-                        className={`absolute inset-0 text-poble-charcoal/80 font-bold text-lg leading-relaxed transition-all duration-300
-            ${isExpanded ? "opacity-0 translate-y-2 pointer-events-none" : "opacity-100 translate-y-0"}
-            `}
-                    >
+                    <p className="text-poble-charcoal/80 font-bold text-lg leading-relaxed mb-auto">
                         {collapsedDesc}
                     </p>
-                    <p
-                        className={`absolute inset-0 text-poble-charcoal font-bold text-lg leading-relaxed transition-all duration-300
-            ${isExpanded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"}
-            `}
-                    >
-                        {expandedDesc}
-                    </p>
+
+                    <div className="relative w-full rounded-2xl overflow-hidden border border-slate-100 bg-slate-50 h-[210px] mt-6 opacity-80">
+                        {image
+                            ? <img src={image} alt={title.join(' ')} className="w-full h-full object-cover" />
+                            : uiMockup}
+                    </div>
+
+                    {/* Flip hint */}
+                    <div className="absolute bottom-4 right-6 text-[10px] font-black uppercase tracking-widest text-slate-300 flex items-center gap-1">
+                        <Plus className="w-3 h-3" /> More
+                    </div>
                 </div>
 
+                {/* ── BACK ── */}
                 <div
-                    className={`mt-auto relative w-full rounded-2xl overflow-hidden border border-slate-100 bg-slate-50 h-[210px]
-          transition-all duration-300
-          ${isExpanded ? "opacity-100" : "opacity-70 group-hover:opacity-90"}
-          `}
+                    className={`${faceBase} border-2 border-poble-gold bg-white shadow-[0_40px_80px_-15px_rgba(255,184,0,0.15)]`}
+                    style={{ ...backfaceHidden, transform: 'rotateY(180deg)' }}
                 >
-                    <div
-                        className={`h-full w-full transition-all duration-300
-            ${isExpanded ? "scale-100" : "scale-[0.98]"}
-            `}
-                    >
-                        {image ? (
-                            <img src={image} alt={title.join(' ')} className="w-full h-full object-cover" />
-                        ) : uiMockup}
+                    <div className="flex items-start gap-5 mb-8">
+                        <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-poble-gold text-poble-charcoal shadow-lg shadow-poble-gold/20 shrink-0">
+                            <Icon className="w-6 h-6" strokeWidth={2.5} />
+                        </div>
+                        <h3 className="text-2xl font-black text-poble-charcoal tracking-tight leading-[1.1] font-heading pt-1.5">
+                            {title[0]} <br />
+                            <span className="text-slate-500">{title[1]}</span>
+                        </h3>
+                    </div>
+
+                    <p className="text-poble-charcoal font-bold text-lg leading-relaxed mb-auto">
+                        {expandedDesc}
+                    </p>
+
+                    <div className="relative w-full rounded-2xl overflow-hidden border border-slate-100 bg-slate-50 h-[210px] mt-6">
+                        {image
+                            ? <img src={image} alt={title.join(' ')} className="w-full h-full object-cover" />
+                            : uiMockup}
+                    </div>
+
+                    {/* Flip hint */}
+                    <div className="absolute bottom-4 right-6 text-[10px] font-black uppercase tracking-widest text-poble-gold/60 flex items-center gap-1">
+                        <Minus className="w-3 h-3" /> Less
                     </div>
                 </div>
             </div>
@@ -275,6 +286,8 @@ export const InteractiveFeatures: React.FC = () => {
 
     return (
         <section id="features" className="scroll-mt-28 py-16 bg-white relative overflow-hidden border-y border-slate-100">
+            {/* Line grid overlay */}
+            <div className="absolute inset-0 pointer-events-none opacity-60" style={{ backgroundImage: 'linear-gradient(to right, #dce4ea 1px, transparent 1px), linear-gradient(to bottom, #dce4ea 1px, transparent 1px)', backgroundSize: '400px 400px' }} />
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <div className="max-w-3xl mb-24">
                     <p className="text-poble-gold font-black text-xs uppercase tracking-[0.3em] mb-6">
