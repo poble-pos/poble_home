@@ -108,12 +108,12 @@ export const INITIAL_SITE_CONTENT: SiteConfig = {
                 feature6_title: "Customer Growth|CRM & Online",
                 feature6_collapsed: "Built-in loyalty and online ordering to support repeat customers.",
                 feature6_desc: "Reward regulars with points and vouchers. Online orders flow directly into the POS, without third-party complexity.",
-                feature1_image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
-                feature2_image: "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&q=80&w=800",
-                feature3_image: "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?auto=format&fit=crop&q=80&w=800",
-                feature4_image: "https://images.unsplash.com/photo-1556741533-974f8e62a92d?auto=format&fit=crop&q=80&w=800",
-                feature5_image: "https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&q=80&w=800",
-                feature6_image: "https://images.unsplash.com/photo-1556745753-b2904692b3cd?auto=format&fit=crop&q=80&w=800"
+                feature1_image: "",
+                feature2_image: "",
+                feature3_image: "",
+                feature4_image: "",
+                feature5_image: "",
+                feature6_image: ""
             }
         },
         {
@@ -136,7 +136,7 @@ export const INITIAL_SITE_CONTENT: SiteConfig = {
                 plan_desc: "Perfect for individuals and small businesses",
                 plan_ctaText: "Start free trial",
                 plan_ctaLink: "https://backoffice.poble.com.au",
-                backgroundImage: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2000&auto=format&fit=crop',
+                backgroundImage: '/poble_logo.png',
 
                 carousel_items: [
                     {
@@ -144,45 +144,35 @@ export const INITIAL_SITE_CONTENT: SiteConfig = {
                         title: "Optimised for Speed",
                         benefit: "Keep the queue moving.",
                         description: "Dedicated flows for takeaway orders. Clear alerts help your team serve pickup customers fast without blocking the counter.",
-                        images: [
-                            "https://images.unsplash.com/photo-1507133750040-4a8f9489d35f?auto=format&fit=crop&q=80&w=600&h=400"
-                        ]
+                        images: ["/poble_logo.png"]
                     },
                     {
                         label: "Complete Order Management",
                         title: "Handle the Rush",
                         benefit: "No more missed orders.",
                         description: "Reliable, high-speed ordering that keeps up with your team during peak service. Designed to reduce taps and human errors.",
-                        images: [
-                            "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=600&h=400"
-                        ]
+                        images: ["/poble_logo.png"]
                     },
                     {
                         label: "Basic Reports & Analytics",
                         title: "Data-Driven Decisions",
                         benefit: "Know your numbers.",
                         description: "Simple, real-time reporting on your sales and staff performance. Accessible from anywhere.",
-                        images: [
-                            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=600&h=400"
-                        ]
+                        images: ["/poble_logo.png"]
                     },
                     {
                         label: "Menu & Category Management",
                         title: "Flexible Menu Control",
                         benefit: "Update in seconds.",
                         description: "Easily manage your menu across all devices. Sync categories, items, and prices instantly.",
-                        images: [
-                            "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=80&w=600&h=400"
-                        ]
+                        images: ["/poble_logo.png"]
                     },
                     {
                         label: "Dual Screen / Customer Display",
                         title: "Dual Screen Experience",
                         benefit: "Build trust with customers.",
                         description: "Give your customers a clear view of their order as it hits the screen, reducing errors and increasing transparency.",
-                        images: [
-                            "https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&q=80&w=600&h=400"
-                        ]
+                        images: ["/poble_logo.png"]
                     }
                 ],
 
@@ -221,33 +211,11 @@ export const INITIAL_SITE_CONTENT: SiteConfig = {
             }
         },
         {
-            id: 'showcase',
-            type: 'Showcase',
-            name: 'Showcase',
-            visible: true,
-            order: 5,
-            content: {
-                title: "Proven Reliability on Pro Hardware",
-                description: "poble runs on the world's most stable tablet platform. Pair it with industry-standard printers for a bulletproof counter setup.",
-                images: [
-                    "https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&q=80&w=800&h=1000",
-                    "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=800&h=1000",
-                    "https://images.unsplash.com/photo-1556741533-974f8e62a92d?auto=format&fit=crop&q=80&w=800&h=1000",
-                    "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=800&h=1000",
-                    "https://images.unsplash.com/photo-1507914464562-6ff4ac29692f?auto=format&fit=crop&q=80&w=800&h=1000"
-                ],
-                feature1_title: "Universal iPad Support",
-                feature1_desc: "Compatible with iPad (7th Gen) and later. No need for proprietary, expensive touchscreens.",
-                feature2_title: "Industry Standard",
-                feature2_desc: "We support proven thermal printers like POSBANK & Epson for bulletproof reliability."
-            }
-        },
-        {
             id: 'integrations',
             type: 'Integrations',
             name: 'Integrations',
             visible: true,
-            order: 6,
+            order: 5,
             content: {
                 title: "A Growing Ecosystem",
                 description: "We're expanding our network to include the tools you rely on most. Seamless syncing with Australia's most trusted platforms."
@@ -258,7 +226,7 @@ export const INITIAL_SITE_CONTENT: SiteConfig = {
             type: 'FAQ',
             name: 'FAQ',
             visible: true,
-            order: 7,
+            order: 6,
             content: {
                 title: "Seamless Setup & Ongoing Support.",
                 description: "Getting started is simple with our guided installation process. And once you're live, our expert team is available 7 days a week.",
@@ -274,7 +242,7 @@ export const INITIAL_SITE_CONTENT: SiteConfig = {
             type: 'ContactSection',
             name: 'Contact',
             visible: true,
-            order: 8,
+            order: 7,
             content: {
                 title: "Talk to a POS Specialist",
                 description: "Find the perfect setup and pricing for your venue. Our experts will guide you through the transition.",
@@ -287,7 +255,7 @@ export const INITIAL_SITE_CONTENT: SiteConfig = {
             type: 'CTASection',
             name: 'CTA',
             visible: true,
-            order: 9,
+            order: 8,
             content: {
                 title: "Ready to Clear the Counter?",
                 subtitle: "Join the growing network of Australian venues who have swapped complex, slow systems for the speed of poble.",

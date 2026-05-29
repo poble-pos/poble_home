@@ -12,7 +12,6 @@ import { Hero } from "@/components/Hero";
 import { PainPoints } from "@/components/PainPoints";
 import { InteractiveFeatures } from "@/components/InteractiveFeatures";
 import { Testimonials } from "@/components/Testimonials";
-import { Showcase } from "@/components/Showcase";
 import { Integrations } from "@/components/Integrations";
 
 import { FAQ } from "@/components/FAQ";
@@ -73,10 +72,6 @@ export default function LandingPage() {
             case 'Testimonials':
                 Component = <Testimonials />;
                 title = "Reviews | Poble";
-                break;
-            case 'Showcase':
-                Component = <Showcase />;
-                title = "Showcase | Poble";
                 break;
             case 'Integrations':
                 Component = <Integrations />;
