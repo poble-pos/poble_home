@@ -23,7 +23,6 @@ interface FeatureCardProps {
     onHoverEnd: () => void;
     onToggleClick: () => void;
     uiMockup: React.ReactNode;
-    image?: string;
 }
 
 const FeatureCard: React.FC<FeatureCardProps> = ({
@@ -36,7 +35,6 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
     onHoverEnd,
     onToggleClick,
     uiMockup,
-    image,
 }) => {
     return (
         <div
@@ -108,9 +106,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
             ${isExpanded ? "scale-100" : "scale-[0.98]"}
             `}
                     >
-                        {image ? (
-                            <img src={image} alt={title.join(' ')} className="w-full h-full object-cover" />
-                        ) : uiMockup}
+                        {uiMockup}
                     </div>
                 </div>
             </div>
@@ -227,7 +223,6 @@ export const InteractiveFeatures: React.FC = () => {
             expandedDesc: config.feature1_desc || "Manage menus, prices, and staff permissions directly on the POS. No separate back office, no delays — changes sync smoothly across your store.",
             icon: Cloud,
             mockup: <MockupCloud />,
-            image: config.feature1_image,
         },
         {
             title: getSplitTitle(config.feature2_title),
@@ -235,7 +230,6 @@ export const InteractiveFeatures: React.FC = () => {
             expandedDesc: config.feature2_desc || "Designed for busy service counters. Takeaway, dine-in, and phone orders flow smoothly so staff stay focused on service, not the screen.",
             icon: Zap,
             mockup: <MockupOrder />,
-            image: config.feature2_image,
         },
         {
             title: getSplitTitle(config.feature3_title),
@@ -243,7 +237,6 @@ export const InteractiveFeatures: React.FC = () => {
             expandedDesc: config.feature3_desc || "Integrated with Tyro and Linkly for a direct terminal workflow. The amount is sent straight from the iPad to EFTPOS, reducing errors and speeding up checkout.",
             icon: CreditCard,
             mockup: <MockupPayment />,
-            image: config.feature3_image,
         },
         {
             title: getSplitTitle(config.feature4_title),
@@ -251,7 +244,6 @@ export const InteractiveFeatures: React.FC = () => {
             expandedDesc: config.feature4_desc || "Update prices or mark items sold out directly on the POS. All terminals stay aligned in real time, without reloading or manual refresh.",
             icon: RefreshCcw,
             mockup: <MockupMenu />,
-            image: config.feature4_image,
         },
         {
             title: getSplitTitle(config.feature5_title),
@@ -259,7 +251,6 @@ export const InteractiveFeatures: React.FC = () => {
             expandedDesc: config.feature5_desc || "Visual table layouts help manage dine-in service at a glance. Orders are sent straight to the kitchen display, reducing missed tickets and confusion.",
             icon: LayoutGrid,
             mockup: <MockupTable />,
-            image: config.feature5_image,
         },
         {
             title: getSplitTitle(config.feature6_title),
@@ -267,7 +258,6 @@ export const InteractiveFeatures: React.FC = () => {
             expandedDesc: config.feature6_desc || "Reward regulars with points and vouchers. Online orders flow directly into the POS, without third-party complexity.",
             icon: Users,
             mockup: <MockupCRM />,
-            image: config.feature6_image,
         },
     ];
 
@@ -309,7 +299,6 @@ export const InteractiveFeatures: React.FC = () => {
                             onHoverEnd={() => setExpandedIndex((cur) => (cur === idx ? null : cur))}
                             onToggleClick={() => setExpandedIndex((cur) => (cur === idx ? null : idx))}
                             uiMockup={feature.mockup}
-                            image={feature.image}
                         />
                     ))}
                 </div>

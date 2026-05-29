@@ -152,7 +152,7 @@ export default function AdminDashboard() {
     const isImageField = (key: string, value: any) => {
         if (typeof value !== 'string') return false;
         const imageKeys = ['image', 'src', 'url', 'photo', 'logo', 'background'];
-        const isUrlPattern = value.startsWith('data:image') || value.match(/\.(jpeg|jpg|gif|png|svg|webp)$/i) || value.includes('images.unsplash.com');
+        const isUrlPattern = value.startsWith('data:image') || value.match(/\.(jpeg|jpg|gif|png|svg|webp)$/i);
         return imageKeys.some(k => key.toLowerCase().includes(k)) || isUrlPattern;
     };
 
@@ -539,7 +539,7 @@ export default function AdminDashboard() {
                                                                 </div>
                                                             ))}
                                                             <button
-                                                                onClick={() => setLocalContent((prev: any) => ({ ...prev, [key]: [...value, "https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&q=80&w=800"] }))}
+                                                                onClick={() => setLocalContent((prev: any) => ({ ...prev, [key]: [...value, ""] }))}
                                                                 className="aspect-square flex flex-col items-center justify-center gap-3 rounded-[1.8rem] border-2 border-dashed border-slate-200 text-slate-600 hover:border-poble-gold/30 hover:text-poble-gold hover:bg-poble-gold/5 transition-all"
                                                             >
                                                                 <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-poble-gold/10">
@@ -677,7 +677,7 @@ export default function AdminDashboard() {
                                                                                                 onClick={() => {
                                                                                                     const newArray = [...value];
                                                                                                     const currentSubArray = [...(newArray[idx][fieldKey] || [])];
-                                                                                                    currentSubArray.push("https://images.unsplash.com/photo-1554118811-1e0d58224f24"); // Default placeholder
+                                                                                                    currentSubArray.push("");
                                                                                                     newArray[idx] = { ...item, [fieldKey]: currentSubArray };
                                                                                                     setLocalContent((prev: any) => ({ ...prev, [key]: newArray }));
                                                                                                 }}

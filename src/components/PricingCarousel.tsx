@@ -23,40 +23,35 @@ const FEATURE_DETAILS: Record<string, FeatureDetail> = {
     benefit: "Keep the queue moving.",
     description:
       "Dedicated flows for takeaway orders. Clear alerts help your team serve pickup customers fast without blocking the counter.",
-    image:
-      "https://images.unsplash.com/photo-1507133750040-4a8f9489d35f?auto=format&fit=crop&q=80&w=600&h=400",
+    image: "/poble_logo.png",
   },
   "Complete Order Management": {
     title: "Handle the Rush",
     benefit: "No more missed orders.",
     description:
       "Reliable, high-speed ordering that keeps up with your team during peak service. Designed to reduce taps and human errors.",
-    image:
-      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=600&h=400",
+    image: "/poble_logo.png",
   },
   "Basic Reports & Analytics": {
     title: "Daily Pocket Summary",
     benefit: "Know your profit in seconds.",
     description:
       "No more complex spreadsheets. Get a simple summary of your sales and top-selling items sent straight to your phone every afternoon.",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=600&h=400",
+    image: "/poble_logo.png",
   },
   "Menu & Category Management": {
     title: "Change Prices Instantly",
     benefit: "Out of stock? Fix it in seconds.",
     description:
       "Update your entire menu or adjust a price across all terminals instantly. Simple controls that anyone on your team can learn in minutes.",
-    image:
-      "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=80&w=600&h=400",
+    image: "/poble_logo.png",
   },
   "Dual Screen / Customer Display": {
     title: "Professional Checkout",
     benefit: "Build trust with customers.",
     description:
       "Give customers confidence with a real-time view of their order. Professional, transparent checkout that reduces disputes.",
-    image:
-      "https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&q=80&w=600&h=400",
+    image: "/poble_logo.png",
   },
 };
 
@@ -76,45 +71,35 @@ export const PricingCarousel: React.FC = () => {
       title: "Optimised for Speed",
       benefit: "Keep the queue moving.",
       description: "Dedicated flows for takeaway orders.",
-      images: [
-        "https://images.unsplash.com/photo-1507133750040-4a8f9489d35f?auto=format&fit=crop&q=80&w=600&h=400",
-      ],
+      images: ["/poble_logo.png"],
     },
     {
       label: "Complete Order Management",
       title: "Handle the Rush",
       benefit: "No more missed orders.",
       description: "Reliable, high-speed ordering.",
-      images: [
-        "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=600&h=400",
-      ],
+      images: ["/poble_logo.png"],
     },
     {
       label: "Basic Reports & Analytics",
       title: "Daily Pocket Summary",
       benefit: "Know your profit in seconds.",
       description: "Simple summary of your sales.",
-      images: [
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=600&h=400",
-      ],
+      images: ["/poble_logo.png"],
     },
     {
       label: "Menu & Category Management",
       title: "Change Prices Instantly",
       benefit: "Out of stock? Fix it in seconds.",
       description: "Update your entire menu instantly.",
-      images: [
-        "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=80&w=600&h=400",
-      ],
+      images: ["/poble_logo.png"],
     },
     {
       label: "Dual Screen / Customer Display",
       title: "Professional Checkout",
       benefit: "Build trust with customers.",
       description: "Real-time view of their order.",
-      images: [
-        "https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&q=80&w=600&h=400",
-      ],
+      images: ["/poble_logo.png"],
     },
   ];
 
@@ -138,6 +123,29 @@ export const PricingCarousel: React.FC = () => {
 
   const PANEL_WIDTH = "max-w-[420px]";
   const PANEL_HEIGHT = "h-[660px]";
+  const currentImage =
+    currentItem && Array.isArray(currentItem.images)
+      ? currentItem.images[currentImageIdx]
+      : currentItem?.image;
+  const hasCurrentImage = typeof currentImage === "string" && currentImage.trim().length > 0;
+
+  const FeatureMockup = () => (
+    <div className="w-full h-full bg-slate-100 p-6 flex flex-col justify-between">
+      <div className="flex items-center justify-between">
+        <div className="h-3 w-28 rounded-full bg-slate-300"></div>
+        <div className="h-10 w-10 rounded-xl bg-poble-gold"></div>
+      </div>
+      <div className="grid grid-cols-2 gap-3">
+        {[1, 2, 3, 4].map((item) => (
+          <div key={item} className="h-20 rounded-2xl bg-white border border-slate-200 p-3">
+            <div className="h-2 w-16 rounded-full bg-slate-200 mb-3"></div>
+            <div className="h-2 w-10 rounded-full bg-poble-gold/70"></div>
+          </div>
+        ))}
+      </div>
+      <div className="h-3 w-3/4 rounded-full bg-slate-300"></div>
+    </div>
+  );
 
   return (
     <div className="w-full max-w-5xl mx-auto py-8 px-6">
@@ -224,17 +232,17 @@ export const PricingCarousel: React.FC = () => {
               >
                 <div
                   className="h-80 shrink-0 relative overflow-hidden group/image cursor-zoom-in"
-                  onClick={() => setShowImageModal(true)}
+                  onClick={() => hasCurrentImage && setShowImageModal(true)}
                 >
-                  <img
-                    src={
-                      Array.isArray(currentItem.images)
-                        ? currentItem.images[currentImageIdx]
-                        : currentItem.image
-                    }
-                    alt={currentItem.label}
-                    className="w-full h-full object-cover saturate-[1.1] contrast-[1.05] transition-transform duration-700 ease-out group-hover/image:scale-[1.02]"
-                  />
+                  {hasCurrentImage ? (
+                    <img
+                      src={currentImage}
+                      alt={currentItem.label}
+                      className="w-full h-full object-contain bg-white p-8 transition-transform duration-700 ease-out group-hover/image:scale-[1.02]"
+                    />
+                  ) : (
+                    <FeatureMockup />
+                  )}
                   {/* Gradient overlay removed for clarity */}
                   <div className="absolute top-6 left-6 flex items-center gap-2 px-3 py-1.5 bg-poble-gold/90 backdrop-blur-md rounded-full shadow-lg">
                     <Sparkles className="w-3.5 h-3.5 text-poble-charcoal" />
@@ -264,11 +272,11 @@ export const PricingCarousel: React.FC = () => {
                     </div>
                   )}
 
-                  <div className="absolute inset-0 bg-black/0 group-hover/image:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover/image:opacity-100">
+                  {hasCurrentImage && <div className="absolute inset-0 bg-black/0 group-hover/image:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover/image:opacity-100">
                     <div className="bg-white/90 backdrop-blur text-poble-charcoal px-4 py-2 rounded-full font-bold text-xs shadow-xl transform translate-y-4 group-hover/image:translate-y-0 transition-all">
                       Click to Expand
                     </div>
-                  </div>
+                  </div>}
                 </div>
 
                 <div className="p-10 space-y-6 flex-1 flex flex-col justify-center bg-slate-900">
@@ -291,14 +299,7 @@ export const PricingCarousel: React.FC = () => {
               /* Welcoming State: Enhanced Visual Balance */
               <div key="welcoming" className="flex flex-col h-full animate-in fade-in duration-700">
                 <div className="h-[55%] shrink-0 relative overflow-hidden">
-                  <img
-                    src={
-                      config.backgroundImage ||
-                      "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2000&auto=format&fit=crop"
-                    }
-                    alt="Poble Venue"
-                    className="w-full h-full object-cover scale-110"
-                  />
+                  <FeatureMockup />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
 
                   {/* Elevated Icon Overlay */}
@@ -331,7 +332,7 @@ export const PricingCarousel: React.FC = () => {
       </div>
 
       {/* Full Screen Image Modal */}
-      {showImageModal && currentItem && (
+      {showImageModal && currentItem && hasCurrentImage && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/95 backdrop-blur-sm animate-in fade-in duration-200 p-4 md:p-8"
           onClick={() => setShowImageModal(false)}
@@ -350,11 +351,7 @@ export const PricingCarousel: React.FC = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={
-                Array.isArray(currentItem.images)
-                  ? currentItem.images[currentImageIdx]
-                  : currentItem.image
-              }
+              src={currentImage}
               alt={currentItem.label}
               className="w-full h-full object-contain bg-black"
             />

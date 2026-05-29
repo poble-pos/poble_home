@@ -23,16 +23,14 @@ export const Testimonials: React.FC = () => {
         "The fastest system we have ever used. Staff picked it up in minutes.",
       author: config.quote1_author || "Sarah M.",
       role: config.quote1_venue || "The Corner Cafe",
-      image:
-        "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=100&h=100",
+      image: "/poble_logo.png",
     },
     {
       id: 2,
       quote: config.quote2_text || "It just works. No more printer errors or sync issues.",
       author: config.quote2_author || "James L.",
       role: config.quote2_venue || "Bayside Bistro",
-      image:
-        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=100&h=100",
+      image: "/poble_logo.png",
     },
     {
       id: 3,
@@ -41,8 +39,7 @@ export const Testimonials: React.FC = () => {
         "We use two POS terminals to handle entry ticketing and café orders simultaneously.",
       author: config.quote3_author || "Sarah Lee",
       role: config.quote3_venue || "Kidsday (Sydney)",
-      image:
-        "https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&q=80&w=100&h=100",
+      image: "/poble_logo.png",
     },
   ];
 
@@ -94,11 +91,11 @@ export const Testimonials: React.FC = () => {
               </blockquote>
 
               <div className="flex items-center gap-4 mt-auto">
-                <div className="w-12 h-12 rounded-full overflow-hidden border border-slate-100 shrink-0">
+                <div className="w-12 h-12 rounded-full overflow-hidden border border-poble-gold/20 bg-white shrink-0">
                   <img
                     src={review.image}
                     alt={review.author}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain p-1"
                   />
                 </div>
                 <div>

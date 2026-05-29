@@ -80,11 +80,11 @@ export const PricingSection: React.FC = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="w-full md:w-48 h-48 rounded-3xl overflow-hidden bg-slate-50 border border-slate-100 shrink-0 shadow-inner group-hover:shadow-md transition-all">
+                                <div className="w-full md:w-48 h-48 rounded-3xl overflow-hidden bg-white border border-slate-100 shrink-0 shadow-inner group-hover:shadow-md transition-all">
                                     <img
-                                        src={(pIdx === 0 ? config.item1_image : config.item2_image) || 'https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&q=80&w=800'}
+                                        src={(pIdx === 0 ? config.item1_image : config.item2_image) || '/poble_logo.png'}
                                         alt={plan.title}
-                                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                                        className="w-full h-full object-contain p-6 transition-all duration-700"
                                     />
                                 </div>
                             </div>
