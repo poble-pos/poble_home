@@ -2,21 +2,24 @@
 
 import {
   ArrowRight,
-  Check,
-  ChevronDown,
   Cloud,
   CreditCard,
   Gauge,
   LayoutGrid,
-  Menu,
   RefreshCw,
   Sparkles,
   Users,
-  X,
 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 
+import { Container } from "@/components/site/Container";
+import { Eyebrow } from "@/components/site/Eyebrow";
+import { FAQList } from "@/components/site/FAQList";
+import { PageCTA } from "@/components/site/PageCTA";
+import { SiteFooter } from "@/components/site/SiteFooter";
+import { SiteNav } from "@/components/site/SiteNav";
 import { useAdmin } from "@/context/AdminContext";
+import Image from "next/image";
 
 export default function LandingPage() {
   const { siteContent } = useAdmin();
@@ -92,9 +95,10 @@ export default function LandingPage() {
       case "FAQ":
         return <FAQ key={section.id} />;
 
-      case "ContactSection":
+      // case "ContactSection":
+
       case "CTASection":
-        return <CTA key={section.id} />;
+        return <PageCTA key={section.id} dataTitle="Get Started | Poble" />;
 
       default:
         return null;
@@ -103,126 +107,12 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-[#F9F8F3] text-[#111111] font-sans tracking-tight">
-      <LandingNav />
+      <SiteNav />
       <main className="animate-in fade-in duration-700">
         {visibleSections.map(renderSection)}
       </main>
-      <LandingFooter />
+      <SiteFooter />
     </div>
-  );
-}
-
-function Container({ children, className = "" }: any) {
-  return (
-    <div
-      className={`mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8 ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
-
-function Eyebrow({ children }: any) {
-  return (
-    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8B735C]">
-      {children}
-    </p>
-  );
-}
-
-function LandingNav() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const links = [
-    { href: "#features", label: "Product" },
-    { href: "#why", label: "Why Poble" },
-    { href: "#customers", label: "Customers" },
-    { href: "#faq", label: "FAQ" },
-  ];
-
-  return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-black/10 bg-[#F9F8F3]/80 backdrop-blur-xl"
-          : "bg-transparent"
-      }`}
-    >
-      <Container className="flex h-16 items-center justify-between">
-        <a href="#" className="flex items-center gap-2 text-lg font-semibold">
-          <span className="h-2 w-2 rounded-full bg-[#B9855B]" />
-          poble
-        </a>
-
-        <nav className="hidden items-center gap-8 md:flex">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-sm text-black/55 transition-colors hover:text-black"
-            >
-              {l.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="hidden items-center gap-3 md:flex">
-          <a
-            href="https://backoffice.poble.com.au/"
-            className="text-sm text-black/55 hover:text-black"
-          >
-            Sign in
-          </a>
-          <a
-            href="#cta"
-            className="inline-flex items-center gap-1.5 rounded-full bg-[#111111] px-4 py-2 text-sm font-medium text-white transition hover:bg-black"
-          >
-            Start free
-            <ArrowRight className="h-3.5 w-3.5" />
-          </a>
-        </div>
-
-        <button
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-black/5 md:hidden"
-          onClick={() => setOpen(!open)}
-          aria-label="Menu"
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
-      </Container>
-
-      {open && (
-        <div className="border-t border-black/10 bg-[#F9F8F3]/95 backdrop-blur-xl md:hidden">
-          <Container className="flex flex-col gap-4 py-6">
-            {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="text-base text-black/80"
-              >
-                {l.label}
-              </a>
-            ))}
-            <a
-              href="#cta"
-              onClick={() => setOpen(false)}
-              className="mt-2 inline-flex items-center justify-center rounded-full bg-[#111111] px-5 py-3 text-sm font-medium text-white"
-            >
-              Start free
-            </a>
-          </Container>
-        </div>
-      )}
-    </header>
   );
 }
 
@@ -233,6 +123,12 @@ function Hero() {
       className="relative overflow-hidden pb-20 pt-32 md:pb-28 md:pt-40"
     >
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,#E8D7C3_0%,transparent_55%)]" />
+
+      <Image
+        src="/images/object/Futuristic Chef Robot.png"
+        alt="Poble chef robot mascot"
+        className="pointer-events-none absolute -bottom-6 right-4 hidden w-44 md:block lg:right-16 lg:w-56"
+      />
 
       <Container className="text-center">
         <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/50 px-3 py-1 text-xs text-black/55 backdrop-blur">
@@ -270,56 +166,6 @@ function Hero() {
         <p className="mt-4 text-xs text-black/45">
           No lock-in contracts · Compatible with iPad 7th Gen and later
         </p>
-
-        <div className="mx-auto mt-16 max-w-5xl rounded-[2rem] border border-black/10 bg-white p-4 shadow-2xl shadow-black/10 md:mt-20">
-          <div className="relative overflow-hidden rounded-[1.5rem] bg-[#191715] p-6 text-left md:p-10">
-            <div className="grid gap-4 md:grid-cols-[1.1fr_0.9fr]">
-              <div className="rounded-2xl bg-[#F9F8F3] p-5">
-                <div className="mb-5 flex items-center justify-between">
-                  <span className="text-sm font-semibold">Poble POS</span>
-                  <span className="rounded-full bg-green-100 px-3 py-1 text-xs text-green-700">
-                    Live
-                  </span>
-                </div>
-                <div className="grid grid-cols-3 gap-3">
-                  {[
-                    "Coffee",
-                    "Brunch",
-                    "Lunch",
-                    "Drinks",
-                    "Bakery",
-                    "Specials",
-                  ].map((item) => (
-                    <div
-                      key={item}
-                      className="rounded-xl border border-black/10 bg-white p-4 text-sm font-medium"
-                    >
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="rounded-2xl bg-white/10 p-5 text-white">
-                <p className="text-sm text-white/60">Today</p>
-                <p className="mt-2 text-4xl font-semibold">$4,280</p>
-                <div className="mt-6 space-y-3">
-                  {["Dine-in", "Takeaway", "Online"].map((item, i) => (
-                    <div
-                      key={item}
-                      className="flex items-center justify-between"
-                    >
-                      <span className="text-sm text-white/70">{item}</span>
-                      <span className="text-sm font-medium">
-                        {[62, 28, 10][i]}%
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </Container>
     </section>
   );
@@ -399,6 +245,11 @@ function Features() {
             Smart tools for
             <br />
             your venue.
+            <Image
+              src="/images/object/Cosmic Arrow Object.png"
+              alt=""
+              className="ml-3 inline-block h-[0.95em] w-auto align-middle"
+            />
           </h2>
           <p className="mt-5 max-w-lg text-lg text-black/55">
             A seamless bridge between your counter, your kitchen, and your back
@@ -490,6 +341,14 @@ function Showcase() {
     <section className="py-24 md:py-32">
       <Container>
         <div className="grid items-stretch gap-10 lg:grid-cols-2">
+          <div className="hidden items-center justify-center lg:flex">
+            <Image
+              src="/images/object/Futuristic Barista Robot.png"
+              alt="Poble barista robot mascot"
+              className="pointer-events-none w-64 xl:w-72"
+            />
+          </div>
+
           <div className="relative overflow-hidden rounded-3xl border border-black/10 bg-white p-10 md:p-14">
             <Eyebrow>Peak-hour performance</Eyebrow>
             <h3 className="mt-4 text-3xl font-medium leading-tight tracking-[-0.02em] md:text-4xl">
@@ -512,26 +371,6 @@ function Showcase() {
                 <div className="mt-1 text-xs uppercase tracking-widest text-black/45">
                   Sync reliability
                 </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-3xl border border-black/10 bg-[#191715] p-8 text-white md:p-12">
-            <div className="rounded-2xl bg-white/10 p-6">
-              <p className="text-sm text-white/55">Kitchen Display</p>
-              <div className="mt-5 space-y-3">
-                {[
-                  "Table 04 · 3 items",
-                  "Takeaway · 2 items",
-                  "Online · 5 items",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-xl bg-white p-4 text-sm font-medium text-black"
-                  >
-                    {item}
-                  </div>
-                ))}
               </div>
             </div>
           </div>
@@ -624,8 +463,6 @@ const faqs = [
 ];
 
 function FAQ() {
-  const [openIdx, setOpenIdx] = useState<number | null>(0);
-
   return (
     <section id="faq" data-title="FAQ | Poble" className="py-24 md:py-32">
       <Container className="grid gap-14 lg:grid-cols-12">
@@ -642,172 +479,9 @@ function FAQ() {
         </div>
 
         <div className="lg:col-span-8">
-          <div className="divide-y divide-black/10 border-y border-black/10">
-            {faqs.map((f, i) => {
-              const open = openIdx === i;
-
-              return (
-                <button
-                  key={f.q}
-                  onClick={() => setOpenIdx(open ? null : i)}
-                  className="w-full py-6 text-left"
-                  aria-expanded={open}
-                >
-                  <div className="flex items-start justify-between gap-6">
-                    <span className="text-lg font-medium tracking-tight">
-                      {f.q}
-                    </span>
-                    <ChevronDown
-                      className={`mt-1 h-5 w-5 shrink-0 text-black/45 transition-transform duration-300 ${
-                        open ? "rotate-180 text-black" : ""
-                      }`}
-                    />
-                  </div>
-
-                  <div
-                    className={`grid transition-all duration-300 ease-out ${
-                      open
-                        ? "mt-3 grid-rows-[1fr] opacity-100"
-                        : "grid-rows-[0fr] opacity-0"
-                    }`}
-                  >
-                    <div className="overflow-hidden">
-                      <p className="max-w-2xl leading-relaxed text-black/55">
-                        {f.a}
-                      </p>
-                    </div>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
+          <FAQList items={faqs} />
         </div>
       </Container>
     </section>
-  );
-}
-
-function CTA() {
-  const bullets = [
-    "No lock-in contracts",
-    "No hidden fees",
-    "Local support, 7 days",
-  ];
-
-  return (
-    <section
-      id="cta"
-      data-title="Get Started | Poble"
-      className="pb-24 md:pb-32"
-    >
-      <Container>
-        <div className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-[#111111] p-10 text-center text-white md:p-20">
-          <div className="relative">
-            <h2 className="mx-auto max-w-3xl text-4xl font-medium leading-[1.05] tracking-[-0.03em] md:text-6xl">
-              Ready to clear the counter?
-            </h2>
-            <p className="mx-auto mt-5 max-w-xl text-white/65">
-              Join the growing network of Australian venues who have swapped
-              complex, slow systems for the speed of Poble.
-            </p>
-
-            <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
-              <a
-                href="https://backoffice.poble.com.au/"
-                className="inline-flex items-center gap-1.5 rounded-full bg-[#F9F8F3] px-6 py-3 text-sm font-medium text-black transition hover:bg-white"
-              >
-                Get started free
-                <ArrowRight className="h-4 w-4" />
-              </a>
-              <a
-                href="tel:1300966963"
-                className="inline-flex items-center gap-1.5 rounded-full border border-white/20 px-6 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10"
-              >
-                Talk to sales
-              </a>
-            </div>
-
-            <ul className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-white/55">
-              {bullets.map((b) => (
-                <li key={b} className="inline-flex items-center gap-1.5">
-                  <Check className="h-3.5 w-3.5 text-[#D5A06F]" />
-                  {b}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </Container>
-    </section>
-  );
-}
-
-function LandingFooter() {
-  return (
-    <footer className="border-t border-black/10 bg-[#F1EDE5]">
-      <Container className="py-16">
-        <div className="grid gap-12 md:grid-cols-12">
-          <div className="md:col-span-5">
-            <div className="flex items-center gap-2 text-lg font-semibold tracking-tight">
-              <span className="h-2 w-2 rounded-full bg-[#B9855B]" />
-              poble
-            </div>
-            <p className="mt-4 max-w-xs text-sm text-black/55">
-              The lightweight POS built for Australian hospitality. Made in
-              Australia.
-            </p>
-            <div className="mt-6 space-y-1 text-sm text-black/55">
-              <a href="tel:1300966963" className="block hover:text-black">
-                1300 966 963
-              </a>
-              <a
-                href="mailto:sales@poble.com.au"
-                className="block hover:text-black"
-              >
-                sales@poble.com.au
-              </a>
-            </div>
-          </div>
-
-          {[
-            ["Product", "Features", "Integrations", "Pricing"],
-            ["Company", "About", "Customers", "Contact"],
-            ["Support", "Help centre", "Onboarding", "Privacy"],
-          ].map(([title, ...links]) => (
-            <div key={title} className="md:col-span-2">
-              <div className="text-xs uppercase tracking-[0.14em] text-black/45">
-                {title}
-              </div>
-              <ul className="mt-4 space-y-2.5 text-sm">
-                {links.map((l) => (
-                  <li key={l}>
-                    <a href="#" className="text-black/70 hover:text-black">
-                      {l}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-black/10 pt-6 text-xs text-black/45">
-          <div>
-            © {new Date().getFullYear()} Poble. Management solution by ECNESOFT.
-          </div>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-black">
-              Terms
-            </a>
-            <a href="#" className="hover:text-black">
-              Privacy
-            </a>
-            <a href="#" className="hover:text-black">
-              Cookies
-            </a>
-          </div>
-        </div>
-      </Container>
-    </footer>
   );
 }

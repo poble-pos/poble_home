@@ -42,6 +42,8 @@ const Column = ({
           <Image
             src={p.logo}
             alt={p.name}
+            width={128}
+            height={96}
             className="max-h-full max-w-full object-contain"
           />
         </div>

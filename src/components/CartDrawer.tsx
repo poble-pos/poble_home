@@ -74,6 +74,8 @@ export const CartDrawer = () => {
                   <Image
                     src={item.image}
                     alt={item.name}
+                    width={96}
+                    height={96}
                     className="w-full h-full object-contain"
                   />
                 </div>

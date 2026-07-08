@@ -64,6 +64,8 @@ export const Showcase: React.FC = () => {
                   <Image
                     src={src}
                     alt={`Showcase ${i + 1}`}
+                    width={840}
+                    height={1050}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60"></div>
@@ -76,6 +78,8 @@ export const Showcase: React.FC = () => {
               <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-16 md:h-16 flex items-center justify-center shrink-0">
                 <Image
                   src="/logo-transparent.svg"
+                  width={1024}
+                  height={1024}
                   className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain max-w-none opacity-80"
                   alt="Poble Symbol"
                 />
@@ -94,6 +98,8 @@ export const Showcase: React.FC = () => {
                 >
                   <Image
                     src={src}
+                    width={128}
+                    height={128}
                     className="w-full h-full object-cover"
                     alt={`Thumb ${i + 1}`}
                   />
