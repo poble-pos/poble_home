@@ -2,15 +2,16 @@ import "./globals.css";
 
 import type { Metadata, Viewport } from "next";
 import {
-    Albert_Sans,
-    Inter,
-    Outfit,
-    Playfair_Display,
-    Poiret_One,
-    Roboto,
+  Albert_Sans,
+  Inter,
+  Outfit,
+  Playfair_Display,
+  Poiret_One,
+  Roboto,
 } from "next/font/google";
 
 import { CartDrawer } from "@/components/CartDrawer";
+import { DigitalCursor } from "@/components/DigitalCursor";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { AdminProvider } from "@/context/AdminContext";
 import { CartProvider } from "@/context/CartContext";
@@ -80,6 +81,7 @@ export default function RootLayout({
         className="font-sans antialiased text-[#0D0D0D] bg-[#F9F8F3]"
         suppressHydrationWarning
       >
+        <DigitalCursor />
         <AdminProvider>
           <CartProvider>
             <CartDrawer />

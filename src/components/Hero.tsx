@@ -6,16 +6,16 @@
 "use client";
 
 import {
-    ArrowRight,
-    BarChart2,
-    Bell,
-    CheckCircle2,
-    ClipboardList,
-    Monitor,
-    Settings,
-    ShoppingBag,
-    Trash2,
-    User,
+  ArrowRight,
+  BarChart2,
+  Bell,
+  CheckCircle2,
+  ClipboardList,
+  Monitor,
+  Settings,
+  ShoppingBag,
+  Trash2,
+  User,
 } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -166,105 +166,6 @@ const ParticleField: React.FC = () => {
   );
 };
 
-// ---------------------------------------------------------------------------
-// Animated Title — infinite wave: upright→italic L→R, then italic→upright R→L
-// ---------------------------------------------------------------------------
-const AnimatedTitle: React.FC<{ title: string }> = ({ title }) => {
-  const words = title.split(" ");
-  const PER = 80; // ms stagger between chars
-  const DUR = 320; // ms per individual tip/revert
-  const PAUSE = 600; // ms hold when fully italic / fully upright
-
-  // Build flat list: letters + spaces
-  const slots: Array<{ ch: string; isClutter: boolean; isSpeed: boolean }> = [];
-  words.forEach((word, wi) => {
-    const bare = word.replace(/[^a-zA-Z]/g, "");
-    const isClutter = bare === "Clutter";
-    const isSpeed = bare === "Speed";
-    word.split("").forEach((ch) => slots.push({ ch, isClutter, isSpeed }));
-    if (wi < words.length - 1)
-      slots.push({ ch: "\u00a0", isClutter: false, isSpeed: false });
-  });
-
-  const N = slots.length;
-  const fwdDone = (N - 1) * PER + DUR; // last char finishes tipping
-  const revStart = fwdDone + PAUSE; // reverse wave begins
-  const revDone = revStart + (N - 1) * PER + DUR; // last char finishes reverting
-  const CYCLE = revDone + PAUSE; // full loop duration
-
-  // One @keyframes per char encoding the full cycle as percentages
-  const css = slots
-    .map((_, i) => {
-      const fS = (((i * PER) / CYCLE) * 100).toFixed(3);
-      const fE = (((i * PER + DUR) / CYCLE) * 100).toFixed(3);
-      const rS = (((revStart + (N - 1 - i) * PER) / CYCLE) * 100).toFixed(3);
-      const rE = (((revStart + (N - 1 - i) * PER + DUR) / CYCLE) * 100).toFixed(
-        3,
-      );
-      return `@keyframes _ct${i}{0%,${fS}%{transform:skewX(0deg)}${fE}%,${rS}%{transform:skewX(-14deg)}${rE}%,100%{transform:skewX(0deg)}}`;
-    })
-    .join("");
-
-  let si = 0;
-  return (
-    <>
-      {/* eslint-disable-next-line react/no-danger */}
-      <style dangerouslySetInnerHTML={{ __html: css }} />
-      {words.map((word, wi) => {
-        const bare = word.replace(/[^a-zA-Z]/g, "");
-        const isClutter = bare === "Clutter";
-        const isSpeed = bare === "Speed";
-        const colorClass = isClutter
-          ? "text-poble-gold"
-          : isSpeed
-            ? "text-slate-300"
-            : "";
-        const wrapClass =
-          `${colorClass}${isSpeed ? " inline-block -skew-x-[8deg]" : ""}`.trim();
-
-        const chars = word.split("").map((ch) => {
-          const i = si++;
-          return (
-            <span
-              key={i}
-              className="inline-block"
-              style={{ animation: `_ct${i} ${CYCLE}ms linear infinite` }}
-            >
-              {ch}
-            </span>
-          );
-        });
-
-        const space =
-          wi < words.length - 1 ? (
-            <span
-              key={`s${wi}`}
-              className="inline-block"
-              style={{ animation: `_ct${si} ${CYCLE}ms linear infinite` }}
-            >
-              {(() => {
-                si++;
-                return "\u00a0";
-              })()}
-            </span>
-          ) : null;
-
-        return wrapClass ? (
-          <span key={wi} className={wrapClass}>
-            {chars}
-            {space}
-          </span>
-        ) : (
-          <React.Fragment key={wi}>
-            {chars}
-            {space}
-          </React.Fragment>
-        );
-      })}
-    </>
-  );
-};
-
 interface MenuItem {
   id: string;
   name: string;
@@ -288,6 +189,8 @@ export const Hero: React.FC = () => {
   const [venueName, setVenueName] = useState("Enter venue name");
   const [setupProgress, setSetupProgress] = useState(0);
   const [showButton, setShowButton] = useState(false);
+  const [typedTitle, setTypedTitle] = useState("");
+  const [titleDone, setTitleDone] = useState(false);
 
   const toggleItem = (id: string) => {
     setSelectedIds((prev) =>
@@ -296,6 +199,28 @@ export const Hero: React.FC = () => {
   };
 
   const isAllSelected = selectedIds.length === DEMO_MENU.length;
+
+  useEffect(() => {
+    const fullTitle = content.title || "Minus the Clutter, Plus the Speed";
+    let i = 0;
+    let timeout: ReturnType<typeof setTimeout>;
+    const type = () => {
+      setTypedTitle("");
+      setTitleDone(false);
+      i = 0;
+      const interval = setInterval(() => {
+        i++;
+        setTypedTitle(fullTitle.slice(0, i));
+        if (i >= fullTitle.length) {
+          clearInterval(interval);
+          setTitleDone(true);
+          timeout = setTimeout(type, 2500);
+        }
+      }, 55);
+    };
+    type();
+    return () => clearTimeout(timeout);
+  }, [content.title]);
 
   useEffect(() => {
     if (!isSuccess) {
@@ -318,7 +243,7 @@ export const Hero: React.FC = () => {
   }, [isSuccess]);
 
   return (
-    <section className="relative min-h-[100dvh] flex flex-col justify-center md:justify-start lg:justify-center overflow-hidden bg-white pt-28 pb-20 md:pt-32 lg:pt-28 lg:pb-16">
+    <section className="relative min-h-[50dvh] flex flex-col justify-center md:justify-start lg:justify-center overflow-hidden bg-white pt-18 pb-10 md:pt-20 lg:pt-18 lg:pb-6">
       {/* Abstract bubble gradient shapes */}
       <div
         className="absolute w-[600px] h-[500px] bg-yellow-300/50 blur-[60px] animate-blob top-[-10%] left-[-8%]"
@@ -338,75 +263,16 @@ export const Hero: React.FC = () => {
           animationDelay: "9s",
         }}
       />
-      {/* 4×3 line grid */}
-      <div
-        className="absolute inset-0 opacity-60"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, #dce4ea 1px, transparent 1px), linear-gradient(to bottom, #dce4ea 1px, transparent 1px)",
-          backgroundSize: "400px 400px",
-        }}
-      />
+      {/* Background tint */}
+      <div className="absolute inset-0 bg-slate-200/40" />
       {/* Particle field */}
       {/* <ParticleField /> */}
 
       <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 flex flex-col justify-center">
         <div className="flex flex-col items-center gap-12">
-          {/* Primary Proposition */}
-          <div className="max-w-4xl w-full text-center animate-in fade-in slide-in-from-top-4 duration-700 relative z-20">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tighter text-poble-charcoal leading-none mb-8 lg:mb-10 font-roboto whitespace-nowrap">
-              <AnimatedTitle
-                title={content.title || "Minus the Clutter, Plus the Speed"}
-              />
-            </h1>
-
-            <div className="flex items-center justify-center gap-1">
-              <button
-                onClick={() => {
-                  if (content.ctaLink) {
-                    window.location.href = content.ctaLink;
-                  } else {
-                    document
-                      .getElementById("contact")
-                      ?.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-                className="bg-white/30 text-poble-charcoal pl-10 pr-3 py-3 rounded-full text-lg font-extrabold backdrop-blur-md border border-white/60 hover:bg-white/50 transition-all flex items-center justify-center gap-5 shadow-[0_8px_32px_rgba(0,0,0,0.10)] group tracking-tight cursor-pointer"
-              >
-                {content.ctaText || "Start Free Trial"}
-                <ArrowRight className="w-6 h-6 text-poble-charcoal transition-transform group-hover:translate-x-1" />
-              </button>
-
-              {/* Vertically elongated 4-pointed stars */}
-              <div className="flex items-center gap-1.5">
-                <svg
-                  viewBox="0 0 20 52"
-                  width="18"
-                  height="48"
-                  fill="#2a2a2a"
-                  className="animate-float"
-                  aria-hidden="true"
-                >
-                  <path d="M10,0 L13,21 L20,26 L13,31 L10,52 L7,31 L0,26 L7,21 Z" />
-                </svg>
-                <svg
-                  viewBox="0 0 20 52"
-                  width="10"
-                  height="28"
-                  fill="#2a2a2a"
-                  className="animate-float opacity-40"
-                  style={{ animationDuration: "14s", animationDelay: "1.2s" }}
-                  aria-hidden="true"
-                >
-                  <path d="M10,0 L13,21 L20,26 L13,31 L10,52 L7,31 L0,26 L7,21 Z" />
-                </svg>
-              </div>
-            </div>
-          </div>
-
-          {/* Interactive iPad Simulation */}
+          {/* Interactive iPad Simulation — TOP */}
           <div className="w-full max-w-3xl mx-auto relative z-30 animate-in fade-in zoom-in-95 duration-1000 delay-200">
-            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 text-center">
+            <p className="text-[10px] font-blak text-slate-400 uppercase tracking-widest mb-0 text-center">
               *Compatible with iPad 7th Gen and later.
             </p>
             <div className="relative mx-auto w-full aspect-[4/3] bg-gradient-to-b from-[#e2e2e2] via-[#d1d1d1] to-[#b8b8b8] rounded-[2.8rem] md:rounded-[3.2rem] p-[1.5px] shadow-[0_60px_100px_-30px_rgba(0,0,0,0.25),inset_0_1.5px_1px_rgba(255,255,255,0.8)] transition-transform duration-500 overflow-hidden">
@@ -666,11 +532,68 @@ export const Hero: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="flex items-center justify-center gap-3 mt-4">
-              <div className="w-2 h-2 rounded-full bg-green-500"></div>
-              <span className="text-[10px] font-black text-poble-charcoal/60 uppercase tracking-widest">
+            <div className="flex items-center justify-center gap-2 mt-4">
+              <div className="w-2 h-2 rounded-full bg-green-500 mb-1"></div>
+              <span className="text-[10px] font-bold text-poble-charcoal/60 uppercase tracking-widest">
                 No lock-in contracts
               </span>
+            </div>
+          </div>
+
+          {/* Primary Proposition — BOTTOM */}
+          <div className="max-w-4xl w-full text-center animate-in fade-in slide-in-from-top-4 duration-700 relative z-20">
+            <style>{`
+              @keyframes hero-cursor-blink {
+                0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+                20%, 22%, 24%, 55% { opacity: 0; }
+              }
+            `}</style>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-teal-400 leading-none mb-3 lg:mb-5 font-roboto">
+              {typedTitle}
+              <span
+                className="text-teal-400"
+                style={{ animation: "hero-cursor-blink 1.2s infinite" }}
+              >
+                ▊
+              </span>
+            </h1>
+
+            <div className="flex items-center justify-center gap-1">
+              <button
+                onClick={() => {
+                  if (content.ctaLink) {
+                    window.location.href = content.ctaLink;
+                  } else {
+                    document
+                      .getElementById("contact")
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+                className="bg-white/30 text-poble-charcoal pl-10 pr-3 py-3 rounded-full text-lg font-extrabold backdrop-blur-md border border-white/60 hover:bg-white/50 transition-all flex items-center justify-center gap-5 shadow-[0_8px_32px_rgba(0,0,0,0.10)] group tracking-tight cursor-pointer"
+              >
+                {content.ctaText || "Start Free Trial"}
+                <ArrowRight className="w-6 h-6 text-poble-charcoal transition-transform group-hover:translate-x-1" />
+              </button>
+
+              <div className="flex items-center gap-1.5">
+                <img
+                  src="/images/graphic/star.svg"
+                  alt=""
+                  aria-hidden="true"
+                  width={18}
+                  height={48}
+                  className="animate-float"
+                />
+                <img
+                  src="/images/graphic/star.svg"
+                  alt=""
+                  aria-hidden="true"
+                  width={10}
+                  height={28}
+                  className="animate-float opacity-40"
+                  style={{ animationDuration: "14s", animationDelay: "1.2s" }}
+                />
+              </div>
             </div>
           </div>
         </div>

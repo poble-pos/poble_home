@@ -80,7 +80,7 @@ export const INITIAL_SITE_CONTENT: SiteConfig = {
         feature2_title: "Ready for the Rush",
         feature2_desc:
           "Never miss a docket. Our high-performance brain stays responsive even when the queue is out the door.",
-        feature3_title: "Zero Training",
+        7: "Zero Training",
         feature3_desc:
           "Staff ready on Day 1. An interface so intuitive that new team members hit the ground running with zero learning curve.",
       },
@@ -148,7 +148,7 @@ export const INITIAL_SITE_CONTENT: SiteConfig = {
       content: {
         hero_label: "Transparent Economics",
         hero_title: "Start Basic",
-        hero_subtitle: "Scale Tomorrow",
+        hero_subtitle: "Add On, Any Time",
         description:
           "Begin your 30-day trial with our core POS engine. As your venue grows, our rapidly expanding library of smart add-ons will be ready for you to toggle on instantly.",
 
@@ -250,7 +250,7 @@ export const INITIAL_SITE_CONTENT: SiteConfig = {
       visible: true,
       order: 4,
       content: {
-        title: "Loved by Aussie Venues",
+        title: "❤️ by Aussie Venues",
         description:
           "Join hundreds of cafes, bars and restaurants that have switched to poble for a faster, simpler service.",
         quote1_text:

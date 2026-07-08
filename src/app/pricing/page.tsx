@@ -69,20 +69,13 @@ function PricingPageContent() {
       <Navbar />
       <main className="flex-grow bg-white">
         {/* Hero Header: Dynamic from Config */}
-        <section className="pt-32 pb-16 md:pt-40 md:pb-16 px-6 bg-slate-50 border-b border-slate-100 text-center">
-          <div className="max-w-7xl mx-auto">
-            {/* <span className="text-poble-gold font-black uppercase tracking-[0.3em] text-xs mb-6 block animate-in fade-in slide-in-from-bottom-4 duration-700">
-                            {config.hero_label || "Transparent Economics"}
-                        </span> */}
-            <h1 className="text-5xl md:text-6xl lg:text-[5rem] font-black text-poble-charcoal tracking-tighter mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100 leading-[0.95] font-heading">
-              {config.hero_title || "Start Basic"} <br />
-              <span className="text-slate-400">
-                {config.hero_subtitle || "Scale Tomorrow"}
-              </span>
+        <section className="pt-20 pb-10 md:pt-36 md:pb-16 px-6 bg-gray-50 border-slate-100">
+          <div className="max-w-7xl mx-auto text-start">
+            <h1 className="text-4xl md:text-5xl lg:text-[5rem] font-light text-poble-charcoal tracking-tighter animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100 leading-[0.95]">
+              {config.hero_title || "Pricing"}
             </h1>
-            <p className="text-xl text-slate-600 font-bold max-w-2xl mx-auto leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
-              {config.description ||
-                "Begin your 30-day trial with our core POS engine. As your venue grows, our rapidly expanding library of smart add-ons will be ready for you to toggle on instantly."}
+            <p className="mt-3 text-slate-400 text-xl md:text-2xl lg:text-[2rem] font-light animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
+              {config.hero_subtitle || "Add On, Any Time."}
             </p>
           </div>
         </section>

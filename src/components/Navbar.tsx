@@ -8,10 +8,10 @@
 import { ArrowRight, Menu, ShoppingBag, X } from "lucide-react";
 import React, { useRef, useState } from "react";
 
-import { useCart } from "@/context/CartContext";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
+import { useCart } from "@/context/CartContext";
+import { usePathname } from "next/navigation";
 
 export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -85,13 +85,13 @@ export const Navbar: React.FC = () => {
         />
 
         {/* Desktop Link Group */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6">
           {NAV_LINKS.map((link) =>
             isAnchorOnHome(link.href) ? (
               <button
                 key={link.name}
                 onClick={(e) => handleScroll(e, link.href)}
-                className="text-lg transition-colors tracking-widest text-slate-700 hover:text-poble-charcoal cursor-pointer font-poiret"
+                className="text-lg transition-colors tracking-wider text-slate-700 hover:text-poble-charcoal cursor-pointer"
               >
                 {link.name}
               </button>
@@ -99,7 +99,7 @@ export const Navbar: React.FC = () => {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-lg transition-colors tracking-widest text-slate-700 hover:text-poble-charcoal font-poiret"
+                className="text-lg transition-colors tracking-wider text-slate-700 hover:text-poble-charcoal"
               >
                 {link.name}
               </Link>

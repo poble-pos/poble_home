@@ -94,7 +94,7 @@ export const products: Product[] = [
         description: 'Durable, waterproof QR stickers for instant table ordering.',
         price: 3.00,
         category: 'accessory',
-        image: 'https://images.unsplash.com/photo-1622675363311-ac97f3a9a344?auto=format&fit=crop&q=80&w=1000',
+        image: '/images/hardware/qr-sticker.svg',
         features: ['Waterproof', 'High Contrast', 'Easy Peel'],
         inStock: true,
         stripePriceId: '',

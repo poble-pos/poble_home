@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { Plus, Minus } from "lucide-react";
 
 const defaultFaqItems = [
     {
@@ -50,17 +49,16 @@ export const FAQ: React.FC<FAQProps> = ({ className, content: propContent }) => 
     const items = config.faq?.filter((f: any) => f.visible !== false) || defaultFaqItems;
 
     return (
-        <section id="faq" className={className || "py-24 bg-white border-b border-slate-100 relative overflow-hidden"}>
-            {/* Line grid overlay */}
-            <div className="absolute inset-0 pointer-events-none opacity-60" style={{ backgroundImage: 'linear-gradient(to right, #dce4ea 1px, transparent 1px), linear-gradient(to bottom, #dce4ea 1px, transparent 1px)', backgroundSize: '400px 400px' }} />
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <section id="faq" className={className || "py-24 bg-white border-b border-slate-100"}>
+            <div className="max-w-7xl mx-auto px-6">
                 <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
-                    {/* Left Column: Title & Description */}
+
+                    {/* Left Column */}
                     <div className="lg:col-span-5 flex flex-col justify-center order-1 lg:order-1">
-                        <div className="animate-in fade-in slide-in-from-left-4 duration-700">
-                            <span className="text-poble-gold font-black uppercase tracking-[0.3em] text-xs mb-6 block">
-                                Expert Onboarding
-                            </span>
+                        <div className="animate-in fade-in slide-in-from-left-4 duration-700" style={{ fontFamily: 'monospace' }}>
+                            <p className="text-teal-600 text-xs font-black uppercase tracking-[0.3em] mb-6">
+                                <span className="text-slate-400">poble@support:~$</span> run --onboarding
+                            </p>
                             <h2 className="text-4xl md:text-5xl font-black tracking-tight text-poble-charcoal mb-8 leading-[1.1] font-heading">
                                 {title.includes(" & ") ? (
                                     <>
@@ -74,13 +72,13 @@ export const FAQ: React.FC<FAQProps> = ({ className, content: propContent }) => 
                                     </>
                                 )}
                             </h2>
-                            <div className="w-12 h-1 bg-poble-gold/60 mb-8"></div>
+                            <div className="w-12 h-1 bg-teal-400/60 mb-8"></div>
                             {description.includes(". ") ? (
                                 <>
                                     <p className="text-xl text-poble-charcoal font-bold leading-relaxed max-w-md mb-4">
                                         {description.split(". ")[0]}.
                                     </p>
-                                    <p className="text-base text-slate-600 font-bold leading-relaxed max-w-md">
+                                    <p className="text-base text-slate-500 font-bold leading-relaxed max-w-md">
                                         {description.split(". ").slice(1).join(". ")}
                                     </p>
                                 </>
@@ -92,56 +90,70 @@ export const FAQ: React.FC<FAQProps> = ({ className, content: propContent }) => 
                         </div>
                     </div>
 
-                    {/* Right Column: FAQ List */}
+                    {/* Right Column — terminal accordion */}
                     <div className="lg:col-span-7 order-2 lg:order-2">
-                        <div className="space-y-4">
-                            {items.map((item, idx) => {
-                                const isOpen = openIdx === idx;
+                        {/* Terminal window */}
+                        <div className="rounded-xl overflow-hidden border border-slate-200 shadow-lg">
+                            {/* Title bar */}
+                            <div className="bg-slate-100 px-5 py-3 flex items-center gap-2 border-b border-slate-200">
+                                <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
+                                <span className="w-3 h-3 rounded-full bg-[#febc2e]" />
+                                <span className="w-3 h-3 rounded-full bg-[#28c840]" />
+                                <span className="ml-4 text-[11px] text-slate-400 tracking-widest uppercase font-mono">poble — support.sh</span>
+                            </div>
 
-                                return (
-                                    <div
-                                        key={idx}
-                                        className={`group rounded-[2.5rem] bg-white transition-all duration-300 border-2 bg-clip-padding ${isOpen
-                                            ? "border-poble-gold shadow-[0_20px_40px_-15px_rgba(255,184,0,0.15)]"
-                                            : "border-slate-100 hover:border-poble-gold/30 hover:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.05)]"
-                                            }`}
-                                    >
-                                        <button
-                                            type="button"
-                                            onClick={() => setOpenIdx(isOpen ? null : idx)}
-                                            className="w-full p-6 md:p-7 flex items-center justify-between text-left"
-                                        >
-                                            <span className="text-lg font-black tracking-tight text-poble-charcoal font-heading">
-                                                {item.q}
-                                            </span>
+                            {/* Body */}
+                            <div className="bg-white px-6 py-6" style={{ fontFamily: 'monospace' }}>
+                                <p className="text-teal-600 text-xs mb-5 font-mono">
+                                    <span className="text-slate-400">poble@support:~$</span>{" "}
+                                    <span className="text-slate-500">./faq --interactive</span>
+                                </p>
 
-                                            <div
-                                                className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all ${isOpen
-                                                    ? "bg-poble-gold text-poble-charcoal"
-                                                    : "bg-slate-100 text-slate-500"
-                                                    }`}
-                                            >
-                                                {isOpen ? (
-                                                    <Minus className="w-4 h-4" strokeWidth={3} />
-                                                ) : (
-                                                    <Plus className="w-4 h-4" strokeWidth={3} />
-                                                )}
-                                            </div>
-                                        </button>
+                                <div className="space-y-1">
+                                    {items.map((item: any, idx: number) => {
+                                        const isOpen = openIdx === idx;
+                                        return (
+                                            <div key={idx} className="border border-slate-100 overflow-hidden">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setOpenIdx(isOpen ? null : idx)}
+                                                    className="w-full px-5 py-4 flex items-center justify-between text-left bg-white hover:bg-slate-50 transition-colors group"
+                                                >
+                                                    <div className="flex items-center gap-3">
+                                                        <span className="text-teal-500 text-xs shrink-0 select-none">
+                                                            {isOpen ? '▼' : '▶'}
+                                                        </span>
+                                                        <span className="text-[11px] text-slate-400 shrink-0 select-none font-mono">
+                                                            [{String(idx + 1).padStart(2, '0')}]
+                                                        </span>
+                                                        <span className="text-sm font-black tracking-tight text-poble-charcoal">
+                                                            {item.q}
+                                                        </span>
+                                                    </div>
+                                                    <span className={`text-[10px] font-black uppercase tracking-widest shrink-0 ml-4 ${isOpen ? 'text-teal-500' : 'text-slate-300'}`}>
+                                                        {isOpen ? 'OPEN' : 'CLOSED'}
+                                                    </span>
+                                                </button>
 
-                                        <div
-                                            className={`grid transition-all duration-300 ease-in-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-                                                }`}
-                                        >
-                                            <div className="overflow-hidden">
-                                                <div className="px-7 pb-7 md:px-8 md:pb-8 text-slate-700 font-bold text-base leading-relaxed border-t border-slate-100 pt-5">
-                                                    {item.a}
+                                                <div className={`grid transition-all duration-300 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+                                                    <div className="overflow-hidden">
+                                                        <div className="px-5 py-4 bg-slate-50 border-t border-slate-100 flex gap-4">
+                                                            <span className="text-teal-400 text-xs shrink-0 select-none mt-0.5">//</span>
+                                                            <p className="text-sm text-slate-600 font-bold leading-relaxed">
+                                                                {item.a}
+                                                            </p>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                );
-                            })}
+                                        );
+                                    })}
+                                </div>
+
+                                <p className="text-slate-300 text-xs mt-5 font-mono">
+                                    — {items.length} entries loaded. Select to expand.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

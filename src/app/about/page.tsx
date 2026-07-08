@@ -2,36 +2,16 @@
 
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
-import React from "react";
-
-const SystemVisual: React.FC<{ className?: string }> = ({ className = "" }) => (
-  <div
-    className={`relative w-full aspect-square max-w-sm opacity-20 ${className}`}
-  >
-    <div className="absolute inset-0 border border-slate-900/10 rounded-full"></div>
-    <div className="absolute inset-4 border border-slate-900/5 rounded-full"></div>
-    <div className="absolute inset-1/2 -translate-x-px w-px h-full bg-gradient-to-b from-transparent via-slate-900 to-transparent"></div>
-    <div className="absolute top-1/2 left-0 -translate-y-px w-full h-px bg-gradient-to-r from-transparent via-slate-900 to-transparent"></div>
-    {/* System Node Indicators - Professionally Placed */}
-    {[...Array(4)].map((_, i) => (
-      <div
-        key={i}
-        className={`absolute w-1.5 h-1.5 bg-poble-gold rounded-full transition-all duration-700 left-1/2 -translate-x-1/2 ${i === 0 ? "top-[20%]" : i === 1 ? "top-[40%]" : i === 2 ? "top-[60%]" : "top-[80%]"}`}
-      ></div>
-    ))}
-  </div>
-);
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen flex flex-col bg-poble-cream">
       <Navbar />
       <main className="flex-grow pt-0 animate-in fade-in duration-1000">
-        {/* 1) Split Hero Section - Full Height & Dynamic */}
-        <section className="relative flex flex-col lg:flex-row overflow-clip border-b border-slate-100">
-          {/* LEFT: Our Story Narrative */}
-          <div className="w-full lg:w-1/2 flex items-center justify-center p-8 md:p-16 lg:p-24 bg-white relative overflow-hidden">
-            {/* Grid overlay */}
+        {/* ── 1. Split Hero ── */}
+        {/* <section className="relative flex flex-col lg:flex-row overflow-clip border-b border-slate-100"> */}
+        {/* LEFT */}
+        {/* <div className="w-full lg:w-1/2 flex items-center justify-center p-8 md:p-16 lg:p-24 bg-white relative overflow-hidden">
             <div
               className="absolute inset-0 pointer-events-none opacity-60"
               style={{
@@ -40,10 +20,19 @@ export default function AboutPage() {
                 backgroundSize: "400px 400px",
               }}
             />
-            {/* Decorative star */}
-            <img src="/images/graphic/star.png" alt="" aria-hidden="true" width={14} height={36} className="absolute top-10 right-10 animate-float opacity-15" style={{ animationDuration: "9s" }} />
-
-            <div className="max-w-xl w-full relative z-10">
+            <img
+              src="/images/graphic/star.svg"
+              alt=""
+              aria-hidden="true"
+              width={14}
+              height={36}
+              className="absolute top-10 right-10 animate-float opacity-15"
+              style={{ animationDuration: "9s" }}
+            />
+            <div className="max-w-xl w-full relative z-10" style={{ fontFamily: "monospace" }}>
+              <p className="text-teal-600 font-black text-xs uppercase tracking-[0.3em] mb-6">
+                <span className="text-slate-400">poble@about:~$</span> cat story.txt
+              </p>
               <h1 className="text-5xl md:text-6xl lg:text-[5rem] font-black tracking-tighter mb-10 font-heading leading-[0.95] text-poble-charcoal">
                 <span className="block animate-reveal-text [animation-delay:200ms]">
                   Our
@@ -54,28 +43,20 @@ export default function AboutPage() {
                   </span>
                 </span>
               </h1>
-              <div className="signature-bar mb-12">
-                <div className="signature-bar-inner"></div>
-              </div>
+              <div className="w-12 h-1 bg-teal-400/60 mb-10"></div>
               <div className="space-y-6 animate-reveal-text [animation-delay:700ms]">
-                <p className="text-xl md:text-2xl lg:text-[1.75rem] font-medium text-poble-charcoal/80 leading-snug max-w-md tracking-tight">
+                <p className="text-xl md:text-2xl font-bold text-poble-charcoal/80 leading-snug tracking-tight">
                   POS,{" "}
-                  <span className="text-poble-gold font-black">
-                    made capable
-                  </span>{" "}
+                  <span className="text-poble-gold font-black">made capable.</span>{" "}
                   <br className="hidden md:block" />
-                  Designed so your focus <br className="hidden md:block" />
-                  belongs to the customer.
+                  Designed so your focus belongs to the customer.
                 </p>
                 <div className="flex items-center gap-4 text-slate-400/60 w-full overflow-hidden">
                   <div className="w-8 h-px bg-slate-200 shrink-0"></div>
                   <div className="flex-grow overflow-hidden relative">
                     <div className="flex whitespace-nowrap animate-marquee">
                       {[1, 2, 3, 4].map((i) => (
-                        <span
-                          key={i}
-                          className="text-[10px] font-black uppercase tracking-[0.3em] pr-8"
-                        >
+                        <span key={i} className="text-[10px] font-black uppercase tracking-[0.3em] pr-8">
                           Sydney • Melbourne • Brisbane • Perth • Adelaide
                         </span>
                       ))}
@@ -84,15 +65,13 @@ export default function AboutPage() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          {/* RIGHT: pos+able Visual Panel */}
-          <div className="w-full lg:w-1/2 min-h-[60vh] lg:h-screen lg:sticky lg:top-0 flex items-center justify-center relative p-12 overflow-hidden bg-poble-cream">
-            {/* Animated background blobs */}
+        {/* RIGHT */}
+        {/* <div className="w-full lg:w-1/2 min-h-[60vh] lg:h-screen lg:sticky lg:top-0 flex items-center justify-center relative p-12 overflow-hidden bg-poble-cream">
             <div className="absolute inset-0 bg-gradient-to-br from-amber-300 via-amber-100 to-amber-50 animate-gradient-flow" />
             <div className="absolute top-[-10%] left-[-5%] w-[70%] h-[70%] bg-white/40 blur-[120px] rounded-full animate-mesh" />
             <div className="absolute bottom-[-15%] right-[-5%] w-[80%] h-[80%] bg-poble-gold/20 blur-[160px] rounded-full animate-mesh [animation-direction:reverse]" />
-            {/* Grid overlay */}
             <div
               className="absolute inset-0 pointer-events-none opacity-40"
               style={{
@@ -101,30 +80,18 @@ export default function AboutPage() {
                 backgroundSize: "400px 400px",
               }}
             />
+            <img src="/images/graphic/star.svg" alt="" aria-hidden="true" width={22} height={57} className="absolute top-[8%] left-[12%] animate-float" style={{ opacity: 0.35, animationDuration: "8s" }} />
+            <img src="/images/graphic/star.svg" alt="" aria-hidden="true" width={16} height={42} className="absolute bottom-[12%] right-[18%] animate-float" style={{ opacity: 0.25, animationDuration: "14s", animationDelay: "3s" }} />
 
-            {/* Decorative stars */}
-            <img src="/images/graphic/star.png" alt="" aria-hidden="true" width={22} height={57} className="absolute top-[8%] left-[12%] animate-float" style={{ opacity: 0.35, animationDuration: "8s" }} />
-            <img src="/images/graphic/star.png" alt="" aria-hidden="true" width={16} height={42} className="absolute bottom-[12%] right-[18%] animate-float" style={{ opacity: 0.25, animationDuration: "14s", animationDelay: "3s" }} />
-
-            {/* Central pos+able typographic lockup */}
             <div className="relative z-10 text-center select-none">
-              {/* Ghost watermark */}
-              <span
-                className="absolute inset-0 flex items-center justify-center text-[14vw] lg:text-[10vw] font-black tracking-tighter text-poble-charcoal/[0.04] leading-none pointer-events-none"
-                aria-hidden="true"
-              >
+              <span className="absolute inset-0 flex items-center justify-center text-[14vw] lg:text-[10vw] font-black tracking-tighter text-poble-charcoal/[0.04] leading-none pointer-events-none" aria-hidden="true">
                 poble
               </span>
               <div className="relative flex flex-col items-center gap-6">
                 <div className="flex items-center gap-0 font-black tracking-tighter leading-none">
-                  <span className="text-[4.5rem] md:text-[6rem] text-poble-charcoal font-roboto">
-                    pos
-                  </span>
-                  {/* Star connector */}
-                  <img src="/images/graphic/star.png" alt="" aria-hidden="true" width={28} height={72} className="animate-float mx-1 md:mx-2" style={{ animationDuration: "6s" }} />
-                  <span className="text-[4.5rem] md:text-[6rem] text-poble-charcoal font-roboto">
-                    able
-                  </span>
+                  <span className="text-[4.5rem] md:text-[6rem] text-poble-charcoal font-roboto">pos</span>
+                  <img src="/images/graphic/star.svg" alt="" aria-hidden="true" width={28} height={72} className="animate-float mx-1 md:mx-2" style={{ animationDuration: "6s" }} />
+                  <span className="text-[4.5rem] md:text-[6rem] text-poble-charcoal font-roboto">able</span>
                 </div>
                 <p className="text-[11px] font-black uppercase tracking-[0.4em] text-poble-charcoal/50">
                   Point of Sale — Made Capable
@@ -132,17 +99,55 @@ export default function AboutPage() {
                 <div className="flex items-center gap-3 opacity-30 mt-4">
                   <div className="w-12 h-px bg-poble-charcoal"></div>
                   <div className="text-[10px] font-black uppercase tracking-[0.4em] text-poble-charcoal">
-                    Established 2024
+                    By Ecnesoft · Est. 2002
                   </div>
                   <div className="w-12 h-px bg-poble-charcoal"></div>
                 </div>
               </div>
             </div>
           </div>
+        </section> */}
+
+        {/* ── Restaurant Video ── */}
+        <section className="py-24 px-8 bg-poble-charcoal relative overflow-hidden">
+          <div
+            className="absolute inset-0 pointer-events-none opacity-40"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, #dce4ea 1px, transparent 1px), linear-gradient(to bottom, #dce4ea 1px, transparent 1px)",
+              backgroundSize: "400px 400px",
+            }}
+          />
+          <div className="max-w-5xl mx-auto relative z-10">
+            <div className="mb-10" style={{ fontFamily: "monospace" }}>
+              <p className="text-teal-600 font-black text-xs uppercase tracking-[0.3em] mb-4">
+                <span className="text-slate-400">poble@about:~$</span> play
+                restaurant.mp4
+              </p>
+            </div>
+            <div className="border border-slate-200 overflow-hidden bg-black">
+              <div className="bg-slate-100 px-4 py-2.5 flex items-center gap-2 border-b border-slate-200">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+                <span className="ml-3 text-[10px] text-slate-400 tracking-widest uppercase">
+                  restaurant.mp4
+                </span>
+              </div>
+              <video
+                src="/videos/restaurant.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full"
+              />
+            </div>
+          </div>
         </section>
 
-        {/* 2) Brand Meaning Section */}
-        <section className="py-24 px-8 bg-white border-y border-slate-100 relative overflow-hidden">
+        {/* ── 3. Brand Meaning ── */}
+        <section className="py-24 px-8 bg-white  border-slate-100 relative overflow-hidden">
           <div
             className="absolute inset-0 pointer-events-none opacity-60"
             style={{
@@ -151,34 +156,49 @@ export default function AboutPage() {
               backgroundSize: "400px 400px",
             }}
           />
-          {/* Decorative star */}
-          <img src="/images/graphic/star.png" alt="" aria-hidden="true" width={20} height={52} className="absolute bottom-10 right-[10%] animate-float opacity-25" style={{ animationDuration: "12s" }} />
-          <div className="max-w-4xl mx-auto text-center relative z-10">
-            <p className="text-xs font-black uppercase tracking-[0.3em] text-poble-gold mb-12">
-              The Story Behind Poble
+          <img
+            src="/images/graphic/star.svg"
+            alt=""
+            aria-hidden="true"
+            width={20}
+            height={52}
+            className="absolute bottom-10 right-[10%] animate-float opacity-25"
+            style={{ animationDuration: "12s" }}
+          />
+          <div
+            className="max-w-4xl mx-auto text-center relative z-10"
+            style={{ fontFamily: "monospace" }}
+          >
+            <p className="text-teal-600 font-black text-xs uppercase tracking-[0.3em] mb-6">
+              <span className="text-slate-400">poble@about:~$</span> cat
+              brand-name.txt
             </p>
-            <h2 className="text-4xl md:text-5xl font-black text-poble-charcoal tracking-tight mb-10 leading-[1.1] font-heading">
+            <h2 className="text-4xl md:text-5xl font-black text-poble-charcoal tracking-tight mb-6 leading-[1.1] font-heading">
               Derived from <br />
-              <span className="text-slate-500">POS + able</span>
+              <span className="text-slate-400">POS + able</span>
             </h2>
-            <div className="w-12 h-1 bg-poble-gold/60 mb-10 mx-auto"></div>
-            <div className="max-w-2xl mx-auto space-y-10">
+            <div className="w-12 h-1 bg-teal-400/60 mb-10 mx-auto"></div>
+            <div className="max-w-2xl mx-auto space-y-1">
               <p className="text-xl text-poble-charcoal font-bold leading-relaxed tracking-tight">
+                <span className="text-slate-300 mr-2">//</span>
                 Our name reflects our core mission:{" "}
+              </p>
+              <p className="text-xl text-poble-charcoal font-bold leading-relaxed tracking-tight">
                 <span className="text-poble-gold">
                   enabling merchants to do more.
                 </span>
               </p>
               <p className="text-lg text-slate-500 font-bold leading-relaxed">
-                We believe technology should empower your team, giving you the
+                <span className="text-slate-300 mr-2">//</span>
+                We believe technology should empower your team — giving you the
                 ability to serve your customers with excellence and ease.
               </p>
             </div>
           </div>
         </section>
 
-        {/* 3) Focus Today / Built for What's Next */}
-        <section className="py-24 px-8 relative overflow-hidden bg-white">
+        {/* ── 2. Ecnesoft Parent Company ── */}
+        <section className="py-24 px-8 bg-white border-b border-slate-100 relative overflow-hidden">
           <div
             className="absolute inset-0 pointer-events-none opacity-60"
             style={{
@@ -187,47 +207,135 @@ export default function AboutPage() {
               backgroundSize: "400px 400px",
             }}
           />
-          <img src="/images/graphic/star.png" alt="" aria-hidden="true" width={18} height={47} className="absolute top-16 right-[12%] animate-float opacity-20" style={{ animationDuration: "9s" }} />
-          <div className="max-w-[1440px] mx-auto relative z-10">
-            <div className="grid md:grid-cols-2 gap-24 lg:gap-40">
-              <div className="relative">
-                <div className="absolute -left-8 top-0 bottom-0 w-px bg-slate-200"></div>
-                <h3 className="text-xs font-black uppercase tracking-[0.3em] text-poble-gold mb-10">
-                  Strategic Focus
-                </h3>
-                <p className="text-2xl font-black text-poble-charcoal leading-tight mb-6 tracking-tight font-heading">
-                  Perfecting your <br />
-                  Service Counter
-                </p>
-                <div className="w-12 h-1 bg-poble-gold/60 mb-8"></div>
-                <p className="text-slate-600 font-bold text-lg leading-relaxed tracking-tight">
-                  Your peak hour is our primary benchmark. We dedicate our
-                  development cycles to touch-latency and payment speed, so your
-                  queue never stops moving because of your POS.
-                </p>
+          <div className="max-w-7xl mx-auto relative z-10">
+            {/* Terminal header */}
+            <div className="mb-16" style={{ fontFamily: "monospace" }}>
+              <p className="text-teal-600 font-black text-xs uppercase tracking-[0.3em] mb-6">
+                <span className="text-slate-400">poble@about:~$</span> cat
+                parent-company.txt
+              </p>
+              <h2 className="text-4xl md:text-5xl font-black text-poble-charcoal tracking-tight leading-[1.1] font-heading mb-4">
+                Backed by <br />
+                <span className="text-slate-400">20+ years of expertise</span>
+              </h2>
+              <div className="w-12 h-1 bg-teal-400/60 mb-8"></div>
+            </div>
+
+            <div className="grid lg:grid-cols-[1fr_1fr] gap-16 items-start">
+              {/* Left: Company description */}
+              <div style={{ fontFamily: "monospace" }}>
+                {/* Terminal window */}
+                <div className="border border-slate-200">
+                  <div className="bg-slate-100 px-4 py-2.5 flex items-center gap-2 border-b border-slate-200">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+                    <span className="ml-3 text-[10px] text-slate-400 tracking-widest uppercase">
+                      ecnesoft — profile.sh
+                    </span>
+                  </div>
+                  <div className="bg-white p-8 space-y-6">
+                    <p className="text-[11px] text-slate-400">
+                      <span className="text-teal-600 font-bold">
+                        ecnesoft@hq:~$
+                      </span>{" "}
+                      <span className="text-slate-500">./about.sh</span>
+                    </p>
+                    <p className="text-slate-600 font-bold text-lg leading-relaxed">
+                      <span className="text-slate-300 mr-2">//</span>
+                      Poble is a product of{" "}
+                      <span className="text-poble-charcoal font-black">
+                        Ecnesoft
+                      </span>{" "}
+                      — a Sydney-based global provider of POS solutions,
+                      established in 2002.
+                    </p>
+                    <p className="text-slate-500 font-bold leading-relaxed">
+                      <span className="text-slate-300 mr-2">//</span>
+                      Ecnesoft is a developer and supplier of high quality,
+                      well-supported POS systems for the Hospitality and Retail
+                      industries. From individual SMB businesses to multistore
+                      retail chains and franchise networks — we build systems
+                      that scale with you.
+                    </p>
+                    <p className="text-slate-500 font-bold leading-relaxed">
+                      <span className="text-slate-300 mr-2">//</span>
+                      As a leader in Hospitality and Retail POS Software and
+                      Hardware, Ecnesoft brings over two decades of domain
+                      knowledge to every product we ship — and Poble is no
+                      exception.
+                    </p>
+                    <div className="pt-4 border-t border-slate-100">
+                      <p className="text-[10px] text-slate-400 uppercase tracking-widest">
+                        <span className="text-teal-500 mr-1">$</span> exit 0 —
+                        profile loaded
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="relative">
-                <div className="absolute -left-8 top-0 bottom-0 w-px bg-slate-200"></div>
-                <h3 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 mb-10">
-                  Modular Growth
-                </h3>
-                <p className="text-2xl font-black text-poble-charcoal leading-tight mb-6 tracking-tight font-heading">
-                  Built for <br />
-                  Your Next Step
-                </p>
-                <div className="w-12 h-1 bg-poble-gold/60 mb-8"></div>
-                <p className="text-slate-600 font-bold text-lg leading-relaxed tracking-tight">
-                  As your venue grows, <span className="font-logo">poble</span>{" "}
-                  scales with you. Our modular architecture allows you to add
-                  capabilities thoughtfully, without introducing unnecessary
-                  operational noise.
-                </p>
+
+              {/* Right: Stats grid */}
+              <div
+                className="grid grid-cols-2 gap-4"
+                style={{ fontFamily: "monospace" }}
+              >
+                {[
+                  { val: "2002", label: "Year\nFounded", accent: true },
+                  {
+                    val: "Sydney",
+                    label: "Headquartered\nAustralia",
+                    accent: false,
+                  },
+                  {
+                    val: "Hospitality\n+ Retail",
+                    label: "Industry\nFocus",
+                    accent: false,
+                  },
+                  {
+                    val: "SMB →\nFranchise",
+                    label: "Business\nScale",
+                    accent: true,
+                  },
+                ].map((stat, i) => (
+                  <div
+                    key={i}
+                    className={`border p-6 flex flex-col justify-between min-h-[130px] transition-colors duration-200 hover:border-teal-300 ${stat.accent ? "border-teal-200 bg-teal-50/30" : "border-slate-200 bg-white"}`}
+                  >
+                    <div
+                      className={`text-2xl font-black leading-tight whitespace-pre-line ${stat.accent ? "text-teal-700" : "text-poble-charcoal"}`}
+                    >
+                      {stat.val}
+                    </div>
+                    <div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-relaxed whitespace-pre-line mt-3">
+                      <span className="text-teal-400 mr-1">//</span>
+                      {stat.label}
+                    </div>
+                  </div>
+                ))}
+
+                {/* Wide bottom cell */}
+                <div className="col-span-2 border border-slate-200 bg-white p-6 hover:border-teal-300 transition-colors duration-200">
+                  <div className="text-[10px] text-slate-400 mb-3">
+                    <span className="text-teal-600 font-bold">
+                      ecnesoft@hq:~$
+                    </span>{" "}
+                    <span className="text-slate-500">locate --hq</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-teal-400 shrink-0" />
+                    <p className="text-sm font-bold text-poble-charcoal">
+                      Based in Sydney, serving venues across Australia and
+                      globally.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 4) Principles Section */}
+        {/* ── 4. Principles ── */}
         <section className="py-24 px-8 overflow-hidden relative bg-[#e0e0e0]">
           <div
             className="absolute inset-0 pointer-events-none opacity-30"
@@ -237,17 +345,25 @@ export default function AboutPage() {
               backgroundSize: "400px 400px",
             }}
           />
-
-          <div className="max-w-[1440px] mx-auto relative z-10">
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-24 font-heading leading-[1.1] text-poble-charcoal">
-              What stays{" "}
-              <span className="text-poble-charcoal/40">constant for you</span>
-            </h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-24">
+          <div className="max-w-7xl mx-auto relative z-10">
+            <div className="mb-16" style={{ fontFamily: "monospace" }}>
+              <p className="text-teal-600 font-black text-xs uppercase tracking-[0.3em] mb-4">
+                <span className="text-slate-500">poble@about:~$</span> list
+                --principles
+              </p>
+              <h2 className="text-4xl md:text-5xl font-black tracking-tight font-heading leading-[1.1] text-poble-charcoal">
+                What stays{" "}
+                <span className="text-poble-charcoal/40">constant for you</span>
+              </h2>
+            </div>
+            <div
+              className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8"
+              style={{ fontFamily: "monospace" }}
+            >
               {[
                 {
                   title: "Visual Clarity",
-                  desc: "Interfaces designed for your split-second decisions at the counter.",
+                  desc: "Interfaces designed for split-second decisions at the counter.",
                 },
                 {
                   title: "High-Peak Speed",
@@ -255,43 +371,32 @@ export default function AboutPage() {
                 },
                 {
                   title: "Silent Reliability",
-                  desc: "A system so quiet and dependable you can forget it's there.",
+                  desc: "A system so dependable you can forget it's there.",
                 },
                 {
                   title: "Ethical Scale",
-                  desc: "New features added to help you grow, never to slow you down.",
+                  desc: "New features added to help you grow — never to slow you down.",
                 },
-              ].map((principle, i) => (
-                <div key={i} className="flex flex-col">
-                  <span className="text-poble-charcoal/30 font-black mb-6">
-                    0{i + 1}
+              ].map((p, i) => (
+                <div
+                  key={i}
+                  className="border border-slate-300/60 bg-white/40 p-6 hover:bg-white/70 hover:border-teal-300 transition-all duration-200"
+                >
+                  <span className="text-teal-500 font-black text-xs mb-4 block">
+                    [{String(i + 1).padStart(2, "0")}]
                   </span>
-                  <h4 className="text-xl font-black mb-4 tracking-tight leading-tight text-poble-charcoal">
-                    {principle.title}
+                  <h4 className="text-lg font-black mb-3 tracking-tight text-poble-charcoal">
+                    {p.title}
                   </h4>
-                  <p className="text-poble-charcoal/60 font-bold leading-relaxed tracking-tight text-base">
-                    {principle.desc}
+                  <p className="text-poble-charcoal/60 font-bold leading-relaxed text-sm">
+                    <span className="text-slate-400 mr-1">//</span>
+                    {p.desc}
                   </p>
                 </div>
               ))}
             </div>
           </div>
         </section>
-
-        {/* 5) Closing Section */}
-        {/* <section className="pt-24 pb-32 px-8 text-center bg-poble-cream relative overflow-hidden">
-                    <div className="absolute inset-0 pointer-events-none opacity-40" style={{ backgroundImage: 'linear-gradient(to right, #dce4ea 1px, transparent 1px), linear-gradient(to bottom, #dce4ea 1px, transparent 1px)', backgroundSize: '400px 400px' }} />
-                    <svg viewBox="0 0 20 52" width="18" height="47" fill="#F9C835" aria-hidden="true" className="absolute top-12 right-[8%] animate-float opacity-25" style={{ animationDuration: '10s' }}><path d="M10,0 L13,21 L20,26 L13,31 L10,52 L7,31 L0,26 L7,21 Z" /></svg>
-                    <div className="max-w-3xl mx-auto relative z-10">
-                        <p className="text-4xl md:text-5xl font-black text-poble-charcoal tracking-tight leading-[1.1] mb-12 font-heading">
-                            Built for the rush <br />
-                            <span className="text-slate-400">Engineered for your peace of mind</span>
-                        </p>
-                        <p className="text-slate-500 font-black uppercase text-xs tracking-[0.3em] opacity-60">
-                            Proudly serving venues across Australia
-                        </p>
-                    </div>
-                </section> */}
       </main>
       <Footer />
     </div>
