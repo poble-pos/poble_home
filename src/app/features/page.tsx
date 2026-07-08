@@ -108,6 +108,9 @@ const PRODUCTS: Product[] = [
       },
     ],
     screenshotLabel: "Kitchen Display screenshot",
+    screenshotSrc: "/images/pos/KDS.png",
+    screenshotWidth: 2960,
+    screenshotHeight: 2290,
   },
   {
     id: "dual-screen",
@@ -131,6 +134,9 @@ const PRODUCTS: Product[] = [
       },
     ],
     screenshotLabel: "Dual Screen screenshot",
+    screenshotSrc: "/images/pos/Dual Screen.png",
+    screenshotWidth: 2960,
+    screenshotHeight: 2290,
   },
   {
     id: "kiosk",
