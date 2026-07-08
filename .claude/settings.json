@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(md5 src/app/page.tsx)",
+      "Bash(npm run *)",
+      "Bash(npx tsc *)"
+    ]
+  }
+}

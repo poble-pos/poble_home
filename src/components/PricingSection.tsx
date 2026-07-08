@@ -105,6 +105,8 @@ export const PricingSection: React.FC = () => {
                       "/poble_logo.png"
                     }
                     alt={plan.title}
+                    width={192}
+                    height={192}
                     className="w-full h-full object-contain p-6 transition-all duration-700"
                   />
                 </div>

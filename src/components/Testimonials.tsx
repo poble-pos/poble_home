@@ -129,6 +129,8 @@ export const Testimonials: React.FC = () => {
                     <Image
                       src={review.image}
                       alt={review.author}
+                      width={40}
+                      height={40}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -212,6 +214,8 @@ export const Testimonials: React.FC = () => {
                 <Image
                   src={logo.src}
                   alt={logo.name}
+                  width={160}
+                  height={64}
                   className="w-full h-full object-contain"
                 />
               </div>
@@ -239,6 +243,8 @@ export const Testimonials: React.FC = () => {
                 <Image
                   src={logo.src}
                   alt={logo.name}
+                  width={160}
+                  height={64}
                   className="w-full h-full object-contain"
                 />
               </div>

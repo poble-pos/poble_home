@@ -1,6 +1,9 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+
+const INTERACTIVE_SELECTOR =
+  "a, button, [role='button'], input, select, textarea, label, summary, [data-cursor='hover']";
 
 export const DigitalCursor: React.FC = () => {
     const reticleRef = useRef<HTMLDivElement>(null);
@@ -9,9 +12,28 @@ export const DigitalCursor: React.FC = () => {
     const coordRef = useRef<HTMLSpanElement>(null);
     const tickRef = useRef(0);
 
+    // Only render on devices with a fine pointer and no reduced-motion
+    // preference — on touch devices the reticle would sit frozen in the
+    // top-left corner and `cursor: none` would still be injected.
+    const [enabled, setEnabled] = useState(false);
+
     useEffect(() => {
-        // Only show on non-touch devices
-        if (window.matchMedia("(pointer: coarse)").matches) return;
+        const finePointer = window.matchMedia("(pointer: fine)");
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+        const update = () => setEnabled(finePointer.matches && !reducedMotion.matches);
+        update();
+
+        finePointer.addEventListener("change", update);
+        reducedMotion.addEventListener("change", update);
+        return () => {
+            finePointer.removeEventListener("change", update);
+            reducedMotion.removeEventListener("change", update);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (!enabled) return;
 
         const reticle = reticleRef.current;
         const trail = trailRef.current;
@@ -22,6 +44,9 @@ export const DigitalCursor: React.FC = () => {
         let raf: number;
         let mx = -200, my = -200;
         let tx = -200, ty = -200; // trail lags behind
+        let scale = 1;
+        let targetScale = 1; // grows over interactive elements
+        let visible = false;
 
         const hexChars = "0123456789ABCDEF";
         const randHex = () =>
@@ -30,6 +55,9 @@ export const DigitalCursor: React.FC = () => {
         const onMove = (e: MouseEvent) => {
             mx = e.clientX;
             my = e.clientY;
+            visible = true;
+            reticle.style.opacity = "1";
+            trail.style.opacity = "";
             tickRef.current++;
             // Update hex every ~6 moves
             if (tickRef.current % 6 === 0) {
@@ -38,28 +66,50 @@ export const DigitalCursor: React.FC = () => {
             coordEl.textContent = `${mx},${my}`;
         };
 
+        // Expand the reticle over links, buttons, form fields and cards
+        const onOver = (e: MouseEvent) => {
+            const target = e.target instanceof Element ? e.target : null;
+            targetScale = target?.closest(INTERACTIVE_SELECTOR) ? 1.6 : 1;
+        };
+
+        // Hide when the pointer leaves the window
+        const onLeave = () => {
+            visible = false;
+            reticle.style.opacity = "0";
+            trail.style.opacity = "0";
+        };
+
         const animate = () => {
-            // Reticle snaps directly
-            reticle.style.transform = `translate(${mx - 20}px, ${my - 20}px)`;
+            // Reticle snaps directly; scale eases toward its target
+            scale += (targetScale - scale) * 0.18;
+            reticle.style.transform = `translate(${mx - 20}px, ${my - 20}px) scale(${scale.toFixed(3)})`;
 
             // Trail smoothly interpolates
-            tx += (mx - tx) * 0.12;
-            ty += (my - ty) * 0.12;
+            if (visible) {
+                tx += (mx - tx) * 0.12;
+                ty += (my - ty) * 0.12;
+            }
             trail.style.transform = `translate(${tx - 4}px, ${ty - 4}px)`;
 
             raf = requestAnimationFrame(animate);
         };
 
         animate();
-        window.addEventListener("mousemove", onMove);
+        window.addEventListener("mousemove", onMove, { passive: true });
+        window.addEventListener("mouseover", onOver, { passive: true });
+        document.documentElement.addEventListener("mouseleave", onLeave);
         document.documentElement.style.cursor = "none";
 
         return () => {
             cancelAnimationFrame(raf);
             window.removeEventListener("mousemove", onMove);
+            window.removeEventListener("mouseover", onOver);
+            document.documentElement.removeEventListener("mouseleave", onLeave);
             document.documentElement.style.cursor = "";
         };
-    }, []);
+    }, [enabled]);
+
+    if (!enabled) return null;
 
     return (
         <>
@@ -90,8 +140,8 @@ export const DigitalCursor: React.FC = () => {
             {/* Trailing dot */}
             <div
                 ref={trailRef}
-                className="fixed top-0 left-0 z-[9997] pointer-events-none w-2 h-2"
-                style={{ willChange: "transform" }}
+                className="fixed top-0 left-0 z-[9997] pointer-events-none w-2 h-2 transition-opacity duration-200"
+                style={{ willChange: "transform", transform: "translate(-200px, -200px)" }}
             >
                 <div className="w-full h-full bg-teal-400 opacity-50" />
             </div>
@@ -99,8 +149,12 @@ export const DigitalCursor: React.FC = () => {
             {/* Main reticle */}
             <div
                 ref={reticleRef}
-                className="fixed top-0 left-0 z-[9999] pointer-events-none w-10 h-10"
-                style={{ willChange: "transform" }}
+                className="fixed top-0 left-0 z-[9999] pointer-events-none w-10 h-10 transition-opacity duration-200"
+                style={{
+                    willChange: "transform",
+                    transform: "translate(-200px, -200px)",
+                    opacity: 0,
+                }}
             >
                 {/* Corner brackets */}
                 <div className="absolute inset-0 reticle-pulse">

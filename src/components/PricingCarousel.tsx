@@ -244,6 +244,8 @@ export const PricingCarousel: React.FC = () => {
                     <Image
                       src={currentImage}
                       alt={currentItem.label}
+                      width={800}
+                      height={320}
                       className="w-full h-full object-contain bg-white p-8 transition-transform duration-700 ease-out group-hover/image:scale-[1.02]"
                     />
                   ) : (
@@ -365,6 +367,8 @@ export const PricingCarousel: React.FC = () => {
             <Image
               src={currentImage}
               alt={currentItem.label}
+              width={1600}
+              height={900}
               className="w-full h-full object-contain bg-black"
             />
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-8 md:p-10 pt-20">
