@@ -8,6 +8,7 @@ import { MediaPlaceholder } from "@/components/site/MediaPlaceholder";
 import { PageCTA } from "@/components/site/PageCTA";
 import { PageHero } from "@/components/site/PageHero";
 import { PageShell } from "@/components/site/PageShell";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Features",
@@ -23,6 +24,9 @@ interface Product {
   description: string;
   benefits: { title: string; body: string }[];
   screenshotLabel: string;
+  screenshotSrc?: string;
+  screenshotWidth?: number;
+  screenshotHeight?: number;
 }
 
 const PRODUCTS: Product[] = [
@@ -52,6 +56,9 @@ const PRODUCTS: Product[] = [
       },
     ],
     screenshotLabel: "Poble POS screenshot",
+    screenshotSrc: "/images/pos/Poble POS.png",
+    screenshotWidth: 916,
+    screenshotHeight: 761,
   },
   {
     id: "staff-pos",
@@ -75,6 +82,9 @@ const PRODUCTS: Product[] = [
       },
     ],
     screenshotLabel: "Staff POS screenshot",
+    screenshotSrc: "/images/pos/Staff POS.png",
+    screenshotWidth: 853,
+    screenshotHeight: 713,
   },
   {
     id: "kds",
@@ -229,10 +239,22 @@ function ProductSection({
           </div>
 
           <div className={`lg:col-span-7 ${alt ? "lg:order-1" : ""}`}>
-            <MediaPlaceholder
-              label={product.screenshotLabel}
-              aspect="aspect-[4/3]"
-            />
+            {product.screenshotSrc ? (
+              <div className="flex w-full items-center justify-center">
+                <Image
+                  src={product.screenshotSrc}
+                  alt={product.screenshotLabel}
+                  width={product.screenshotWidth}
+                  height={product.screenshotHeight}
+                  className="h-auto w-auto max-w-full mix-blend-multiply"
+                />
+              </div>
+            ) : (
+              <MediaPlaceholder
+                label={product.screenshotLabel}
+                aspect="aspect-[4/3]"
+              />
+            )}
           </div>
         </div>
       </Container>
