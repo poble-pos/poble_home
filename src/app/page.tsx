@@ -19,6 +19,7 @@ import { PageCTA } from "@/components/site/PageCTA";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteNav } from "@/components/site/SiteNav";
 import { useAdmin } from "@/context/AdminContext";
+import Image from "next/image";
 
 export default function LandingPage() {
   const { siteContent } = useAdmin();
@@ -123,7 +124,7 @@ function Hero() {
     >
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,#E8D7C3_0%,transparent_55%)]" />
 
-      <img
+      <Image
         src="/images/object/Futuristic Chef Robot.png"
         alt="Poble chef robot mascot"
         className="pointer-events-none absolute -bottom-6 right-4 hidden w-44 md:block lg:right-16 lg:w-56"
@@ -244,7 +245,7 @@ function Features() {
             Smart tools for
             <br />
             your venue.
-            <img
+            <Image
               src="/images/object/Cosmic Arrow Object.png"
               alt=""
               className="ml-3 inline-block h-[0.95em] w-auto align-middle"
@@ -341,7 +342,7 @@ function Showcase() {
       <Container>
         <div className="grid items-stretch gap-10 lg:grid-cols-2">
           <div className="hidden items-center justify-center lg:flex">
-            <img
+            <Image
               src="/images/object/Futuristic Barista Robot.png"
               alt="Poble barista robot mascot"
               className="pointer-events-none w-64 xl:w-72"
