@@ -7,8 +7,10 @@
 
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { Check, ArrowRight, Sparkles, X, Eye, Zap } from "lucide-react";
+import { ArrowRight, Check, Eye, Sparkles, X, Zap } from "lucide-react";
+import React, { useEffect, useState } from "react";
+
+import { useAdmin } from "@/context/AdminContext";
 
 interface FeatureDetail {
   title: string;
@@ -55,11 +57,10 @@ const FEATURE_DETAILS: Record<string, FeatureDetail> = {
   },
 };
 
-import { useAdmin } from "@/context/AdminContext";
-
 export const PricingCarousel: React.FC = () => {
   const { siteContent } = useAdmin();
-  const config = siteContent.sections.find((s) => s.type === "Pricing")?.content || {};
+  const config =
+    siteContent.sections.find((s) => s.type === "Pricing")?.content || {};
 
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
@@ -152,65 +153,63 @@ export const PricingCarousel: React.FC = () => {
       <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12 transition-all">
         {/* 1. Left Panel: Pricing Plan */}
         <div
-          className={`w-full ${PANEL_WIDTH} ${PANEL_HEIGHT} shrink-0 bg-white text-poble-charcoal rounded-[2.5rem] p-8 md:p-10 md:pb-14 border-2 border-poble-gold shadow-xl relative z-20 flex flex-col`}
+          className={`w-full ${PANEL_WIDTH} ${PANEL_HEIGHT} shrink-0 bg-white text-poble-charcoal rounded-2xl p-8 md:p-10 border border-slate-200 relative z-20 flex flex-col`}
         >
-          <div className="mb-6">
-            <span className="bg-[#E9EEF2] text-[#718096] px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.1rem]">
+          <div className="mb-8 pb-8 border-b border-slate-100 shrink-0">
+            <span className="text-[10px] font-black uppercase tracking-[0.15rem] text-slate-400">
               {config.plan_badge || "30-Day Free Trial"}
             </span>
-          </div>
-
-          <div className="mb-8 border-b border-slate-100 pb-8 shrink-0">
-            <h3 className="text-4xl font-black text-[#2D3748] mb-2 font-heading tracking-tight">
+            <h3 className="text-4xl font-black text-poble-charcoal mt-3 mb-2 font-heading tracking-tight">
               {config.plan_title || "Basic"}
             </h3>
-            <div className="flex items-baseline gap-1.5 mb-3">
-              <span className="text-3xl font-black text-[#2D3748]">
+            <div className="flex items-baseline gap-1 mb-3">
+              <span className="text-3xl font-black text-poble-charcoal">
                 {config.plan_currency || "$"}
                 {config.plan_price || "60"}
               </span>
-              <span className="text-lg font-bold text-[#4A5568]">
+              <span className="text-base font-bold text-slate-400 ml-1">
                 / {config.plan_period || "mo"}
               </span>
             </div>
-            <p className="text-sm font-bold text-slate-500 leading-relaxed">
-              {config.plan_desc || "Perfect for individuals and small businesses"}
+            <p className="text-sm font-medium text-slate-400 leading-relaxed">
+              {config.plan_desc ||
+                "Perfect for individuals and small businesses"}
             </p>
           </div>
 
           <div className="mb-8 shrink-0">
             <a
               href={config.plan_ctaLink || "https://backoffice.poble.com.au"}
-              className="w-full py-4 rounded-full bg-[#4F9185] text-white font-extrabold text-lg tracking-tight transition-all flex items-center justify-center gap-5 hover:bg-[#3D7268] hover:scale-[1.02] shadow-xl shadow-[#4F9185]/20 active:scale-95 cursor-pointer no-underline"
+              className="w-full py-3.5 rounded-xl bg-poble-charcoal text-white font-bold text-sm tracking-tight transition-all flex items-center justify-center gap-3 hover:bg-[#4F9185] active:scale-95 cursor-pointer no-underline"
             >
               {config.plan_ctaText || "Start free trial"}
-              <ArrowRight className="w-6 h-6 text-white" />
+              <ArrowRight className="w-4 h-4" />
             </a>
           </div>
 
-          <ul className="space-y-1.5 flex-1 overflow-visible">
+          <ul className="space-y-1 flex-1 overflow-visible">
             {carouselItems.map((item: any, idx: number) => (
               <li
                 key={idx}
                 onMouseEnter={() => setHoveredIdx(idx)}
                 onMouseLeave={() => setHoveredIdx(null)}
                 onClick={() => setSelectedIdx(selectedIdx === idx ? null : idx)}
-                className={`flex items-center gap-4 group p-2.5 -mx-2.5 rounded-xl transition-all cursor-pointer select-none ring-1 ring-inset ring-transparent
-                                    ${currentIdx === idx ? "bg-slate-50 ring-poble-gold/10" : ""}
-                                    ${selectedIdx === idx ? "bg-poble-gold/10 ring-poble-gold/30 shadow-inner" : ""}`}
+                className={`flex items-center gap-3 p-2.5 -mx-2.5 rounded-lg transition-all cursor-pointer select-none
+                  ${currentIdx === idx ? "bg-slate-50" : ""}
+                  ${selectedIdx === idx ? "bg-slate-100" : ""}`}
               >
                 <div
-                  className={`shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-all 
-                                    ${currentIdx === idx ? "bg-poble-gold shadow-sm" : "bg-[#FFF9E6]"}`}
+                  className={`shrink-0 w-5 h-5 rounded-full flex items-center justify-center transition-all
+                    ${currentIdx === idx ? "bg-poble-charcoal" : "bg-slate-100"}`}
                 >
                   <Check
-                    className={`w-3 h-3 transition-colors ${currentIdx === idx ? "text-white" : "text-[#F6AD55]"}`}
-                    strokeWidth={4}
+                    className={`w-2.5 h-2.5 transition-colors ${currentIdx === idx ? "text-white" : "text-slate-400"}`}
+                    strokeWidth={3.5}
                   />
                 </div>
                 <span
-                  className={`text-[15px] font-bold tracking-tight transition-colors flex-1 leading-tight
-                                    ${currentIdx === idx ? "text-poble-charcoal" : "text-[#2D3748]"}`}
+                  className={`text-sm font-semibold tracking-tight transition-colors flex-1 leading-tight
+                    ${currentIdx === idx ? "text-poble-charcoal" : "text-slate-500"}`}
                 >
                   {item.label}
                 </span>
@@ -220,9 +219,11 @@ export const PricingCarousel: React.FC = () => {
         </div>
 
         {/* 2. Right Panel: Dynamic Showcase with Warm & Clean Aesthetics */}
-        <div className={`w-full ${PANEL_WIDTH} ${PANEL_HEIGHT} shrink-0 relative lg:block`}>
+        <div
+          className={`w-full ${PANEL_WIDTH} ${PANEL_HEIGHT} shrink-0 relative lg:block`}
+        >
           <div
-            className={`transition-all duration-500 rounded-[2.5rem] h-full flex flex-col overflow-hidden border-2 relative
+            className={`transition-all duration-500 rounded-[2.5rem] h-full flex flex-col overflow-hidden border-2 relative z-20
                         ${currentItem ? "bg-slate-900 border-white/5 shadow-2xl" : "bg-[#FAF9F6] border-[#F2F0ED]"}`}
           >
             {currentItem ? (
@@ -252,25 +253,26 @@ export const PricingCarousel: React.FC = () => {
                   </div>
 
                   {/* Image Navigation Dots */}
-                  {Array.isArray(currentItem.images) && currentItem.images.length > 1 && (
-                    <div
-                      className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      {currentItem.images.map((_: any, idx: number) => (
-                        <button
-                          key={idx}
-                          title={`View image ${idx + 1}`}
-                          aria-label={`View image ${idx + 1}`}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setCurrentImageIdx(idx);
-                          }}
-                          className={`w-2 h-2 rounded-full transition-all ${idx === currentImageIdx ? "bg-white w-4" : "bg-white/50 hover:bg-white/80"}`}
-                        />
-                      ))}
-                    </div>
-                  )}
+                  {Array.isArray(currentItem.images) &&
+                    currentItem.images.length > 1 && (
+                      <div
+                        className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        {currentItem.images.map((_: any, idx: number) => (
+                          <button
+                            key={idx}
+                            title={`View image ${idx + 1}`}
+                            aria-label={`View image ${idx + 1}`}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setCurrentImageIdx(idx);
+                            }}
+                            className={`w-2 h-2 rounded-full transition-all ${idx === currentImageIdx ? "bg-white w-4" : "bg-white/50 hover:bg-white/80"}`}
+                          />
+                        ))}
+                      </div>
+                    )}
 
                   {hasCurrentImage && <div className="absolute inset-0 bg-black/0 group-hover/image:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover/image:opacity-100">
                     <div className="bg-white/90 backdrop-blur text-poble-charcoal px-4 py-2 rounded-full font-bold text-xs shadow-xl transform translate-y-4 group-hover/image:translate-y-0 transition-all">
@@ -297,7 +299,10 @@ export const PricingCarousel: React.FC = () => {
               </div>
             ) : (
               /* Welcoming State: Enhanced Visual Balance */
-              <div key="welcoming" className="flex flex-col h-full animate-in fade-in duration-700">
+              <div
+                key="welcoming"
+                className="flex flex-col h-full animate-in fade-in duration-700"
+              >
                 <div className="h-[55%] shrink-0 relative overflow-hidden">
                   <FeatureMockup />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
@@ -315,8 +320,8 @@ export const PricingCarousel: React.FC = () => {
                       <span className="text-[#4F9185]">for Day 1</span>
                     </h4>
                     <p className="text-poble-charcoal/60 text-base font-bold leading-relaxed max-w-[280px] mx-auto">
-                      Simple, powerful tools to run your venue. Scroll the list to see what&quot;s
-                      included.
+                      Simple, powerful tools to run your venue. Scroll the list
+                      to see what&quot;s included.
                     </p>
                   </div>
 
@@ -359,7 +364,9 @@ export const PricingCarousel: React.FC = () => {
               <h3 className="text-2xl md:text-3xl font-black text-white mb-2">
                 {currentItem.title}
               </h3>
-              <p className="text-slate-300 font-bold text-lg">{currentItem.benefit}</p>
+              <p className="text-slate-300 font-bold text-lg">
+                {currentItem.benefit}
+              </p>
             </div>
           </div>
         </div>

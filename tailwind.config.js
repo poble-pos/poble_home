@@ -19,6 +19,10 @@ module.exports = {
                 sans: ["var(--font-albert-sans)", "sans-serif"],
                 heading: ["var(--font-albert-sans)", "sans-serif"],
                 logo: ["var(--font-outfit)", "sans-serif"],
+                roboto: ["var(--font-roboto)", "sans-serif"],
+                poiret: ["var(--font-poiret-one)", "sans-serif"],
+                inter: ["var(--font-inter)", "sans-serif"],
+            playfair: ["var(--font-playfair)", "serif"],
             },
             borderRadius: {
                 "4xl": "32px",
@@ -29,8 +33,21 @@ module.exports = {
                 'mesh': 'mesh-move 25s ease-in-out infinite',
                 'gradient-flow': 'gradient-flow 18s ease infinite',
                 'marquee': 'marquee 20s linear infinite',
+                'blob': 'blob 14s ease-in-out infinite',
+                'blob-slow': 'blob 20s ease-in-out infinite',
+                'blob-fast': 'blob 9s ease-in-out infinite',
             },
             keyframes: {
+                'blob': {
+                    '0%, 100%': { borderRadius: '60% 40% 55% 45% / 50% 60% 40% 50%', transform: 'translate(0, 0) scale(1)' },
+                    '25%': { borderRadius: '40% 60% 35% 65% / 65% 35% 65% 35%', transform: 'translate(4%, 6%) scale(1.06)' },
+                    '50%': { borderRadius: '55% 45% 65% 35% / 40% 60% 40% 60%', transform: 'translate(-3%, 3%) scale(0.96)' },
+                    '75%': { borderRadius: '35% 65% 45% 55% / 60% 40% 55% 45%', transform: 'translate(2%, -5%) scale(1.03)' },
+                },
+                'char-reveal': {
+                    'from': { opacity: '0', transform: 'translateY(8px) skewX(0deg)' },
+                    'to': { opacity: '1', transform: 'translateY(0px) skewX(-14deg)' },
+                },
                 'slide-reveal': {
                     'from': { opacity: '0', transform: 'translate3d(30px, 0, 0)' },
                     'to': { opacity: '1', transform: 'translate3d(0, 0, 0)' },

@@ -40,7 +40,9 @@ export const Integrations: React.FC = () => {
     const title = config.title || "Connected Ecosystem";
     const description = config.description || "We play well with the tools you already love. Direct integrations ensure your data flows where it needs to go.";
     return (
-        <section id="integrations" className="py-24 bg-white overflow-hidden border-y border-slate-100">
+        <section id="integrations" className="py-24 bg-white overflow-hidden border-y border-slate-100 relative">
+            {/* Line grid overlay */}
+            <div className="absolute inset-0 pointer-events-none opacity-60" style={{ backgroundImage: 'linear-gradient(to right, #dce4ea 1px, transparent 1px), linear-gradient(to bottom, #dce4ea 1px, transparent 1px)', backgroundSize: '400px 400px' }} />
             <style jsx global>{`
                 @keyframes scroll-up {
                     0% { transform: translateY(0); }
