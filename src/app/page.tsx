@@ -127,6 +127,8 @@ function Hero() {
       <Image
         src="/images/object/Futuristic Chef Robot.png"
         alt="Poble chef robot mascot"
+        width={1884}
+        height={2400}
         className="pointer-events-none absolute -bottom-6 right-4 hidden w-44 md:block lg:right-16 lg:w-56"
       />
 
@@ -248,6 +250,8 @@ function Features() {
             <Image
               src="/images/object/Cosmic Arrow Object.png"
               alt=""
+              width={2400}
+              height={2332}
               className="ml-3 inline-block h-[0.95em] w-auto align-middle"
             />
           </h2>
@@ -345,6 +349,8 @@ function Showcase() {
             <Image
               src="/images/object/Futuristic Barista Robot.png"
               alt="Poble barista robot mascot"
+              width={1458}
+              height={2400}
               className="pointer-events-none w-64 xl:w-72"
             />
           </div>
