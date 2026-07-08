@@ -1,21 +1,14 @@
-/**
- * @file HardwarePage.tsx
- * @description Curated marketplace for hospitality professionals.
- * All hardware is verified for compatibility with the Poble ecosystem.
- */
-
 "use client";
 
-import { Footer } from "@/components/Footer";
-import { Navbar } from "@/components/Navbar";
+import { Container } from "@/components/site/Container";
+import { Eyebrow } from "@/components/site/Eyebrow";
+import { PageCTA } from "@/components/site/PageCTA";
+import { PageShell } from "@/components/site/PageShell";
 import { useCart } from "@/context/CartContext";
 import { products } from "@/data/products";
-import { Plus } from "lucide-react";
+import { ArrowRight, Check, Plus } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
-/**
- * Hardware Category Definitions
- */
+
 const CATEGORIES = [
   {
     id: "stand",
@@ -25,219 +18,224 @@ const CATEGORIES = [
   {
     id: "printer",
     label: "Printers",
-    description: "Reliable thermal printing for dockets & receipts",
+    description: "Reliable thermal printing for dockets and receipts",
   },
   {
     id: "accessory",
     label: "Accessories",
     description: "Essential add-ons for a complete setup",
   },
+] as const;
+
+const SUPPORT_ITEMS = [
+  {
+    title: "Poble verified",
+    body: "Every item is selected for compatibility with Poble POS and common hospitality workflows.",
+  },
+  {
+    title: "Venue-ready setup",
+    body: "Choose the essentials for counter service, dockets, receipts, cash handling and table ordering.",
+  },
+  {
+    title: "Local advice",
+    body: "Need help matching hardware to your venue? Our team can recommend a setup before you buy.",
+  },
 ];
 
 export default function HardwarePage() {
   const { addToCart } = useCart();
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
   return (
-    <main className="min-h-screen bg-white">
-      <Navbar />
+    <PageShell>
+      <section className="relative overflow-hidden pb-16 pt-32 md:pb-24 md:pt-40">
+        <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,#E8D7C3_0%,transparent_55%)]" />
 
-      {/* Hero Section: Built to Last */}
-      <section className="pt-20 pb-10 md:pt-36 md:pb-16 px-6 bg-gray-50 border-slate-100">
-        <div className="max-w-7xl mx-auto text-start">
-          <h2 className="text-4xl md:text-5xl lg:text-[5rem] font-light text-poble-charcoal tracking-tighter animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100 leading-[0.95]">
-            Store
-          </h2>
-          <p className="mt-3 text-base text-slate-400 text-xl md:text-2xl lg:text-[2rem] font-light animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
-            The best way to buy the products you love.
-          </p>
-        </div>
+        <Container className="grid items-end gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <Eyebrow>Hardware</Eyebrow>
+            <h1 className="mt-5 max-w-4xl text-5xl font-medium leading-[1.02] tracking-[-0.04em] md:text-7xl">
+              POS hardware.
+              <br />
+              <span className="text-black/45">Ready for service.</span>
+            </h1>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-black/55 md:text-lg">
+              Curated stands, printers and accessories verified for Poble POS.
+              Build a counter setup that works from day one.
+            </p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <a
+                href="#stand"
+                className="inline-flex items-center justify-center gap-1.5 rounded-full bg-[#111111] px-6 py-3 text-sm font-medium text-white transition hover:bg-black"
+              >
+                Browse hardware
+                <ArrowRight className="h-4 w-4" />
+              </a>
+              <a
+                href="mailto:sales@poble.com.au"
+                className="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/60 px-6 py-3 text-sm font-medium text-black transition hover:bg-white"
+              >
+                Ask about setup
+              </a>
+            </div>
+          </div>
+
+          <div className="rounded-[2rem] border border-black/10 bg-white/55 p-5 shadow-xl shadow-black/5 backdrop-blur lg:col-span-5">
+            <div className="aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-[#F1EDE5]">
+              <Image
+                src="/images/hardware/geminidual.png"
+                alt="Gemini Dual Stand for Poble POS"
+                width={720}
+                height={540}
+                priority
+                className="h-full w-full object-contain p-8"
+              />
+            </div>
+          </div>
+        </Container>
       </section>
 
-      {/* Category Navigation */}
-      {/* <div className="bg-white/80 backdrop-blur-md border-b border-slate-100 py-4 px-6 mb-16">
-        <div className="max-w-7xl mx-auto flex items-center justify-center gap-6 overflow-x-auto no-scrollbar"> */}
-      {/* <div className="flex items-center gap-2">
-            {CATEGORIES.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => {
-                  document
-                    .getElementById(category.id)
-                    ?.scrollIntoView({ behavior: "smooth", block: "start" });
-                }}
-                className="px-5 py-2 rounded-full bg-slate-50 text-slate-600 font-black text-sm hover:bg-poble-charcoal hover:text-white transition-all whitespace-nowrap border border-slate-100 cursor-pointer"
-              >
-                {category.label}
-              </button>
-            ))}
-          </div> */}
-
-      {/* <div className="w-px h-8 bg-slate-200 hidden md:block"></div>
-
-          <div className="hidden md:flex items-center gap-2 bg-slate-50 p-1 rounded-lg border border-slate-100">
-            <button
-              onClick={() => setViewMode("grid")}
-              className={`p-2 rounded-md transition-all cursor-pointer ${viewMode === "grid" ? "bg-white shadow-sm text-poble-charcoal" : "text-slate-400 hover:text-slate-600"}`}
-              title="Grid Layout"
+      <div className="sticky top-16 z-30 border-y border-black/10 bg-[#F9F8F3]/85 backdrop-blur-xl">
+        <Container className="flex gap-2 overflow-x-auto py-3">
+          {CATEGORIES.map((category) => (
+            <a
+              key={category.id}
+              href={`#${category.id}`}
+              className="whitespace-nowrap rounded-full border border-black/10 bg-white/55 px-4 py-2 text-sm font-medium text-black/60 transition hover:bg-white hover:text-black"
             >
-              <LayoutGrid className="w-5 h-5" />
-            </button>
-            <button
-              onClick={() => setViewMode("list")}
-              className={`p-2 rounded-md transition-all cursor-pointer ${viewMode === "list" ? "bg-white shadow-sm text-poble-charcoal" : "text-slate-400 hover:text-slate-600"}`}
-              title="List Layout"
-            >
-              <List className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-      </div> */}
+              {category.label}
+            </a>
+          ))}
+        </Container>
+      </div>
 
-      {/* Product Rendering Engine */}
-      <div className="max-w-7xl mx-auto px-6 pb-24 space-y-24 py-20 mb-16">
+      <Container className="space-y-20 py-20 md:space-y-28 md:py-28">
         {CATEGORIES.map((category) => {
           const categoryProducts = products.filter(
-            (p) => p.category === category.id,
+            (product) => product.category === category.id,
           );
+
           if (categoryProducts.length === 0) return null;
 
           return (
             <section
               key={category.id}
               id={category.id}
-              className="scroll-mt-48"
+              className="scroll-mt-36"
             >
-              <div className="mb-10 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-6 pb-4">
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-poble-charcoal tracking-tight font-heading">
-                  {category.label}
-                </h2>
-                <p className="text-lg text-slate-500 font-bold opacity-70">
+              <div className="mb-8 grid gap-3 md:grid-cols-12 md:items-end">
+                <div className="md:col-span-5">
+                  <Eyebrow>{category.label}</Eyebrow>
+                  <h2 className="mt-3 text-3xl font-medium tracking-[-0.03em] md:text-5xl">
+                    {category.label}
+                  </h2>
+                </div>
+                <p className="max-w-xl text-sm leading-relaxed text-black/55 md:col-span-7 md:justify-self-end md:text-base">
                   {category.description}
                 </p>
               </div>
 
-              <div
-                className={
-                  viewMode === "grid"
-                    ? "grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-                    : "space-y-4"
-                }
-              >
-                {categoryProducts.map((product) =>
-                  viewMode === "grid" ? (
-                    <div
-                      key={product.id}
-                      className="group [perspective:1000px]"
-                    >
-                      <div className="relative w-full aspect-[4/3] transition-transform duration-500 ease-in-out [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-                        {/* Front: image only */}
-                        <div
-                          className={`absolute inset-0 [backface-visibility:hidden] overflow-hidden flex items-center justify-center p-8 ${category.id === "stand" ? "bg-[#f5f5f5]" : category.id === "accessory" ? "bg-[#f9f9f9]" : "bg-white"}`}
-                        >
-                          <Image
-                            src={product.image}
-                            alt={product.name}
-                            width={600}
-                            height={450}
-                            className="w-full h-full object-contain"
-                          />
+              <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                {categoryProducts.map((product) => (
+                  <article
+                    key={product.id}
+                    className="group overflow-hidden rounded-[1.5rem] border border-black/10 bg-white shadow-sm shadow-black/5 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-black/10"
+                  >
+                    <div className="relative aspect-[4/3] overflow-hidden bg-[#F1EDE5]">
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        width={600}
+                        height={450}
+                        className="h-full w-full object-contain p-8 transition duration-500 group-hover:scale-105"
+                      />
+                      {!product.inStock && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-white/70 backdrop-blur-sm">
+                          <span className="rounded-full bg-black px-3 py-1 text-xs font-medium text-white">
+                            Out of stock
+                          </span>
                         </div>
+                      )}
+                    </div>
 
-                        {/* Back: name + price */}
-                        <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] bg-white border border-[#2b48d4] flex flex-col items-center justify-center gap-5 p-8">
-                          <h3 className="text-xl font-black text-poble-charcoal text-center leading-tight font-heading">
+                    <div className="p-6">
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <h3 className="text-xl font-medium tracking-tight">
                             {product.name}
                           </h3>
-                          <span className="text-3xl font-black text-poble-charcoal tracking-tight">
-                            ${product.price.toFixed(2)}
-                          </span>
-                          {!product.inStock ? (
-                            <span className="text-xs font-black text-slate-400 uppercase tracking-widest">
-                              Out of Stock
-                            </span>
-                          ) : (
-                            <button
-                              onClick={() => addToCart(product)}
-                              className="h-11 px-6 rounded-full bg-[#032689] text-white font-bold text-sm flex items-center gap-2 hover:bg-poble-charcoal transition-colors active:scale-95 cursor-pointer"
-                            >
-                              Add <Plus className="w-4 h-4" />
-                            </button>
-                          )}
+                          <p className="mt-2 text-sm leading-relaxed text-black/55">
+                            {product.description}
+                          </p>
                         </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <div
-                      key={product.id}
-                      className="group bg-white rounded-2xl p-4 flex items-center gap-6 hover:shadow-[0_10px_30px_-10px_rgba(255,184,0,0.15)] hover:border-poble-gold transition-all duration-300"
-                    >
-                      <div className="w-24 h-24 bg-slate-50 rounded-xl overflow-hidden shrink-0 relative">
-                        <Image
-                          src={product.image}
-                          alt={product.name}
-                          width={96}
-                          height={96}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                        {!product.inStock && (
-                          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                            <span className="text-[10px] font-black text-white uppercase">
-                              Sold Out
-                            </span>
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-lg font-black text-poble-charcoal mb-1 truncate font-heading">
-                          {product.name}
-                        </h3>
-                        <p className="text-sm text-slate-500 font-medium line-clamp-1">
-                          {product.description}
-                        </p>
-                        {product.features && (
-                          <div className="flex items-center gap-3 mt-2">
-                            {product.features
-                              .slice(0, 2)
-                              .map((feature, idx) => (
-                                <span
-                                  key={idx}
-                                  className="text-[10px] font-bold text-slate-400 bg-slate-50 px-2 py-1 rounded-md"
-                                >
-                                  {feature}
-                                </span>
-                              ))}
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="flex flex-col items-end gap-3 shrink-0">
-                        <span className="text-xl font-black text-poble-charcoal tracking-tight">
+                        <span className="shrink-0 text-lg font-medium tracking-tight">
                           ${product.price.toFixed(2)}
                         </span>
+                      </div>
+
+                      {product.features && (
+                        <ul className="mt-5 space-y-2">
+                          {product.features.slice(0, 3).map((feature) => (
+                            <li
+                              key={feature}
+                              className="flex items-center gap-2 text-xs text-black/55"
+                            >
+                              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#F9F8F3]">
+                                <Check className="h-3 w-3 text-[#B9855B]" />
+                              </span>
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+
+                      <div className="mt-6">
                         <button
                           onClick={() => addToCart(product)}
                           disabled={!product.inStock}
-                          className={`h-10 px-5 rounded-full font-bold text-xs flex items-center gap-2 transition-all ${
+                          className={`inline-flex w-full items-center justify-center gap-1.5 rounded-full px-5 py-3 text-sm font-medium transition ${
                             product.inStock
-                              ? "bg-[#032689] text-white hover:bg-poble-charcoal hover:text-white active:scale-95 cursor-pointer"
-                              : "bg-slate-100 text-slate-300 cursor-not-allowed"
+                              ? "bg-[#111111] text-white hover:bg-black"
+                              : "cursor-not-allowed bg-black/5 text-black/35"
                           }`}
                         >
-                          Add <Plus className="w-3 h-3" />
+                          Add to cart
+                          <Plus className="h-4 w-4" />
                         </button>
                       </div>
                     </div>
-                  ),
-                )}
+                  </article>
+                ))}
               </div>
             </section>
           );
         })}
-      </div>
+      </Container>
 
-      <Footer />
-    </main>
+      <section className="border-t border-black/10 bg-[#F1EDE5]">
+        <Container className="grid gap-10 py-20 md:grid-cols-3 md:py-24">
+          {SUPPORT_ITEMS.map((item) => (
+            <div key={item.title}>
+              <h3 className="text-xl font-medium tracking-tight">
+                {item.title}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-black/55">
+                {item.body}
+              </p>
+            </div>
+          ))}
+        </Container>
+      </section>
+
+      <div className="pt-24 md:pt-32">
+        <PageCTA
+          title="Need a full venue setup?"
+          description="Tell us how your counter, kitchen and floor service work. We will help you choose the hardware that fits."
+          primaryLabel="Contact sales"
+          primaryHref="mailto:sales@poble.com.au"
+          secondaryLabel="Call 1300 966 963"
+          secondaryHref="tel:1300966963"
+        />
+      </div>
+    </PageShell>
   );
 }
