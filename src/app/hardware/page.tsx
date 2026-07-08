@@ -138,6 +138,8 @@ export default function HardwarePage() {
                           <Image
                             src={product.image}
                             alt={product.name}
+                            width={600}
+                            height={450}
                             className="w-full h-full object-contain"
                           />
                         </div>
@@ -174,6 +176,8 @@ export default function HardwarePage() {
                         <Image
                           src={product.image}
                           alt={product.name}
+                          width={96}
+                          height={96}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                         {!product.inStock && (

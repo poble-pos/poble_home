@@ -17,8 +17,10 @@ export const Logo: React.FC<{
       className={`relative transition-transform group-hover:scale-105 shrink-0 ${className.match(/h-\d+|h-full|h-auto/) ? "h-full" : "h-10"}`}
     >
       <Image
-        src="/logo-full.png"
+        src="/logo-transparent.svg"
         alt="Poble Logo"
+        width={1024}
+        height={1024}
         className="h-full w-auto object-contain"
       />
     </div>

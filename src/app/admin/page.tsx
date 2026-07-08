@@ -221,7 +221,13 @@ export default function AdminDashboard() {
           )}
           {isSidebarCollapsed && (
             <div className="w-10 h-10 bg-poble-gold/10 rounded-xl flex items-center justify-center animate-in zoom-in duration-300">
-              <Image src="/logo-transparent.svg" alt="P" className="w-6 h-6" />
+              <Image
+                src="/logo-transparent.svg"
+                alt="P"
+                width={1024}
+                height={1024}
+                className="w-6 h-6"
+              />
             </div>
           )}
 
@@ -578,6 +584,9 @@ export default function AdminDashboard() {
                                   <Image
                                     src={value as string}
                                     alt="Preview"
+                                    width={160}
+                                    height={160}
+                                    unoptimized
                                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                   />
                                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -674,6 +683,9 @@ export default function AdminDashboard() {
                                     >
                                       <Image
                                         src={imgUrl}
+                                        width={320}
+                                        height={320}
+                                        unoptimized
                                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                         alt={`Preview ${idx + 1}`}
                                       />
@@ -839,6 +851,9 @@ export default function AdminDashboard() {
                                                 <Image
                                                   src={fieldValue as string}
                                                   alt=""
+                                                  width={80}
+                                                  height={80}
+                                                  unoptimized
                                                   className="w-full h-full object-cover group-hover/subimg:scale-110 transition-transform"
                                                 />
                                               </div>
@@ -994,6 +1009,9 @@ export default function AdminDashboard() {
                                                             subItem as string
                                                           }
                                                           alt=""
+                                                          width={160}
+                                                          height={160}
+                                                          unoptimized
                                                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                                         />
                                                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
@@ -1250,6 +1268,9 @@ export default function AdminDashboard() {
             <Image
               src={previewImage}
               alt="Large Preview"
+              width={1600}
+              height={1200}
+              unoptimized
               className="max-w-full max-h-full object-contain rounded-2xl shadow-2xl animate-in zoom-in-95 duration-500"
             />
           </div>
