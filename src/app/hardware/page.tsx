@@ -8,11 +8,11 @@
 
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
-import { Plus } from "lucide-react";
-import { products } from "@/data/products";
 import { useCart } from "@/context/CartContext";
+import { products } from "@/data/products";
+import { Plus } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
-
 /**
  * Hardware Category Definitions
  */
@@ -135,7 +135,7 @@ export default function HardwarePage() {
                         <div
                           className={`absolute inset-0 [backface-visibility:hidden] overflow-hidden flex items-center justify-center p-8 ${category.id === "stand" ? "bg-[#f5f5f5]" : category.id === "accessory" ? "bg-[#f9f9f9]" : "bg-white"}`}
                         >
-                          <img
+                          <Image
                             src={product.image}
                             alt={product.name}
                             className="w-full h-full object-contain"
@@ -171,7 +171,7 @@ export default function HardwarePage() {
                       className="group bg-white rounded-2xl p-4 flex items-center gap-6 hover:shadow-[0_10px_30px_-10px_rgba(255,184,0,0.15)] hover:border-poble-gold transition-all duration-300"
                     >
                       <div className="w-24 h-24 bg-slate-50 rounded-xl overflow-hidden shrink-0 relative">
-                        <img
+                        <Image
                           src={product.image}
                           alt={product.name}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

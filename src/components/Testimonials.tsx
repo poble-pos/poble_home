@@ -8,6 +8,7 @@
 
 import { useAdmin } from "@/context/AdminContext";
 import { Star } from "lucide-react";
+import Image from "next/image";
 import React from "react";
 
 export const Testimonials: React.FC = () => {
@@ -110,19 +111,6 @@ export const Testimonials: React.FC = () => {
                   <span className="text-slate-500">cat review.txt</span>
                 </p>
 
-<<<<<<< HEAD
-              <blockquote className="text-poble-charcoal font-bold text-lg leading-relaxed mb-8 relative z-10">
-                &quot;{review.quote}&quot;
-              </blockquote>
-
-              <div className="flex items-center gap-4 mt-auto">
-                <div className="w-12 h-12 rounded-full overflow-hidden border border-poble-gold/20 bg-white shrink-0">
-                  <img
-                    src={review.image}
-                    alt={review.author}
-                    className="w-full h-full object-contain p-1"
-                  />
-=======
                 <div className="flex gap-1 mb-4">
                   {[...Array(5)].map((_, j) => (
                     <Star
@@ -130,17 +118,15 @@ export const Testimonials: React.FC = () => {
                       className="w-3.5 h-3.5 text-poble-gold fill-current"
                     />
                   ))}
->>>>>>> develop
                 </div>
 
                 <blockquote className="text-poble-charcoal font-bold text-base leading-relaxed mb-6">
-                  <span className="text-slate-400 mr-1">//</span> &quot;
-                  {review.quote}&quot;
+                  &quot;{review.quote}&quot;
                 </blockquote>
 
                 <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
                   <div className="w-10 h-10 rounded-full overflow-hidden border border-slate-100 shrink-0">
-                    <img
+                    <Image
                       src={review.image}
                       alt={review.author}
                       className="w-full h-full object-cover"
@@ -179,7 +165,6 @@ export const Testimonials: React.FC = () => {
                 {stat.val}
               </div>
               <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-relaxed whitespace-pre-line">
-                <span className="text-teal-500 mr-1">//</span>
                 {stat.label}
               </div>
             </div>
@@ -224,7 +209,7 @@ export const Testimonials: React.FC = () => {
                 key={`logo-1-${i}`}
                 className="h-16 w-32 md:w-40 relative opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"
               >
-                <img
+                <Image
                   src={logo.src}
                   alt={logo.name}
                   className="w-full h-full object-contain"
@@ -251,7 +236,7 @@ export const Testimonials: React.FC = () => {
                 key={`logo-2-${i}`}
                 className="h-16 w-32 md:w-40 relative opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"
               >
-                <img
+                <Image
                   src={logo.src}
                   alt={logo.name}
                   className="w-full h-full object-contain"

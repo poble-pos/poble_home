@@ -273,7 +273,7 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-0.5">
-                    // contact sales
+                    contact sales
                   </span>
                   <span className="text-lg font-black text-poble-charcoal group-hover:text-teal-600 transition-colors">
                     {phone}
@@ -289,7 +289,7 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-0.5">
-                    // email enquiry
+                    email enquiry
                   </span>
                   <span className="text-lg font-black text-poble-charcoal group-hover:text-teal-600 transition-colors lowercase">
                     {email}

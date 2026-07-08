@@ -2,112 +2,13 @@
 
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import Image from "next/image";
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen flex flex-col bg-poble-cream">
       <Navbar />
       <main className="flex-grow pt-0 animate-in fade-in duration-1000">
-        {/* ── 1. Split Hero ── */}
-        {/* <section className="relative flex flex-col lg:flex-row overflow-clip border-b border-slate-100"> */}
-        {/* LEFT */}
-        {/* <div className="w-full lg:w-1/2 flex items-center justify-center p-8 md:p-16 lg:p-24 bg-white relative overflow-hidden">
-            <div
-              className="absolute inset-0 pointer-events-none opacity-60"
-              style={{
-                backgroundImage:
-                  "linear-gradient(to right, #dce4ea 1px, transparent 1px), linear-gradient(to bottom, #dce4ea 1px, transparent 1px)",
-                backgroundSize: "400px 400px",
-              }}
-            />
-            <img
-              src="/images/graphic/star.svg"
-              alt=""
-              aria-hidden="true"
-              width={14}
-              height={36}
-              className="absolute top-10 right-10 animate-float opacity-15"
-              style={{ animationDuration: "9s" }}
-            />
-            <div className="max-w-xl w-full relative z-10" style={{ fontFamily: "monospace" }}>
-              <p className="text-teal-600 font-black text-xs uppercase tracking-[0.3em] mb-6">
-                <span className="text-slate-400">poble@about:~$</span> cat story.txt
-              </p>
-              <h1 className="text-5xl md:text-6xl lg:text-[5rem] font-black tracking-tighter mb-10 font-heading leading-[0.95] text-poble-charcoal">
-                <span className="block animate-reveal-text [animation-delay:200ms]">
-                  Our
-                </span>
-                <span className="block animate-reveal-text [animation-delay:400ms]">
-                  <span className="text-slate-400 block transition-transform hover:translate-x-6 duration-700 cursor-default">
-                    Story
-                  </span>
-                </span>
-              </h1>
-              <div className="w-12 h-1 bg-teal-400/60 mb-10"></div>
-              <div className="space-y-6 animate-reveal-text [animation-delay:700ms]">
-                <p className="text-xl md:text-2xl font-bold text-poble-charcoal/80 leading-snug tracking-tight">
-                  POS,{" "}
-                  <span className="text-poble-gold font-black">made capable.</span>{" "}
-                  <br className="hidden md:block" />
-                  Designed so your focus belongs to the customer.
-                </p>
-                <div className="flex items-center gap-4 text-slate-400/60 w-full overflow-hidden">
-                  <div className="w-8 h-px bg-slate-200 shrink-0"></div>
-                  <div className="flex-grow overflow-hidden relative">
-                    <div className="flex whitespace-nowrap animate-marquee">
-                      {[1, 2, 3, 4].map((i) => (
-                        <span key={i} className="text-[10px] font-black uppercase tracking-[0.3em] pr-8">
-                          Sydney • Melbourne • Brisbane • Perth • Adelaide
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> */}
-
-        {/* RIGHT */}
-        {/* <div className="w-full lg:w-1/2 min-h-[60vh] lg:h-screen lg:sticky lg:top-0 flex items-center justify-center relative p-12 overflow-hidden bg-poble-cream">
-            <div className="absolute inset-0 bg-gradient-to-br from-amber-300 via-amber-100 to-amber-50 animate-gradient-flow" />
-            <div className="absolute top-[-10%] left-[-5%] w-[70%] h-[70%] bg-white/40 blur-[120px] rounded-full animate-mesh" />
-            <div className="absolute bottom-[-15%] right-[-5%] w-[80%] h-[80%] bg-poble-gold/20 blur-[160px] rounded-full animate-mesh [animation-direction:reverse]" />
-            <div
-              className="absolute inset-0 pointer-events-none opacity-40"
-              style={{
-                backgroundImage:
-                  "linear-gradient(to right, #dce4ea 1px, transparent 1px), linear-gradient(to bottom, #dce4ea 1px, transparent 1px)",
-                backgroundSize: "400px 400px",
-              }}
-            />
-            <img src="/images/graphic/star.svg" alt="" aria-hidden="true" width={22} height={57} className="absolute top-[8%] left-[12%] animate-float" style={{ opacity: 0.35, animationDuration: "8s" }} />
-            <img src="/images/graphic/star.svg" alt="" aria-hidden="true" width={16} height={42} className="absolute bottom-[12%] right-[18%] animate-float" style={{ opacity: 0.25, animationDuration: "14s", animationDelay: "3s" }} />
-
-            <div className="relative z-10 text-center select-none">
-              <span className="absolute inset-0 flex items-center justify-center text-[14vw] lg:text-[10vw] font-black tracking-tighter text-poble-charcoal/[0.04] leading-none pointer-events-none" aria-hidden="true">
-                poble
-              </span>
-              <div className="relative flex flex-col items-center gap-6">
-                <div className="flex items-center gap-0 font-black tracking-tighter leading-none">
-                  <span className="text-[4.5rem] md:text-[6rem] text-poble-charcoal font-roboto">pos</span>
-                  <img src="/images/graphic/star.svg" alt="" aria-hidden="true" width={28} height={72} className="animate-float mx-1 md:mx-2" style={{ animationDuration: "6s" }} />
-                  <span className="text-[4.5rem] md:text-[6rem] text-poble-charcoal font-roboto">able</span>
-                </div>
-                <p className="text-[11px] font-black uppercase tracking-[0.4em] text-poble-charcoal/50">
-                  Point of Sale — Made Capable
-                </p>
-                <div className="flex items-center gap-3 opacity-30 mt-4">
-                  <div className="w-12 h-px bg-poble-charcoal"></div>
-                  <div className="text-[10px] font-black uppercase tracking-[0.4em] text-poble-charcoal">
-                    By Ecnesoft · Est. 2002
-                  </div>
-                  <div className="w-12 h-px bg-poble-charcoal"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section> */}
-
         {/* ── Restaurant Video ── */}
         <section className="py-24 px-8 bg-poble-charcoal relative overflow-hidden">
           <div
@@ -156,7 +57,7 @@ export default function AboutPage() {
               backgroundSize: "400px 400px",
             }}
           />
-          <img
+          <Image
             src="/images/graphic/star.svg"
             alt=""
             aria-hidden="true"
@@ -180,7 +81,6 @@ export default function AboutPage() {
             <div className="w-12 h-1 bg-teal-400/60 mb-10 mx-auto"></div>
             <div className="max-w-2xl mx-auto space-y-1">
               <p className="text-xl text-poble-charcoal font-bold leading-relaxed tracking-tight">
-                <span className="text-slate-300 mr-2">//</span>
                 Our name reflects our core mission:{" "}
               </p>
               <p className="text-xl text-poble-charcoal font-bold leading-relaxed tracking-tight">
@@ -189,7 +89,6 @@ export default function AboutPage() {
                 </span>
               </p>
               <p className="text-lg text-slate-500 font-bold leading-relaxed">
-                <span className="text-slate-300 mr-2">//</span>
                 We believe technology should empower your team — giving you the
                 ability to serve your customers with excellence and ease.
               </p>
@@ -242,7 +141,6 @@ export default function AboutPage() {
                       <span className="text-slate-500">./about.sh</span>
                     </p>
                     <p className="text-slate-600 font-bold text-lg leading-relaxed">
-                      <span className="text-slate-300 mr-2">//</span>
                       Poble is a product of{" "}
                       <span className="text-poble-charcoal font-black">
                         Ecnesoft
@@ -251,7 +149,6 @@ export default function AboutPage() {
                       established in 2002.
                     </p>
                     <p className="text-slate-500 font-bold leading-relaxed">
-                      <span className="text-slate-300 mr-2">//</span>
                       Ecnesoft is a developer and supplier of high quality,
                       well-supported POS systems for the Hospitality and Retail
                       industries. From individual SMB businesses to multistore
@@ -259,7 +156,6 @@ export default function AboutPage() {
                       that scale with you.
                     </p>
                     <p className="text-slate-500 font-bold leading-relaxed">
-                      <span className="text-slate-300 mr-2">//</span>
                       As a leader in Hospitality and Retail POS Software and
                       Hardware, Ecnesoft brings over two decades of domain
                       knowledge to every product we ship — and Poble is no
@@ -308,7 +204,6 @@ export default function AboutPage() {
                       {stat.val}
                     </div>
                     <div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-relaxed whitespace-pre-line mt-3">
-                      <span className="text-teal-400 mr-1">//</span>
                       {stat.label}
                     </div>
                   </div>
@@ -389,7 +284,6 @@ export default function AboutPage() {
                     {p.title}
                   </h4>
                   <p className="text-poble-charcoal/60 font-bold leading-relaxed text-sm">
-                    <span className="text-slate-400 mr-1">//</span>
                     {p.desc}
                   </p>
                 </div>

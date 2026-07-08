@@ -11,6 +11,7 @@ import { ArrowRight, Check, Eye, Sparkles, X, Zap } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 import { useAdmin } from "@/context/AdminContext";
+import Image from "next/image";
 
 interface FeatureDetail {
   title: string;
@@ -128,7 +129,8 @@ export const PricingCarousel: React.FC = () => {
     currentItem && Array.isArray(currentItem.images)
       ? currentItem.images[currentImageIdx]
       : currentItem?.image;
-  const hasCurrentImage = typeof currentImage === "string" && currentImage.trim().length > 0;
+  const hasCurrentImage =
+    typeof currentImage === "string" && currentImage.trim().length > 0;
 
   const FeatureMockup = () => (
     <div className="w-full h-full bg-slate-100 p-6 flex flex-col justify-between">
@@ -138,7 +140,10 @@ export const PricingCarousel: React.FC = () => {
       </div>
       <div className="grid grid-cols-2 gap-3">
         {[1, 2, 3, 4].map((item) => (
-          <div key={item} className="h-20 rounded-2xl bg-white border border-slate-200 p-3">
+          <div
+            key={item}
+            className="h-20 rounded-2xl bg-white border border-slate-200 p-3"
+          >
             <div className="h-2 w-16 rounded-full bg-slate-200 mb-3"></div>
             <div className="h-2 w-10 rounded-full bg-poble-gold/70"></div>
           </div>
@@ -236,7 +241,7 @@ export const PricingCarousel: React.FC = () => {
                   onClick={() => hasCurrentImage && setShowImageModal(true)}
                 >
                   {hasCurrentImage ? (
-                    <img
+                    <Image
                       src={currentImage}
                       alt={currentItem.label}
                       className="w-full h-full object-contain bg-white p-8 transition-transform duration-700 ease-out group-hover/image:scale-[1.02]"
@@ -274,11 +279,13 @@ export const PricingCarousel: React.FC = () => {
                       </div>
                     )}
 
-                  {hasCurrentImage && <div className="absolute inset-0 bg-black/0 group-hover/image:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover/image:opacity-100">
-                    <div className="bg-white/90 backdrop-blur text-poble-charcoal px-4 py-2 rounded-full font-bold text-xs shadow-xl transform translate-y-4 group-hover/image:translate-y-0 transition-all">
-                      Click to Expand
+                  {hasCurrentImage && (
+                    <div className="absolute inset-0 bg-black/0 group-hover/image:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover/image:opacity-100">
+                      <div className="bg-white/90 backdrop-blur text-poble-charcoal px-4 py-2 rounded-full font-bold text-xs shadow-xl transform translate-y-4 group-hover/image:translate-y-0 transition-all">
+                        Click to Expand
+                      </div>
                     </div>
-                  </div>}
+                  )}
                 </div>
 
                 <div className="p-10 space-y-6 flex-1 flex flex-col justify-center bg-slate-900">
@@ -355,7 +362,7 @@ export const PricingCarousel: React.FC = () => {
             className="relative max-w-5xl w-full max-h-[85vh] rounded-[2rem] overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300"
             onClick={(e) => e.stopPropagation()}
           >
-            <img
+            <Image
               src={currentImage}
               alt={currentItem.label}
               className="w-full h-full object-contain bg-black"

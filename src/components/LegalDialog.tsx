@@ -97,7 +97,7 @@ const Terms: React.FC = () => (
     </Section>
     <Section title="6. Liability">
       Our aggregate liability is capped at the total fees paid in the preceding
-      12 months. Service is provided "AS IS".
+      12 months. Service is provided &quot;`AS IS&quot;`.
     </Section>
     <Section title="7. Governing Law">New South Wales, Australia.</Section>
   </div>

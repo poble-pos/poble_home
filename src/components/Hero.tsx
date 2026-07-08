@@ -20,6 +20,7 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 
 import { useAdmin } from "@/context/AdminContext";
+import Image from "next/image";
 
 // ---------------------------------------------------------------------------
 // Galaxy Particle Field — salt & pepper dots in spiral arms, cursor-reactive
@@ -576,7 +577,7 @@ export const Hero: React.FC = () => {
               </button>
 
               <div className="flex items-center gap-1.5">
-                <img
+                <Image
                   src="/images/graphic/star.svg"
                   alt=""
                   aria-hidden="true"
@@ -584,7 +585,7 @@ export const Hero: React.FC = () => {
                   height={48}
                   className="animate-float"
                 />
-                <img
+                <Image
                   src="/images/graphic/star.svg"
                   alt=""
                   aria-hidden="true"

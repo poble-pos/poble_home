@@ -84,15 +84,6 @@ export const PainPoints: React.FC = () => {
                     {item.text}
                   </span>
                 </span>
-                {/* <img
-                  src="/images/graphic/star.svg"
-                  alt=""
-                  aria-hidden="true"
-                  width={16}
-                  height={16}
-                  className="shrink-0 opacity-40"
-                  style={{ filter: "brightness(0) invert(1)" }}
-                /> */}
               </React.Fragment>
             );
           })}
