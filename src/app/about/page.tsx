@@ -12,7 +12,7 @@ function Story() {
       <Container>
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
           <div className="lg:col-span-5">
-            <Eyebrow>Our story</Eyebrow>
+            <Eyebrow>Our potential</Eyebrow>
             <h2 className="mt-4 text-4xl font-medium leading-[1.05] tracking-[-0.03em] md:text-5xl">
               Built beside
               <br />
@@ -21,10 +21,20 @@ function Story() {
           </div>
           <div className="space-y-6 text-lg leading-relaxed text-black/55 lg:col-span-7">
             <p>
-              ECNESOFT is an Australian software company with one obsession:
-              the moment a customer reaches the counter. We watched venues
-              wrestle with bloated, expensive POS systems built for boardrooms
-              rather than baristas — and decided hospitality deserved better.
+              We&apos;ve been at this since 2002 — a fair stretch in POS
+              years. These days we&apos;re a leading name in Hospitality and
+              Retail POS software and hardware, building solid,
+              well-supported systems that owners can actually rely on.
+            </p>
+            <p>
+              Our software is built for the little guys and the big
+              players alike — from the corner cafe right through to
+              multistore retail and franchise groups.
+            </p>
+            <p>
+              Keeping it in the family, our owner also runs two other POS
+              outfits, POSBANK and POSNET, so you could say we know this
+              game pretty well.
             </p>
             <p>
               So we built Poble side by side with the cafes, restaurants and
@@ -211,7 +221,18 @@ export default function AboutPage() {
           </>
         }
         description="ECNESOFT builds Poble — the lightweight POS made in Australia, for Australian hospitality."
-      />
+      >
+        <div className="mx-auto mt-12 max-w-4xl overflow-hidden rounded-3xl border border-black/10 shadow-xl shadow-black/5">
+          <video
+            src="/videos/restaurant.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="h-full w-full object-cover"
+          />
+        </div>
+      </PageHero>
 
       <Story />
       <MissionVision />

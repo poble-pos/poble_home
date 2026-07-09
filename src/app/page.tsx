@@ -15,11 +15,11 @@ import { useEffect, useMemo } from "react";
 import { Container } from "@/components/site/Container";
 import { Eyebrow } from "@/components/site/Eyebrow";
 import { FAQList } from "@/components/site/FAQList";
+import Image from "next/image";
 import { PageCTA } from "@/components/site/PageCTA";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteNav } from "@/components/site/SiteNav";
 import { useAdmin } from "@/context/AdminContext";
-import Image from "next/image";
 
 export default function LandingPage() {
   const { siteContent } = useAdmin();
@@ -133,7 +133,7 @@ function Hero() {
       />
 
       <Container className="text-center">
-        <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/50 px-3 py-1 text-xs text-black/55 backdrop-blur">
+        <div className="mx-auto inline-flex items-center gap-2 rounded-full  bg-white/50 px-3 py-1 text-xs text-black/55 backdrop-blur">
           <Sparkles className="h-3 w-3 text-[#B9855B]" />
           Made for Australian hospitality
         </div>
@@ -152,7 +152,7 @@ function Hero() {
         <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
             href="#cta"
-            className="inline-flex items-center gap-1.5 rounded-full bg-[#111111] px-6 py-3 text-sm font-medium text-white transition hover:bg-black"
+            className="inline-flex items-center gap-1.5 rounded-md bg-[#111111] px-6 py-3 text-sm font-medium text-white transition hover:bg-black"
           >
             Start free trial
             <ArrowRight className="h-4 w-4" />
@@ -177,7 +177,7 @@ function Trust() {
   const stats = [
     { value: "99.9%", label: "Uptime guarantee" },
     { value: "24/7", label: "Local Aussie support" },
-    { value: "500+", label: "Venues on Poble" },
+    { value: "10+", label: "Venues on Poble" },
     { value: "< 1 day", label: "Average go-live" },
   ];
 
