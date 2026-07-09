@@ -1,6 +1,10 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 
 import { BrandLogo } from "./BrandLogo";
+import { ContactDialog } from "./ContactDialog";
 import { Container } from "./Container";
 
 const COLUMNS: { title: string; links: { label: string; href: string }[] }[] =
@@ -18,7 +22,7 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] =
       links: [
         { label: "About", href: "/about" },
         { label: "Customers", href: "/customers" },
-        { label: "Contact", href: "mailto:sales@poble.com.au" },
+        { label: "Contact", href: "#contact" },
       ],
     },
     {
@@ -38,6 +42,8 @@ const LEGAL = [
 ];
 
 export function SiteFooter() {
+  const [contactOpen, setContactOpen] = useState(false);
+
   return (
     <footer className="border-t border-black/10 bg-[#F1EDE5]">
       <Container className="py-16">
@@ -69,7 +75,15 @@ export function SiteFooter() {
               <ul className="mt-4 space-y-2.5 text-sm">
                 {col.links.map((l) => (
                   <li key={l.label}>
-                    {l.href.startsWith("/") ? (
+                    {l.href === "#contact" ? (
+                      <button
+                        type="button"
+                        onClick={() => setContactOpen(true)}
+                        className="text-black/70 hover:text-black"
+                      >
+                        {l.label}
+                      </button>
+                    ) : l.href.startsWith("/") ? (
                       <Link
                         href={l.href}
                         className="text-black/70 hover:text-black"
@@ -104,6 +118,8 @@ export function SiteFooter() {
           </div>
         </div>
       </Container>
+
+      <ContactDialog open={contactOpen} onClose={() => setContactOpen(false)} />
     </footer>
   );
 }

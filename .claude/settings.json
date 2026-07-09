@@ -3,7 +3,11 @@
     "allow": [
       "Bash(md5 src/app/page.tsx)",
       "Bash(npm run *)",
-      "Bash(npx tsc *)"
+      "Bash(npx tsc *)",
+      "Bash(kill %1)",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(lsof -i :3010 -sTCP:LISTEN)",
+      "Bash(git -C /Users/sohyun/workspace/poble_home diff HEAD -- src/app/features/page.tsx src/app/page.tsx src/components/CartDrawer.tsx src/components/site/PageCTA.tsx src/components/site/SiteNav.tsx src/data/products.ts)"
     ]
   }
 }

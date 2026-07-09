@@ -1,19 +1,18 @@
 import { ArrowRight, Check } from "lucide-react";
-import type { Metadata } from "next";
-import React from "react";
 
 import { Container } from "@/components/site/Container";
 import { Eyebrow } from "@/components/site/Eyebrow";
+import Image from "next/image";
 import { MediaPlaceholder } from "@/components/site/MediaPlaceholder";
+import type { Metadata } from "next";
 import { PageCTA } from "@/components/site/PageCTA";
 import { PageHero } from "@/components/site/PageHero";
 import { PageShell } from "@/components/site/PageShell";
-import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Features",
   description:
-    "Poble POS, Staff POS, Kitchen Display System, Dual Screen, Self Ordering Kiosk and Table Ordering — one connected system for your whole venue.",
+    "Poble POS, Staff POS, Kitchen Display System, Dual Screen, Self Ordering Kiosk, Table Ordering and Membership CRM — one connected system for your whole venue.",
 };
 
 interface Product {
@@ -27,6 +26,7 @@ interface Product {
   screenshotSrc?: string;
   screenshotWidth?: number;
   screenshotHeight?: number;
+  screenshotMaxHeight?: number;
 }
 
 const PRODUCTS: Product[] = [
@@ -160,22 +160,25 @@ const PRODUCTS: Product[] = [
       },
     ],
     screenshotLabel: "Kiosk screenshot",
+    screenshotSrc: "/images/pos/Kiosk.png",
+    screenshotWidth: 2290,
+    screenshotHeight: 2960,
   },
   {
     id: "table-ordering",
-    eyebrow: "QR ordering",
+    eyebrow: "Table ordering",
     name: "Table Ordering",
-    tagline: "The menu is already on the table.",
+    tagline: "Order from your seat, on your phone.",
     description:
-      "Customers scan a QR code, browse your menu and order from their seat — no app download, no waiting to catch a waiter's eye.",
+      "Customers open the Poble app to browse your live menu and order directly from their table — no waiting to catch a waiter's eye.",
     benefits: [
       {
-        title: "No app required",
-        body: "A QR code opens your live menu in the browser. Ordering takes seconds.",
+        title: "One app, every table",
+        body: "Customers select their table in the Poble app and order straight from their seat.",
       },
       {
         title: "Always the live menu",
-        body: "Sold-out items disappear and price changes apply instantly — the QR menu is the POS menu.",
+        body: "Sold-out items disappear and price changes apply instantly — the app menu is the POS menu.",
       },
       {
         title: "More rounds, less waiting",
@@ -183,6 +186,36 @@ const PRODUCTS: Product[] = [
       },
     ],
     screenshotLabel: "Table Ordering screenshot",
+    screenshotSrc: "/images/pos/Table Order.png",
+    screenshotWidth: 2960,
+    screenshotHeight: 2290,
+  },
+  {
+    id: "crm",
+    eyebrow: "Loyalty & membership",
+    name: "Membership CRM",
+    tagline: "Turn first-time guests into regulars.",
+    description:
+      "Run your loyalty program straight from Poble. Members earn points, redeem vouchers and coupons, order online and join the waitlist — all tied to the same profile your counter staff already see.",
+    benefits: [
+      {
+        title: "Points, vouchers and coupons",
+        body: "Every visit earns points automatically, and members redeem them for vouchers and coupons without a third-party app.",
+      },
+      {
+        title: "Online ordering",
+        body: "Members order ahead from their phone and their loyalty balance updates the moment they pay.",
+      },
+      {
+        title: "Smart waitlist",
+        body: "Walk-ins join the waitlist by QR code and get notified the moment their table's ready — no crowding the doorway.",
+      },
+    ],
+    screenshotLabel: "Membership CRM screenshot",
+    screenshotSrc: "/images/pos/CRM.png",
+    screenshotWidth: 1857,
+    screenshotHeight: 3096,
+    screenshotMaxHeight: 480,
   },
 ];
 
@@ -253,6 +286,11 @@ function ProductSection({
                   width={product.screenshotWidth}
                   height={product.screenshotHeight}
                   className="h-auto w-auto max-w-full mix-blend-multiply"
+                  style={
+                    product.screenshotMaxHeight
+                      ? { maxHeight: `${product.screenshotMaxHeight}px` }
+                      : undefined
+                  }
                 />
               </div>
             ) : (
@@ -290,7 +328,7 @@ export default function FeaturesPage() {
             <a
               key={p.id}
               href={`#${p.id}`}
-              className="rounded-full border border-black/10 bg-white/60 px-4 py-2 text-xs font-medium text-black/70 transition hover:bg-white hover:text-black"
+              className="rounded-full border bg-white/60 px-4 py-2 text-xs font-medium text-black/70 transition hover:bg-white hover:text-black"
             >
               {p.name}
             </a>
