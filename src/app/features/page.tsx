@@ -1,14 +1,13 @@
 import { ArrowRight, Check } from "lucide-react";
-import type { Metadata } from "next";
-import React from "react";
 
 import { Container } from "@/components/site/Container";
 import { Eyebrow } from "@/components/site/Eyebrow";
+import Image from "next/image";
 import { MediaPlaceholder } from "@/components/site/MediaPlaceholder";
+import type { Metadata } from "next";
 import { PageCTA } from "@/components/site/PageCTA";
 import { PageHero } from "@/components/site/PageHero";
 import { PageShell } from "@/components/site/PageShell";
-import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Features",
@@ -329,7 +328,7 @@ export default function FeaturesPage() {
             <a
               key={p.id}
               href={`#${p.id}`}
-              className="rounded-full border border-black/10 bg-white/60 px-4 py-2 text-xs font-medium text-black/70 transition hover:bg-white hover:text-black"
+              className="rounded-full border bg-white/60 px-4 py-2 text-xs font-medium text-black/70 transition hover:bg-white hover:text-black"
             >
               {p.name}
             </a>

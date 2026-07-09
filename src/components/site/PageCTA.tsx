@@ -1,8 +1,8 @@
 import { ArrowRight, Check } from "lucide-react";
-import Image from "next/image";
-import React from "react";
 
 import { Container } from "./Container";
+import Image from "next/image";
+import React from "react";
 
 const DEFAULT_BULLETS = [
   "No lock-in contracts",
@@ -32,14 +32,14 @@ export function PageCTA({
   return (
     <section id="cta" data-title={dataTitle} className="pb-24 md:pb-32">
       <Container>
-        <div className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-[#111111] p-10 text-center text-white md:p-20">
+        <div className="relative overflow-hidden rounded-[0rem] border border-black/10 bg-[#6c5b4b] p-10 text-center text-white md:p-20">
           <Image
-            src="/images/object/Translucent Blue Owl.png"
+            src="/images/object/Business Figure.png"
             alt=""
             width={400}
             height={492}
             aria-hidden="true"
-            className="pointer-events-none absolute bottom-0 right-0 h-32 w-auto opacity-80 md:h-48"
+            className="pointer-events-none absolute bottom-0 right-0 hidden h-48 w-auto opacity-80 md:block"
           />
           <div className="relative">
             <h2 className="mx-auto max-w-3xl text-4xl font-medium leading-[1.05] tracking-[-0.03em] md:text-6xl">
@@ -50,14 +50,14 @@ export function PageCTA({
             <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
               <a
                 href={primaryHref}
-                className="inline-flex items-center justify-center gap-1.5 rounded-full bg-[#F9F8F3] px-6 py-3 text-sm font-medium text-black transition hover:bg-white"
+                className="inline-flex items-center justify-center gap-1.5 rounded-sm bg-[#F9F8F3] px-6 py-3 text-sm font-medium text-black transition hover:bg-white"
               >
                 {primaryLabel}
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a
                 href={secondaryHref}
-                className="inline-flex items-center justify-center gap-1.5 rounded-full border border-white/20 px-6 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10"
+                className="inline-flex items-center justify-center gap-1.5 rounded-sm border border-white/20 px-6 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10"
               >
                 {secondaryLabel}
               </a>

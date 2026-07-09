@@ -133,7 +133,7 @@ function Hero() {
       />
 
       <Container className="text-center">
-        <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/50 px-3 py-1 text-xs text-black/55 backdrop-blur">
+        <div className="mx-auto inline-flex items-center gap-2 rounded-full  bg-white/50 px-3 py-1 text-xs text-black/55 backdrop-blur">
           <Sparkles className="h-3 w-3 text-[#B9855B]" />
           Made for Australian hospitality
         </div>
@@ -152,7 +152,7 @@ function Hero() {
         <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
             href="#cta"
-            className="inline-flex items-center gap-1.5 rounded-full bg-[#111111] px-6 py-3 text-sm font-medium text-white transition hover:bg-black"
+            className="inline-flex items-center gap-1.5 rounded-md bg-[#111111] px-6 py-3 text-sm font-medium text-white transition hover:bg-black"
           >
             Start free trial
             <ArrowRight className="h-4 w-4" />
