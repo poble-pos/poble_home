@@ -1,10 +1,11 @@
 "use client";
 
-import { ArrowRight, Menu, X } from "lucide-react";
+import { ArrowRight, Menu, ShoppingBag, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import { useCart } from "@/context/CartContext";
 import { BrandLogo } from "./BrandLogo";
 import { Container } from "./Container";
 
@@ -15,10 +16,34 @@ const LINKS = [
   { href: "/about", label: "About" },
 ];
 
+function CartButton({
+  cartCount,
+  onClick,
+}: {
+  cartCount: number;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className="relative inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-black/5"
+      aria-label="Open cart"
+    >
+      <ShoppingBag className="h-5 w-5" />
+      {cartCount > 0 && (
+        <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#111111] px-1 text-[10px] font-bold text-white">
+          {cartCount}
+        </span>
+      )}
+    </button>
+  );
+}
+
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const { cartCount, setIsCartOpen } = useCart();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -78,16 +103,20 @@ export function SiteNav() {
             Start free
             <ArrowRight className="h-3.5 w-3.5" />
           </a>
+          <CartButton cartCount={cartCount} onClick={() => setIsCartOpen(true)} />
         </div>
 
-        <button
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-black/5 md:hidden"
-          onClick={() => setOpen(!open)}
-          aria-expanded={open}
-          aria-label={open ? "Close menu" : "Open menu"}
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="flex items-center gap-1 md:hidden">
+          <CartButton cartCount={cartCount} onClick={() => setIsCartOpen(true)} />
+          <button
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-black/5"
+            onClick={() => setOpen(!open)}
+            aria-expanded={open}
+            aria-label={open ? "Close menu" : "Open menu"}
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </Container>
 
       {open && (

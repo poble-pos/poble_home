@@ -15,11 +15,11 @@ import { useEffect, useMemo } from "react";
 import { Container } from "@/components/site/Container";
 import { Eyebrow } from "@/components/site/Eyebrow";
 import { FAQList } from "@/components/site/FAQList";
+import Image from "next/image";
 import { PageCTA } from "@/components/site/PageCTA";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteNav } from "@/components/site/SiteNav";
 import { useAdmin } from "@/context/AdminContext";
-import Image from "next/image";
 
 export default function LandingPage() {
   const { siteContent } = useAdmin();
@@ -177,7 +177,7 @@ function Trust() {
   const stats = [
     { value: "99.9%", label: "Uptime guarantee" },
     { value: "24/7", label: "Local Aussie support" },
-    { value: "500+", label: "Venues on Poble" },
+    { value: "10+", label: "Venues on Poble" },
     { value: "< 1 day", label: "Average go-live" },
   ];
 

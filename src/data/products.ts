@@ -5,7 +5,6 @@ export interface Product {
   price: number;
   category: "stand" | "printer" | "accessory" | "bundle";
   image: string;
-  stripePriceId?: string; // For future Stripe integration
   features?: string[];
   inStock: boolean;
 }
@@ -20,7 +19,6 @@ export const products: Product[] = [
     image: "/images/hardware/geminidual.png",
     features: ["Dual Screen Mount", "360° Swivel", "Premium Finish"],
     inStock: true,
-    stripePriceId: "",
   },
   {
     id: "stand-elite-evo",
@@ -31,7 +29,6 @@ export const products: Product[] = [
     image: "/images/hardware/elitegemini.png",
     features: ["Fixed Angle", "Tamper Resistant", "Cable Management"],
     inStock: true,
-    stripePriceId: "",
   },
   {
     id: "stand-touch-evo",
@@ -42,7 +39,6 @@ export const products: Product[] = [
     image: "/images/hardware/touchevo_1.jpg",
     features: ["Freestanding Base", "Tilt Adjustment", "Cost Effective"],
     inStock: true,
-    stripePriceId: "",
   },
   {
     id: "printer-posbank",
@@ -53,7 +49,6 @@ export const products: Product[] = [
     image: "/images/hardware/Posbank_A11_Receipt_Printer.png",
     features: ["250mm/s Speed", "Ethernet Interface", "Auto Cutter"],
     inStock: true,
-    stripePriceId: "",
   },
   {
     id: "printer-epson",
@@ -64,7 +59,6 @@ export const products: Product[] = [
     image: "/images/hardware/tm-m30iii.webp",
     features: ["Bluetooth & WiFi", "Ultra Compact", "Reliable"],
     inStock: true,
-    stripePriceId: "",
   },
   {
     id: "cash-drawer",
@@ -75,7 +69,6 @@ export const products: Product[] = [
     image: "/images/hardware/cashdrawer.jpg",
     features: ["Key Lock", "RJ12 Interface", "Black Finish"],
     inStock: true,
-    stripePriceId: "",
   },
   {
     id: "paper-roll",
@@ -86,7 +79,6 @@ export const products: Product[] = [
     image: "/images/hardware/paperroll.webp",
     features: ["BPA Free", "High Contrast", "Long Lasting"],
     inStock: true,
-    stripePriceId: "",
   },
   {
     id: "qr-sticker",
@@ -97,6 +89,7 @@ export const products: Product[] = [
     image: "/images/hardware/qr-sticker.svg",
     features: ["Waterproof", "High Contrast", "Easy Peel"],
     inStock: true,
-    stripePriceId: "",
   },
 ];
+
+export const productsById = new Map(products.map((p) => [p.id, p]));

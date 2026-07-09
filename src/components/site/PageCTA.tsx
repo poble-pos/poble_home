@@ -1,4 +1,5 @@
 import { ArrowRight, Check } from "lucide-react";
+import Image from "next/image";
 import React from "react";
 
 import { Container } from "./Container";
@@ -32,6 +33,14 @@ export function PageCTA({
     <section id="cta" data-title={dataTitle} className="pb-24 md:pb-32">
       <Container>
         <div className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-[#111111] p-10 text-center text-white md:p-20">
+          <Image
+            src="/images/object/Translucent Blue Owl.png"
+            alt=""
+            width={400}
+            height={492}
+            aria-hidden="true"
+            className="pointer-events-none absolute bottom-0 right-0 h-32 w-auto opacity-80 md:h-48"
+          />
           <div className="relative">
             <h2 className="mx-auto max-w-3xl text-4xl font-medium leading-[1.05] tracking-[-0.03em] md:text-6xl">
               {title}
