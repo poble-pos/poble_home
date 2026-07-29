@@ -10,13 +10,13 @@ import {
   Sparkles,
   Users,
 } from "lucide-react";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { Container } from "@/components/site/Container";
 import { Eyebrow } from "@/components/site/Eyebrow";
 import { FAQList } from "@/components/site/FAQList";
 import Image from "next/image";
-import { InquiryForm } from "@/components/site/InquiryForm";
+import { InquirySidebar } from "@/components/site/InquirySidebar";
 import { PageCTA } from "@/components/site/PageCTA";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteNav } from "@/components/site/SiteNav";
@@ -24,6 +24,8 @@ import { useAdmin } from "@/context/AdminContext";
 
 export default function LandingPage() {
   const { siteContent } = useAdmin();
+  const [isInquiryOpen, setIsInquiryOpen] = useState(false);
+  const openInquiry = () => setIsInquiryOpen(true);
 
   const visibleSections = useMemo(() => {
     const sections = siteContent?.sections ?? [];
@@ -72,7 +74,7 @@ export default function LandingPage() {
   const renderSection = (section: any) => {
     switch (section.type) {
       case "Hero":
-        return <Hero key={section.id} />;
+        return <Hero key={section.id} onOpenInquiry={openInquiry} />;
 
       case "PainPoints":
         return (
@@ -104,7 +106,7 @@ export default function LandingPage() {
             key={section.id}
             title="Run your venue with us"
             description="Join the growing network of Australian venues who have swapped complex, slow systems for the speed of Poble."
-            action={<InquiryForm />}
+            onPrimaryClick={openInquiry}
             dataTitle="Get Started | Poble"
           />
         );
@@ -121,11 +123,15 @@ export default function LandingPage() {
         {visibleSections.map(renderSection)}
       </main>
       <SiteFooter />
+      <InquirySidebar
+        open={isInquiryOpen}
+        onClose={() => setIsInquiryOpen(false)}
+      />
     </div>
   );
 }
 
-function Hero() {
+function Hero({ onOpenInquiry }: { onOpenInquiry: () => void }) {
   return (
     <section
       data-title="Poble"
@@ -159,13 +165,14 @@ function Hero() {
         </p>
 
         <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <a
-            href="#cta"
+          <button
+            type="button"
+            onClick={onOpenInquiry}
             className="inline-flex items-center gap-1.5 rounded-md bg-[#111111] px-6 py-3 text-sm font-medium text-white transition hover:bg-black"
           >
             Start free trial
             <ArrowRight className="h-4 w-4" />
-          </a>
+          </button>
           <a
             href="#features"
             className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white/60 px-6 py-3 text-sm font-medium text-black transition hover:bg-white"

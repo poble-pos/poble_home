@@ -44,7 +44,7 @@ export function PageCTA({
   return (
     <section id="cta" data-title={dataTitle} className="pb-24 md:pb-32">
       <Container>
-        <div className="relative overflow-hidden rounded-[0rem] border border-black/10 bg-[#6c5b4b] p-10 text-center text-white md:p-20">
+        <div className="relative overflow-hidden rounded-3xl border border-black/10 bg-[#111111] p-10 text-center text-white md:p-20">
           <Image
             src="/images/object/Business Figure.png"
             alt=""

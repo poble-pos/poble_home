@@ -23,10 +23,18 @@ type Status = "idle" | "sending" | "done" | "error";
 
 /**
  * Self-contained venue-enquiry form. Posts to /api/inquiry, which emails a
- * receipt to the customer and a copy to the sales inbox. Rendered inline
- * inside the "Run your venue with us" CTA section.
+ * receipt to the customer and a copy to the sales inbox. Rendered inside
+ * InquirySidebar, triggered from the "Start free trial" / CTA buttons.
  */
-export function InquiryForm({ onDone }: { onDone?: () => void }) {
+export function InquiryForm({
+  onDone,
+  bare = false,
+}: {
+  onDone?: () => void;
+  /** Drop the card's own margin/background/shadow when it's already
+   *  placed inside another container, e.g. InquirySidebar. */
+  bare?: boolean;
+}) {
   const [form, setForm] = useState<FormState>(EMPTY);
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -57,8 +65,9 @@ export function InquiryForm({ onDone }: { onDone?: () => void }) {
     }
   };
 
-  const cardClass =
-    "mx-auto mt-9 w-full max-w-md rounded-2xl bg-[#F9F8F3] p-6 text-left shadow-xl shadow-black/10 md:p-8";
+  const cardClass = bare
+    ? "text-left"
+    : "mx-auto mt-9 w-full max-w-md rounded-2xl bg-[#F9F8F3] p-6 text-left shadow-xl shadow-black/10 md:p-8";
 
   if (status === "done") {
     return (
@@ -112,7 +121,7 @@ export function InquiryForm({ onDone }: { onDone?: () => void }) {
           label="Name"
           value={form.name}
           onChange={update("name")}
-          placeholder="Your name"
+          placeholder="What should we call you?"
           required
         />
         <Field
@@ -127,7 +136,7 @@ export function InquiryForm({ onDone }: { onDone?: () => void }) {
           label="Email"
           value={form.email}
           onChange={update("email")}
-          placeholder="name@venue.com.au"
+          placeholder="you@yourvenue.com.au"
           type="email"
           required
         />
@@ -135,14 +144,14 @@ export function InquiryForm({ onDone }: { onDone?: () => void }) {
           label="Shop Name & Address"
           value={form.shop}
           onChange={update("shop")}
-          placeholder="Venue name & address"
+          placeholder="Your venue's name & address"
           required
         />
         <textarea
           aria-label="Message"
           value={form.message}
           onChange={update("message")}
-          placeholder="Message (optional)"
+          placeholder="What's slowing you down? (optional)"
           rows={4}
           className="w-full rounded-lg border border-black/15 bg-white px-4 py-3 text-sm text-[#111111] placeholder:text-black/35 focus:border-black/30 focus:outline-none focus:ring-1 focus:ring-black/20"
         />
@@ -154,7 +163,7 @@ export function InquiryForm({ onDone }: { onDone?: () => void }) {
         <button
           type="submit"
           disabled={status === "sending"}
-          className="inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-[#F9C835] px-6 py-3.5 text-sm font-semibold text-[#111111] transition hover:bg-[#eabb21] disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-[#f9b600] px-6 py-3.5 text-sm font-semibold text-[#111111] transition hover:bg-[#eabb21] disabled:cursor-not-allowed disabled:opacity-60"
         >
           {status === "sending" ? "Sending…" : "Send a message"}
           {status !== "sending" && <ArrowRight className="h-4 w-4" />}
