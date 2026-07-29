@@ -16,6 +16,7 @@ import { Container } from "@/components/site/Container";
 import { Eyebrow } from "@/components/site/Eyebrow";
 import { FAQList } from "@/components/site/FAQList";
 import Image from "next/image";
+import { InquiryForm } from "@/components/site/InquiryForm";
 import { PageCTA } from "@/components/site/PageCTA";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteNav } from "@/components/site/SiteNav";
@@ -98,7 +99,15 @@ export default function LandingPage() {
       // case "ContactSection":
 
       case "CTASection":
-        return <PageCTA key={section.id} dataTitle="Get Started | Poble" />;
+        return (
+          <PageCTA
+            key={section.id}
+            title="Run your venue with us"
+            description="Join the growing network of Australian venues who have swapped complex, slow systems for the speed of Poble."
+            action={<InquiryForm />}
+            dataTitle="Get Started | Poble"
+          />
+        );
 
       default:
         return null;
