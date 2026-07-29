@@ -96,13 +96,13 @@ export function SiteNav() {
           >
             Sign in
           </a>
-          <a
-            href="https://backoffice.poble.com.au/"
+          <Link
+            href="/#cta"
             className="inline-flex items-center gap-1.5 rounded-full bg-[#111111] px-4 py-2 text-sm font-medium text-white transition hover:bg-black"
           >
             Start free
             <ArrowRight className="h-3.5 w-3.5" />
-          </a>
+          </Link>
           <CartButton cartCount={cartCount} onClick={() => setIsCartOpen(true)} />
         </div>
 
@@ -138,13 +138,13 @@ export function SiteNav() {
             >
               Sign in
             </a>
-            <a
-              href="https://backoffice.poble.com.au/"
+            <Link
+              href="/#cta"
               onClick={() => setOpen(false)}
               className="mt-2 inline-flex items-center justify-center rounded-full bg-[#111111] px-5 py-3 text-sm font-medium text-white"
             >
               Start free
-            </a>
+            </Link>
           </Container>
         </div>
       )}
