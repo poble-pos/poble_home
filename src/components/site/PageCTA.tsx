@@ -1,3 +1,5 @@
+"use client";
+
 import { ArrowRight, Check } from "lucide-react";
 
 import { Container } from "./Container";
@@ -19,6 +21,8 @@ export function PageCTA({
   secondaryHref = "tel:1300966963",
   bullets = DEFAULT_BULLETS,
   dataTitle,
+  onPrimaryClick,
+  action,
 }: {
   title?: React.ReactNode;
   description?: React.ReactNode;
@@ -28,7 +32,15 @@ export function PageCTA({
   secondaryHref?: string;
   bullets?: string[];
   dataTitle?: string;
+  /** When provided, the primary button acts as a button (e.g. opens a dialog)
+   *  instead of navigating to primaryHref. */
+  onPrimaryClick?: () => void;
+  /** When provided, replaces the primary/secondary buttons entirely
+   *  (e.g. an inline form). */
+  action?: React.ReactNode;
 }) {
+  const primaryClassName =
+    "inline-flex items-center justify-center gap-1.5 rounded-sm bg-[#F9F8F3] px-6 py-3 text-sm font-medium text-black transition hover:bg-white";
   return (
     <section id="cta" data-title={dataTitle} className="pb-24 md:pb-32">
       <Container>
@@ -47,21 +59,33 @@ export function PageCTA({
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-white/65">{description}</p>
 
-            <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
-              <a
-                href={primaryHref}
-                className="inline-flex items-center justify-center gap-1.5 rounded-sm bg-[#F9F8F3] px-6 py-3 text-sm font-medium text-black transition hover:bg-white"
-              >
-                {primaryLabel}
-                <ArrowRight className="h-4 w-4" />
-              </a>
-              <a
-                href={secondaryHref}
-                className="inline-flex items-center justify-center gap-1.5 rounded-sm border border-white/20 px-6 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10"
-              >
-                {secondaryLabel}
-              </a>
-            </div>
+            {action ? (
+              action
+            ) : (
+              <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+                {onPrimaryClick ? (
+                  <button
+                    type="button"
+                    onClick={onPrimaryClick}
+                    className={primaryClassName}
+                  >
+                    {primaryLabel}
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
+                ) : (
+                  <a href={primaryHref} className={primaryClassName}>
+                    {primaryLabel}
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                )}
+                <a
+                  href={secondaryHref}
+                  className="inline-flex items-center justify-center gap-1.5 rounded-sm border border-white/20 px-6 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10"
+                >
+                  {secondaryLabel}
+                </a>
+              </div>
+            )}
 
             {bullets.length > 0 && (
               <ul className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-white/55">
