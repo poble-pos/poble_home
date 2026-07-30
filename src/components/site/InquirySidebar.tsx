@@ -3,14 +3,12 @@
 import { useEffect } from "react";
 import { X } from "lucide-react";
 
+import { useInquiry } from "@/context/InquiryContext";
 import { InquiryForm } from "./InquiryForm";
 
-interface InquirySidebarProps {
-  open: boolean;
-  onClose: () => void;
-}
+export function InquirySidebar() {
+  const { isInquiryOpen: open, closeInquiry: onClose } = useInquiry();
 
-export function InquirySidebar({ open, onClose }: InquirySidebarProps) {
   useEffect(() => {
     if (!open) return;
 
