@@ -10,22 +10,21 @@ import {
   Sparkles,
   Users,
 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 
 import { Container } from "@/components/site/Container";
 import { Eyebrow } from "@/components/site/Eyebrow";
 import { FAQList } from "@/components/site/FAQList";
 import Image from "next/image";
-import { InquirySidebar } from "@/components/site/InquirySidebar";
 import { PageCTA } from "@/components/site/PageCTA";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteNav } from "@/components/site/SiteNav";
 import { useAdmin } from "@/context/AdminContext";
+import { useInquiry } from "@/context/InquiryContext";
 
 export default function LandingPage() {
   const { siteContent } = useAdmin();
-  const [isInquiryOpen, setIsInquiryOpen] = useState(false);
-  const openInquiry = () => setIsInquiryOpen(true);
+  const { openInquiry } = useInquiry();
 
   const visibleSections = useMemo(() => {
     const sections = siteContent?.sections ?? [];
@@ -123,10 +122,6 @@ export default function LandingPage() {
         {visibleSections.map(renderSection)}
       </main>
       <SiteFooter />
-      <InquirySidebar
-        open={isInquiryOpen}
-        onClose={() => setIsInquiryOpen(false)}
-      />
     </div>
   );
 }
