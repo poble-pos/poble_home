@@ -11,6 +11,7 @@ import {
 } from "next/font/google";
 
 import { CartDrawer } from "@/components/CartDrawer";
+import { DigitalCursor } from "@/components/DigitalCursor";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { AdminProvider } from "@/context/AdminContext";
 import { CartProvider } from "@/context/CartContext";
@@ -80,6 +81,7 @@ export default function RootLayout({
         className="font-sans antialiased text-[#0D0D0D] bg-[#F9F8F3]"
         suppressHydrationWarning
       >
+        <DigitalCursor />
         <AdminProvider>
           <CartProvider>
             <CartDrawer />
