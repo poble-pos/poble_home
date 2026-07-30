@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { useCart } from "@/context/CartContext";
+import { useInquiry } from "@/context/InquiryContext";
 import { BrandLogo } from "./BrandLogo";
 import { Container } from "./Container";
 
@@ -44,6 +45,7 @@ export function SiteNav() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const { cartCount, setIsCartOpen } = useCart();
+  const { openInquiry } = useInquiry();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -96,13 +98,14 @@ export function SiteNav() {
           >
             Sign in
           </a>
-          <a
-            href="https://backoffice.poble.com.au/"
+          <button
+            type="button"
+            onClick={openInquiry}
             className="inline-flex items-center gap-1.5 rounded-full bg-[#111111] px-4 py-2 text-sm font-medium text-white transition hover:bg-black"
           >
             Start free
             <ArrowRight className="h-3.5 w-3.5" />
-          </a>
+          </button>
           <CartButton cartCount={cartCount} onClick={() => setIsCartOpen(true)} />
         </div>
 
@@ -138,13 +141,16 @@ export function SiteNav() {
             >
               Sign in
             </a>
-            <a
-              href="https://backoffice.poble.com.au/"
-              onClick={() => setOpen(false)}
+            <button
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                openInquiry();
+              }}
               className="mt-2 inline-flex items-center justify-center rounded-full bg-[#111111] px-5 py-3 text-sm font-medium text-white"
             >
               Start free
-            </a>
+            </button>
           </Container>
         </div>
       )}

@@ -22,6 +22,7 @@ import React, { useMemo, useState } from "react";
 import { Container } from "@/components/site/Container";
 import { Eyebrow } from "@/components/site/Eyebrow";
 import { PageShell } from "@/components/site/PageShell";
+import { useInquiry } from "@/context/InquiryContext";
 
 type Language = "ko" | "en";
 
@@ -350,6 +351,7 @@ export default function ManualPage() {
     const [language, setLanguage] = useState<Language>("en");
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const [query, setQuery] = useState("");
+    const { openInquiry } = useInquiry();
 
     const currentSections = MANUAL_DATA[language];
     const t = UI_TEXTS[language];
@@ -462,13 +464,14 @@ export default function ManualPage() {
                                 <p className="mb-4 px-4 text-xs uppercase tracking-[0.18em] text-black/45">
                                     {t.needHelp}
                                 </p>
-                                <Link
-                                    href="/#cta"
+                                <button
+                                    type="button"
+                                    onClick={openInquiry}
                                     className="flex items-center gap-3 px-4 py-2 text-sm font-medium text-black/55 transition-colors hover:text-[#8B735C]"
                                 >
                                     <HelpCircle className="h-5 w-5" />
                                     <span className="whitespace-nowrap">{t.contactSupport}</span>
-                                </Link>
+                                </button>
                             </div>
                         </div>
                     </aside>

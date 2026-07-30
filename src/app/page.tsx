@@ -20,9 +20,11 @@ import { PageCTA } from "@/components/site/PageCTA";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteNav } from "@/components/site/SiteNav";
 import { useAdmin } from "@/context/AdminContext";
+import { useInquiry } from "@/context/InquiryContext";
 
 export default function LandingPage() {
   const { siteContent } = useAdmin();
+  const { openInquiry } = useInquiry();
 
   const visibleSections = useMemo(() => {
     const sections = siteContent?.sections ?? [];
@@ -71,7 +73,7 @@ export default function LandingPage() {
   const renderSection = (section: any) => {
     switch (section.type) {
       case "Hero":
-        return <Hero key={section.id} />;
+        return <Hero key={section.id} onOpenInquiry={openInquiry} />;
 
       case "PainPoints":
         return (
@@ -98,7 +100,15 @@ export default function LandingPage() {
       // case "ContactSection":
 
       case "CTASection":
-        return <PageCTA key={section.id} dataTitle="Get Started | Poble" />;
+        return (
+          <PageCTA
+            key={section.id}
+            title="Run your venue with us"
+            description="Join the growing network of Australian venues who have swapped complex, slow systems for the speed of Poble."
+            onPrimaryClick={openInquiry}
+            dataTitle="Get Started | Poble"
+          />
+        );
 
       default:
         return null;
@@ -116,7 +126,7 @@ export default function LandingPage() {
   );
 }
 
-function Hero() {
+function Hero({ onOpenInquiry }: { onOpenInquiry: () => void }) {
   return (
     <section
       data-title="Poble"
@@ -150,13 +160,14 @@ function Hero() {
         </p>
 
         <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <a
-            href="#cta"
+          <button
+            type="button"
+            onClick={onOpenInquiry}
             className="inline-flex items-center gap-1.5 rounded-md bg-[#111111] px-6 py-3 text-sm font-medium text-white transition hover:bg-black"
           >
             Start free trial
             <ArrowRight className="h-4 w-4" />
-          </a>
+          </button>
           <a
             href="#features"
             className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white/60 px-6 py-3 text-sm font-medium text-black transition hover:bg-white"
