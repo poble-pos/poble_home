@@ -15,6 +15,8 @@ import { DigitalCursor } from "@/components/DigitalCursor";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { AdminProvider } from "@/context/AdminContext";
 import { CartProvider } from "@/context/CartContext";
+import { InquiryProvider } from "@/context/InquiryContext";
+import { InquirySidebar } from "@/components/site/InquirySidebar";
 
 const albertSans = Albert_Sans({
   variable: "--font-albert-sans",
@@ -84,8 +86,11 @@ export default function RootLayout({
         <DigitalCursor />
         <AdminProvider>
           <CartProvider>
-            <CartDrawer />
-            {children}
+            <InquiryProvider>
+              <CartDrawer />
+              <InquirySidebar />
+              {children}
+            </InquiryProvider>
           </CartProvider>
         </AdminProvider>
         <ScrollToTop />
