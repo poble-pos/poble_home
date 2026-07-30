@@ -105,7 +105,7 @@ export async function sendMail(input: MailInput): Promise<SendResult> {
   });
 
   const previewUrl =
-    mode === "ethereal" ? nodemailer.getTestMessageUrl(info) : null;
+    mode === "ethereal" ? nodemailer.getTestMessageUrl(info) || null : null;
 
   if (previewUrl) {
     console.info(`[mailer:ethereal] Preview (${input.to}): ${previewUrl}`);
