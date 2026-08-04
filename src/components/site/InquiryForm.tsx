@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRight, Check, Phone } from "lucide-react";
+
 import { useState } from "react";
 
 interface FormState {
@@ -123,7 +124,7 @@ export function InquiryForm({
           label="Name"
           value={form.name}
           onChange={update("name")}
-          placeholder="What should we call you?"
+          placeholder="Your Name"
           required
         />
         <Field
@@ -160,7 +161,7 @@ export function InquiryForm({
           aria-label="Message"
           value={form.message}
           onChange={update("message")}
-          placeholder="What's slowing you down? (optional)"
+          placeholder="Your inquiry (optional)"
           rows={4}
           className="w-full rounded-lg border border-black/15 bg-white px-4 py-3 text-sm text-[#111111] placeholder:text-black/35 focus:border-black/30 focus:outline-none focus:ring-1 focus:ring-black/20"
         />
