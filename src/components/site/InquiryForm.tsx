@@ -9,6 +9,7 @@ interface FormState {
   mobile: string;
   email: string;
   shop: string;
+  suburb: string;
   message: string;
 }
 
@@ -17,6 +18,7 @@ const EMPTY: FormState = {
   mobile: "",
   email: "",
   shop: "",
+  suburb: "",
   message: "",
 };
 
@@ -146,6 +148,13 @@ export function InquiryForm({
           value={form.shop}
           onChange={update("shop")}
           placeholder="Your venue's name & address"
+          required
+        />
+        <Field
+          label="Suburb"
+          value={form.suburb}
+          onChange={update("suburb")}
+          placeholder="Suburb"
           required
         />
         <textarea
