@@ -14,6 +14,7 @@ interface InquiryBody {
   mobile?: string;
   email?: string;
   shop?: string;
+  suburb?: string;
   message?: string;
 }
 
@@ -39,6 +40,7 @@ export async function POST(request: Request) {
   const mobile = (body.mobile || "").trim();
   const email = (body.email || "").trim();
   const shop = (body.shop || "").trim();
+  const suburb = (body.suburb || "").trim();
   const message = (body.message || "").trim();
 
   if (!name || !mobile || !email || !shop) {
@@ -69,6 +71,7 @@ export async function POST(request: Request) {
     ["Mobile", mobile],
     ["Email", email],
     ["Shop Name & Address", shop],
+    ["Suburb", suburb || "—"],
     ["Message", message || "—"],
   ];
 
