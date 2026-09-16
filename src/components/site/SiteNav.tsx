@@ -27,10 +27,10 @@ function CartButton({
   return (
     <button
       onClick={onClick}
-      className="relative inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-black/5"
+      className="relative inline-flex h-12 w-12 items-center justify-center rounded-full hover:bg-black/5"
       aria-label="Open cart"
     >
-      <ShoppingBag className="h-5 w-5" />
+      <ShoppingBag className="h-7 w-7" />
       {cartCount > 0 && (
         <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#111111] px-1 text-[10px] font-bold text-white">
           {cartCount}
@@ -67,8 +67,8 @@ export function SiteNav() {
           : "bg-transparent"
       }`}
     >
-      <Container className="flex h-16 items-center justify-between">
-        <BrandLogo priority className="h-8" />
+      <Container className="flex h-24 items-center justify-between">
+        <BrandLogo priority className="h-14" />
 
         <nav
           aria-label="Primary"
@@ -81,7 +81,7 @@ export function SiteNav() {
                 key={l.href}
                 href={l.href}
                 aria-current={active ? "page" : undefined}
-                className={`text-sm transition-colors hover:text-black ${
+                className={`text-lg transition-colors hover:text-black ${
                   active ? "text-black" : "text-black/55"
                 }`}
               >
@@ -94,17 +94,17 @@ export function SiteNav() {
         <div className="hidden items-center gap-3 md:flex">
           <a
             href="https://backoffice.poble.com.au/"
-            className="text-sm text-black/55 hover:text-black"
+            className="text-lg text-black/55 hover:text-black"
           >
             Sign in
           </a>
           <button
             type="button"
             onClick={openInquiry}
-            className="inline-flex items-center gap-1.5 rounded-full bg-[#111111] px-4 py-2 text-sm font-medium text-white transition hover:bg-black"
+            className="inline-flex items-center gap-2 rounded-full bg-[#111111] px-6 py-3 text-lg font-medium text-white transition hover:bg-black"
           >
             Contact us
-            <ArrowRight className="h-3.5 w-3.5" />
+            <ArrowRight className="h-5 w-5" />
           </button>
           <CartButton cartCount={cartCount} onClick={() => setIsCartOpen(true)} />
         </div>
@@ -112,12 +112,12 @@ export function SiteNav() {
         <div className="flex items-center gap-1 md:hidden">
           <CartButton cartCount={cartCount} onClick={() => setIsCartOpen(true)} />
           <button
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-black/5"
+            className="inline-flex h-12 w-12 items-center justify-center rounded-full hover:bg-black/5"
             onClick={() => setOpen(!open)}
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
           >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {open ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
           </button>
         </div>
       </Container>
@@ -130,14 +130,14 @@ export function SiteNav() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="text-base text-black/80"
+                className="text-xl text-black/80"
               >
                 {l.label}
               </Link>
             ))}
             <a
               href="https://backoffice.poble.com.au/"
-              className="text-base text-black/80"
+              className="text-xl text-black/80"
             >
               Sign in
             </a>
@@ -147,7 +147,7 @@ export function SiteNav() {
                 setOpen(false);
                 openInquiry();
               }}
-              className="mt-2 inline-flex items-center justify-center rounded-full bg-[#111111] px-5 py-3 text-sm font-medium text-white"
+              className="mt-2 inline-flex items-center justify-center rounded-full bg-[#111111] px-6 py-3.5 text-lg font-medium text-white"
             >
               Contact us
             </button>
