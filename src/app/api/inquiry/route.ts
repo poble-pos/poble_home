@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { NOTIFY_EMAIL, sendMail } from "@/lib/mailer";
+import { NOTIFY_EMAIL, detailTableHtml, escapeHtml, sendMail } from "@/lib/mailer";
 
 /**
  * POST /api/inquiry
@@ -19,14 +19,6 @@ interface InquiryBody {
 }
 
 const EMAIL_RE = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-function esc(value: string): string {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
 
 export async function POST(request: Request) {
   let body: InquiryBody;
@@ -75,26 +67,19 @@ export async function POST(request: Request) {
     ["Message", message || "—"],
   ];
 
-  const tableHtml = rows
-    .map(
-      ([k, v]) =>
-        `<tr><td style="padding:6px 14px 6px 0;color:#6b6b6b;white-space:nowrap;vertical-align:top">${esc(
-          k,
-        )}</td><td style="padding:6px 0;color:#111">${esc(v)}</td></tr>`,
-    )
-    .join("");
+  const tableHtml = detailTableHtml(rows);
 
   // --- 1) Customer receipt -------------------------------------------------
   const customerHtml = `
   <div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;max-width:560px;margin:0 auto;color:#111">
-    <h2 style="font-size:20px;margin:0 0 4px">Thanks, ${esc(name)} — we've got your enquiry.</h2>
+    <h2 style="font-size:20px;margin:0 0 4px">Thanks, ${escapeHtml(name)} — we've got your enquiry.</h2>
     <p style="color:#555;line-height:1.6;margin:8px 0 20px">
       A Poble sales specialist will be in touch shortly to help set up your venue.
       For anything urgent, call us on <strong>1300 966 963</strong>
       (Weekdays 9am–8pm · Weekends 10am–8pm).
     </p>
     <p style="color:#6b6b6b;font-size:13px;margin:0 0 6px">Here's a copy of what you sent:</p>
-    <table style="font-size:14px;border-collapse:collapse">${tableHtml}</table>
+    ${tableHtml}
     <p style="color:#999;font-size:12px;margin-top:24px">
       — The Poble Team · sales@poble.com.au
     </p>
@@ -110,9 +95,9 @@ export async function POST(request: Request) {
   // --- 2) Sales notification ----------------------------------------------
   const ownerHtml = `
   <div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;max-width:560px;margin:0 auto;color:#111">
-    <h2 style="font-size:18px;margin:0 0 12px">New venue enquiry — ${esc(name)}</h2>
-    <table style="font-size:14px;border-collapse:collapse">${tableHtml}</table>
-    <p style="color:#999;font-size:12px;margin-top:20px">Received ${esc(submittedAt)} · Reply directly to this email to reach the customer.</p>
+    <h2 style="font-size:18px;margin:0 0 12px">New venue enquiry — ${escapeHtml(name)}</h2>
+    ${tableHtml}
+    <p style="color:#999;font-size:12px;margin-top:20px">Received ${escapeHtml(submittedAt)} · Reply directly to this email to reach the customer.</p>
   </div>`;
 
   const ownerText =

@@ -34,7 +34,7 @@ export const products: Product[] = [
     id: "stand-touch-evo",
     name: "Touch Evo Stand",
     description: "Freestanding iPad stand for flexible positioning.",
-    price: 129.95,
+    price: 229.95,
     category: "stand",
     image: "/images/hardware/touchevo_1.jpg",
     features: ["Freestanding Base", "Tilt Adjustment", "Cost Effective"],
