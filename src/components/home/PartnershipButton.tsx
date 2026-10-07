@@ -2,7 +2,8 @@
 
 import { useRef, useState, type FormEvent } from "react";
 
-type Status = "idle" | "sending" | "done" | "error";
+import { postJson } from "@/lib/api";
+import type { SubmitStatus } from "@/types/forms";
 
 /**
  * "Partner with Poble" control and its proposal dialog, as in the export. The dialog
@@ -11,7 +12,7 @@ type Status = "idle" | "sending" | "done" | "error";
 export function PartnershipButton() {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const opener = useRef<HTMLButtonElement>(null);
-  const [status, setStatus] = useState<Status>("idle");
+  const [status, setStatus] = useState<SubmitStatus>("idle");
 
   const open = () => {
     setStatus("idle");
@@ -42,13 +43,8 @@ export function PartnershipButton() {
 
     setStatus("sending");
     try {
-      const response = await fetch("/api/partnership", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(Object.fromEntries(new FormData(form))),
-      });
-      const result = await response.json();
-      if (!response.ok || result.success !== true) throw new Error("Not confirmed");
+      const result = await postJson<{ success?: boolean }>("/api/partnership", Object.fromEntries(new FormData(form)));
+      if (result.success !== true) throw new Error("Not confirmed");
       form.reset();
       setStatus("done");
     } catch {

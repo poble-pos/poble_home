@@ -2,6 +2,9 @@
 
 import { useState, type ChangeEvent, type FormEvent } from "react";
 
+import { postJson } from "@/lib/api";
+import type { SubmitStatus } from "@/types/forms";
+
 interface FormState {
   name: string;
   mobile: string;
@@ -20,8 +23,6 @@ const EMPTY: FormState = {
   message: "",
 };
 
-type Status = "idle" | "sending" | "done" | "error";
-
 /**
  * Venue enquiry form, styled by contact.css. Posts to /api/inquiry, which emails a
  * receipt to the customer and a copy to the sales inbox. Field names and the
@@ -29,7 +30,7 @@ type Status = "idle" | "sending" | "done" | "error";
  */
 export function InquiryForm({ onDone }: { onDone?: () => void }) {
   const [form, setForm] = useState<FormState>(EMPTY);
-  const [status, setStatus] = useState<Status>("idle");
+  const [status, setStatus] = useState<SubmitStatus>("idle");
 
   const update =
     (key: keyof FormState) =>
@@ -42,13 +43,7 @@ export function InquiryForm({ onDone }: { onDone?: () => void }) {
     setStatus("sending");
 
     try {
-      const res = await fetch("/api/inquiry", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      const data = await res.json();
-      if (!res.ok || data?.error) throw new Error("Request not accepted");
+      await postJson("/api/inquiry", form);
       setStatus("done");
     } catch {
       setStatus("error");
