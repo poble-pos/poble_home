@@ -832,3 +832,54 @@ div.home-page .product-film .film-photo{animation:film-photo 900ms cubic-bezier(
 
 /* Match the export: body text uses the default letter-spacing, not the app-wide tracking. */
 div.home-page{letter-spacing:normal}
+
+/* Plan calculator options (from the export's campaign-pricing.css). */
+
+div.home-page .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+div.home-page .plan-option,div.home-page .plan-option input{scroll-margin-top:200px}
+div.home-page .price.is-quote strong{font-size:clamp(40px,3.5vw,56px);letter-spacing:-.035em}
+div.home-page .plan-options{border:0;margin:0;padding:0;min-width:0}
+div.home-page .plan-option-group+.plan-option-group{margin-top:26px}
+div.home-page .option-group-heading{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin:0 0 12px;color:#56594f}
+div.home-page .option-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+div.home-page .plan-option{position:relative;min-width:0;border:1px solid #d5d2c9;border-radius:12px;background:#fffdf9;color:#26271e;overflow:hidden;transition:background 160ms ease-out,border-color 160ms ease-out,color 160ms ease-out}
+div.home-page .option-select{position:relative;display:grid;grid-template-columns:25px minmax(0,1fr) 34px;align-items:center;gap:12px;min-height:106px;padding:19px 16px;cursor:pointer}
+div.home-page .option-icon{width:25px;height:25px;flex-shrink:0}
+div.home-page .option-copy{min-width:0}
+div.home-page .option-copy strong{display:block;font-family:'Barlow Condensed','Plus Jakarta Sans',sans-serif;font-size:25px;font-weight:700;line-height:1.06;letter-spacing:-.01em}
+div.home-page .option-copy small{display:block;font-size:12px;color:#56594f;line-height:1.45;margin-top:7px}
+div.home-page .option-toggle{position:relative;width:34px;height:21px;border-radius:999px;background:#d8d7d0;transition:background 160ms ease-out}
+div.home-page .option-toggle::before{content:'';position:absolute;top:3px;left:3px;width:15px;height:15px;border-radius:50%;background:white;transition:transform 160ms ease-out}
+div.home-page .option-toggle svg{position:absolute;top:4px;left:18px;width:12px;height:12px;opacity:0;color:#111}
+div.home-page .plan-option.is-selected{background:#24291f;color:#fffdf9;border-color:#24291f}
+div.home-page .plan-option.is-selected .option-icon{color:#fbcd39}
+div.home-page .plan-option.is-selected small{color:#d8decf}
+div.home-page .plan-option.is-selected .option-toggle{background:#FBBD00}
+div.home-page .plan-option.is-selected .option-toggle::before{transform:translateX(13px)}
+div.home-page .plan-option.is-selected .option-toggle svg{opacity:1}
+div.home-page .plan-option:has(:focus-visible){outline:3px solid #936600;outline-offset:3px}
+div.home-page .option-select:has(input:disabled){cursor:default}
+div.home-page .option-select:has(input:disabled) .option-toggle{opacity:.65}
+div.home-page .option-quantity{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-top:1px solid #ffffff35;font-size:13px}
+div.home-page .option-quantity>label{color:#d8decf}
+div.home-page .quantity-stepper{display:flex;align-items:center;gap:2px;background:#fffdf9;color:#111;border-radius:8px}
+div.home-page .option-quantity button{display:grid;place-items:center;width:44px;height:44px;min-width:44px;border:0;border-radius:8px;color:inherit;background:transparent;font-size:22px;line-height:1;cursor:pointer}
+div.home-page .option-quantity button:disabled{color:#9b9c95;cursor:default}
+div.home-page .option-quantity input{width:40px;min-width:0;height:44px;padding:0;border:0;background:transparent;color:inherit;font:600 16px 'Plus Jakarta Sans',sans-serif;text-align:center;font-variant-numeric:tabular-nums;appearance:textfield;caret-color:#936600}
+div.home-page .option-quantity input::-webkit-inner-spin-button,div.home-page .option-quantity input::-webkit-outer-spin-button{appearance:none;margin:0}
+div.home-page .dependency-note{font-size:13px;line-height:1.6;margin-top:15px;color:#56594f}
+@media (hover:hover) and (pointer:fine){div.home-page .plan-option:not(.is-selected):hover{border-color:#908d7f;background:#faf5e8}
+div.home-page .plan-option.is-selected:hover{background:#30392a}
+div.home-page .option-quantity button:not(:disabled):hover{background:#f3df9e}}
+@media (max-width:1100px){div.home-page .option-grid{grid-template-columns:1fr}
+div.home-page .option-select{min-height:84px}}
+@media (max-width:560px){div.home-page .option-grid{grid-template-columns:1fr;gap:10px}
+div.home-page .option-select{min-height:88px;padding:17px 18px;grid-template-columns:27px minmax(0,1fr) 38px;gap:14px}
+div.home-page .option-copy strong{font-size:27px}
+div.home-page .option-copy small{font-size:13px}
+div.home-page .option-toggle{width:38px;height:23px}
+div.home-page .option-toggle::before{width:17px;height:17px}
+div.home-page .plan-option.is-selected .option-toggle::before{transform:translateX(15px)}
+div.home-page .option-toggle svg{top:6px;left:21px}
+div.home-page .price.is-quote strong{font-size:44px}}
+@media (prefers-reduced-motion:reduce){div.home-page .plan-option,div.home-page .option-toggle,div.home-page .option-toggle::before{transition:none}}
