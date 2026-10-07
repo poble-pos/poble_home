@@ -8,10 +8,7 @@ import {
   Outfit,
 } from "next/font/google";
 
-import { CartDrawer } from "@/components/CartDrawer";
-import { ScrollToTop } from "@/components/ScrollToTop";
 import { AdminProvider } from "@/context/AdminContext";
-import { CartProvider } from "@/context/CartContext";
 import { InquiryProvider } from "@/context/InquiryContext";
 import { InquirySidebar } from "@/components/site/InquirySidebar";
 import { barlow, jakarta } from "@/lib/fonts";
@@ -68,15 +65,11 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <AdminProvider>
-          <CartProvider>
-            <InquiryProvider>
-              <CartDrawer />
-              <InquirySidebar />
-              {children}
-            </InquiryProvider>
-          </CartProvider>
+          <InquiryProvider>
+            <InquirySidebar />
+            {children}
+          </InquiryProvider>
         </AdminProvider>
-        <ScrollToTop />
       </body>
     </html>
   );
