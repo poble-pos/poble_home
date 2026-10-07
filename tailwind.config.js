@@ -19,10 +19,8 @@ module.exports = {
                 sans: ["var(--font-albert-sans)", "sans-serif"],
                 heading: ["var(--font-albert-sans)", "sans-serif"],
                 logo: ["var(--font-outfit)", "sans-serif"],
-                roboto: ["var(--font-roboto)", "sans-serif"],
-                poiret: ["var(--font-poiret-one)", "sans-serif"],
-                inter: ["var(--font-inter)", "sans-serif"],
-            playfair: ["var(--font-playfair)", "serif"],
+                jakarta: ["var(--font-jakarta)", "system-ui", "sans-serif"],
+                barlow: ["var(--font-barlow)", "Arial Narrow", "sans-serif"],
             },
             borderRadius: {
                 "4xl": "32px",

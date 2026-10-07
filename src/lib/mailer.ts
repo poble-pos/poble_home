@@ -113,3 +113,23 @@ export async function sendMail(input: MailInput): Promise<SendResult> {
 
   return { mode, previewUrl };
 }
+
+/** Escapes text for use inside HTML email bodies. */
+export function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+/** Two-column label/value table used by the enquiry and partnership emails. */
+export function detailTableHtml(rows: ReadonlyArray<readonly [string, string]>): string {
+  const body = rows
+    .map(
+      ([label, value]) =>
+        `<tr><td style="padding:6px 14px 6px 0;color:#6b6b6b;white-space:nowrap;vertical-align:top">${escapeHtml(label)}</td><td style="padding:6px 0;color:#111;white-space:pre-line">${escapeHtml(value)}</td></tr>`,
+    )
+    .join("");
+  return `<table style="font-size:14px;border-collapse:collapse">${body}</table>`;
+}

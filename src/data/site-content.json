@@ -18,7 +18,7 @@
       "type": "PainPoints",
       "name": "Why Poble?",
       "visible": true,
-      "order": 1,
+      "order": 5,
       "content": {
         "title": "Make Every Second Count",
         "subtitle": "Built for the reality of your day. With poble, we remove the friction from your counter, so your team stays focused on every customer and every cup.",
@@ -35,7 +35,7 @@
       "type": "InteractiveFeatures",
       "name": "Features",
       "visible": true,
-      "order": 2,
+      "order": 1,
       "content": {
         "title": "Smart Tools",
         "subtitle": "for your Venue.",
@@ -188,7 +188,7 @@
       "type": "Integrations",
       "name": "Integrations",
       "visible": true,
-      "order": 5,
+      "order": 2,
       "content": {
         "title": "A Growing Ecosystem",
         "description": "We're expanding our network to include the tools you rely on most. Seamless syncing with Australia's most trusted platforms."
