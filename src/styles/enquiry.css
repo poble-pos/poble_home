@@ -4,7 +4,8 @@
  * buttons; the pricing calculator's selected cards; contact.css inputs and alerts).
  * Every selector is scoped to .enquiry-page, which only exists on this route.
  */
-.enquiry-page{--enq-cream:#faf8f3;--enq-card:#fffdf9;--enq-border:#d5d2c9;--enq-dark:#24291f;--enq-focus:#936600;background:var(--enq-cream);padding:clamp(28px,5vw,64px) var(--gut) clamp(56px,8vw,112px);min-height:calc(100svh - 72px)}
+.enquiry-page{--enq-cream:#faf8f3;--enq-card:#fffdf9;--enq-border:#d5d2c9;--enq-dark:#24291f;--enq-focus:#936600;background:var(--enq-cream);padding:calc(84px + env(safe-area-inset-top,0px) + clamp(20px,3vw,48px)) var(--gut) clamp(56px,8vw,112px);min-height:calc(100svh - 72px)}
+@media(max-width:899px){.enquiry-page{padding-top:calc(70px + env(safe-area-inset-top,0px) + 24px)}}
 .enquiry-page:focus{outline:none}
 .enquiry-page [hidden]{display:none!important}
 .enquiry-page .enquiry-wrap{max-width:740px;margin:0 auto;text-align:center}
