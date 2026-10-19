@@ -114,3 +114,33 @@
 @media(max-width:560px){.site-chrome .compact-footer>.wrap{display:block}
 .site-chrome .compact-footer nav{gap:22px;margin-top:8px}
 .site-chrome .compact-footer p{max-width:34ch;line-height:1.6}}
+/* Language selector. Replaces the header's Contact us button on the homepage and sits beside "View pricing" on inner pages. */
+.site-chrome .hdr-actions{display:flex;align-items:center;gap:10px}
+.site-chrome .hdr-actions .box-cta a{white-space:nowrap}
+.site-chrome .lang-select{position:relative;display:inline-flex}
+.site-chrome .lang-button{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 14px 0 13px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink);font-size:14px;font-weight:600;line-height:1;white-space:nowrap;cursor:pointer;transition:background .2s ease,border-color .2s ease}
+.site-chrome .lang-button:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+.site-chrome .lang-button[aria-expanded="true"]{background:var(--plate);border-color:rgba(17,17,17,.28)}
+.site-chrome .lang-button[aria-busy="true"]{cursor:progress}
+.site-chrome .lang-button .lang-globe{width:17px;height:17px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6}
+.site-chrome .lang-button .lang-chevron{width:12px;height:12px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s ease}
+.site-chrome .lang-button[aria-expanded="true"] .lang-chevron{transform:rotate(180deg)}
+.site-chrome .lang-short{display:none}
+.site-chrome .lang-menu{position:absolute;top:calc(100% + 8px);right:0;z-index:60;min-width:176px;max-width:calc(100vw - 32px);margin:0;padding:6px;list-style:none;background:var(--paper);border:1px solid var(--line-2);border-radius:14px;box-shadow:0 16px 48px #11111120}
+.site-chrome .lang-menu[hidden]{display:none}
+.site-chrome .lang-menu button{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;min-height:44px;padding:0 12px;border:0;border-radius:9px;background:transparent;color:var(--ink);font-size:15px;font-weight:500;text-align:left;cursor:pointer}
+.site-chrome .lang-menu button:hover, .site-chrome .lang-menu button:focus-visible{background:var(--plate);outline:none}
+.site-chrome .lang-menu button:focus-visible{box-shadow:inset 0 0 0 2px var(--ink)}
+.site-chrome .lang-menu button[aria-checked="true"]{font-weight:700}
+.site-chrome .lang-menu .lang-check{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;visibility:hidden}
+.site-chrome .lang-menu button[aria-checked="true"] .lang-check{visibility:visible;color:#865800}
+@media(hover:hover) and (pointer:fine){.site-chrome .lang-button:hover{background:var(--plate)}}
+@media(max-width:899px){.site-chrome .hdr-actions{gap:8px}
+.site-chrome .lang-button{min-height:42px;padding:0 11px;font-size:13px;gap:6px}}
+@media(max-width:480px){.site-chrome .lang-name{display:none}
+.site-chrome .lang-short{display:inline}
+.site-chrome .lang-button{padding:0 10px;gap:5px}}
+@media(prefers-reduced-motion:reduce){.site-chrome .lang-button .lang-chevron{transition:none}}
+/* Inner-page header on phones: logo, menu and language selector fit; View pricing remains in the menu drawer. */
+.site-chrome .hdr .box .brand{flex:none}
+@media(max-width:420px){.site-chrome .hdr-actions .box-cta{display:none}}

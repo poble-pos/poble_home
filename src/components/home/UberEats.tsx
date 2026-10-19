@@ -2,12 +2,15 @@
 
 import { useEffect, useRef } from "react";
 
+import { useI18n } from "@/i18n/I18nProvider";
+
 /**
  * Uber Eats film from the export. Plays muted while visible, pauses offscreen,
  * and stays on the poster for reduced motion.
  */
 export function UberEats() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const { m } = useI18n();
 
   useEffect(() => {
     const video = videoRef.current;
@@ -58,10 +61,10 @@ export function UberEats() {
         <div>
           <p className="uber-label">Uber Eats</p>
           <h2 id="uber-title">
-            Your counter.
-            <br /> Connected to delivery.
+            {m.home.uber.line1}
+            <br /> {m.home.uber.line2}
           </h2>
-          <p>Bring Uber Eats into your Poble setup.</p>
+          <p>{m.home.uber.body}</p>
         </div>
       </div>
     </section>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en-AU">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -14,9 +14,11 @@
 <link rel="stylesheet" href="/legal/home.css">
 <link rel="stylesheet" href="/legal/contact.css">
 <link rel="stylesheet" href="/legal/support.css">
+<link rel="stylesheet" href="/legal/lang.css">
+<script>/* Hide the English text until i18n.js applies a saved language. */try{var l=(document.cookie.match(/(?:^|;\s*)poble-locale=([^;]*)/)||[])[1];l=l?decodeURIComponent(l):'';if(l==='ko'||l==='zh-CN'||l==='ja'){var h=document.documentElement;h.lang=l;h.classList.add('i18n-pending');setTimeout(function(){h.classList.remove('i18n-pending')},1500)}}catch(e){}</script>
 </head>
-<body class="support-page">
-<a class="skip-link" href="#top">Skip to content</a>
+<body class="support-page" data-page="cookies">
+<a class="skip-link" href="#top" data-i18n="skip">Skip to content</a>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
     <linearGradient id="owlGrad" gradientUnits="userSpaceOnUse" x1="512" y1="194.71" x2="512" y2="779.92">
@@ -33,32 +35,47 @@
 
 <header class="hdr">
   <div class="box">
-    <a class="brand" href="/" aria-label="Poble, home">
+    <a class="brand" href="/" aria-label="Poble, home" data-i18n-attr="aria-label:nav.home">
       <img src="/logo-full.png" alt="" width="500" height="192">
     </a>
-    <nav class="nav" aria-label="Main" style="display:contents">
-      <a class="nav-links" href="/features">Products</a>
-      <a class="nav-links" href="/pricing">Pricing</a>
-      <a class="nav-links" href="/customers">Customers</a>
+    <nav class="nav" aria-label="Main" style="display:contents" data-i18n-attr="aria-label:nav.main">
+      <a class="nav-links" href="/features" data-i18n="nav.products">Products</a>
+      <a class="nav-links" href="/pricing" data-i18n="nav.pricing">Pricing</a>
+      <a class="nav-links" href="/customers" data-i18n="nav.customers">Customers</a>
     </nav>
-    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="drawer" aria-label="Open menu"><i aria-hidden="true"></i></button>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="drawer" aria-label="Open menu" data-i18n-attr="aria-label:nav.openMenu"><i aria-hidden="true"></i></button>
   </div>
-  <div class="box box-cta"><a href="mailto:sales@poble.com.au" data-contact>Contact us <svg aria-hidden="true"><use href="#arrow"/></svg></a></div>
+  <div class="hdr-actions">
+    <div class="lang-select" data-open="false">
+      <button type="button" class="lang-button" aria-haspopup="menu" aria-expanded="false" aria-controls="langMenu" aria-label="Language: English">
+        <svg class="lang-globe" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z"/></svg>
+        <span class="lang-name" lang="en">English</span><span class="lang-short" lang="en" aria-hidden="true">EN</span>
+        <svg class="lang-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="m3 4.5 3 3 3-3"/></svg>
+      </button>
+      <ul class="lang-menu" id="langMenu" role="menu" aria-label="Choose a language" hidden>
+        <li role="none"><button type="button" role="menuitemradio" aria-checked="true" lang="en" data-locale="en" tabindex="-1"><span>English</span><svg class="lang-check" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8.4 6.2 11.6 13 4.8"/></svg></button></li>
+        <li role="none"><button type="button" role="menuitemradio" aria-checked="false" lang="ko" data-locale="ko" tabindex="-1"><span>한국어</span><svg class="lang-check" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8.4 6.2 11.6 13 4.8"/></svg></button></li>
+        <li role="none"><button type="button" role="menuitemradio" aria-checked="false" lang="zh-CN" data-locale="zh-CN" tabindex="-1"><span>中文</span><svg class="lang-check" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8.4 6.2 11.6 13 4.8"/></svg></button></li>
+        <li role="none"><button type="button" role="menuitemradio" aria-checked="false" lang="ja" data-locale="ja" tabindex="-1"><span>日本語</span><svg class="lang-check" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8.4 6.2 11.6 13 4.8"/></svg></button></li>
+      </ul>
+    </div>
+  </div>
 </header>
 
-<div class="drawer" id="drawer" data-open="false" aria-label="Mobile navigation" inert>
-  <a href="/features">Products</a>
-  <a href="/pricing">Pricing</a>
-  <a href="/customers">Customers</a>
-  <a href="/hardware">Hardware</a>
-  <a href="/">About</a>
+<div class="drawer" id="drawer" data-open="false" aria-label="Mobile navigation" data-i18n-attr="aria-label:nav.mobile" inert>
+  <a href="/features" data-i18n="nav.products">Products</a>
+  <a href="/pricing" data-i18n="nav.pricing">Pricing</a>
+  <a href="/customers" data-i18n="nav.customers">Customers</a>
+  <a href="/hardware" data-i18n="nav.hardware">Hardware</a>
+  <a href="/" data-i18n="nav.about">About</a>
   <div class="foot">
     <a href="tel:1300966963">1300 966 963</a>
     <a href="mailto:sales@poble.com.au">sales@poble.com.au</a>
   </div>
 </div>
 
-<main id="top" tabindex="-1"><div class="wrap support-wrap"><nav class="support-nav" aria-label="Support and policies"><a href="/manual">Manual</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a><a href="/cookies" aria-current="page">Cookies</a></nav><header class="support-hero"><p class="support-eyebrow">Legal</p><h1>Cookie Policy</h1><p class="support-meta">Last updated: <time datetime="2026-02-01">1 February 2026</time></p></header><div class="reading-layout"><aside class="reading-nav"><p>On this page</p><nav aria-label="On this page"><a href="#section-1">Strictly Necessary</a><a href="#section-2">Performance &amp; Analytics</a><a href="#section-3">Functional</a><a href="#section-4">Managing Cookies</a></nav></aside><article class="policy-copy"><p>This policy explains how <strong>Poble</strong> uses cookies and similar tracking technologies on our website and platform.</p><div><section id="section-1"><h2>Strictly Necessary</h2><p>Auth tokens, session IDs, and CSRF tokens required for secure operation. These cannot be disabled.</p></section><section id="section-2"><h2>Performance &amp; Analytics</h2><p>We use tools like Google Analytics to understand how you use our platform and improve it.</p></section><section id="section-3"><h2>Functional</h2><p>Cookies that remember your preferences (language, region) for a more personalised experience.</p></section><section id="section-4"><h2>Managing Cookies</h2><p>You can control cookies through your browser settings. Disabling some cookies may limit dashboard functionality.<!-- --> <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Opt out of Google Analytics.</a></p></section></div><div><p>Questions about this policy? Contact us at<!-- --> <a href="mailto:info@poble.com.au">info@poble.com.au</a>. ECNESOFT PTY LTD.</p><p>See also:<!-- --> <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a></p></div></article></div></div></main><footer class="ftr compact-footer"><div class="wrap"><p>© 2026 Poble. Management solution by ECNESOFT.</p><nav aria-label="Support and legal"><a href="/manual">Manual</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a><a href="/cookies">Cookies</a></nav></div></footer>
+<main id="top" tabindex="-1"><div class="wrap support-wrap"><nav class="support-nav" aria-label="Support and policies" data-i18n-attr="aria-label:support.nav"><a href="/manual" data-i18n="support.manual">Manual</a><a href="/terms" data-i18n="support.terms">Terms</a><a href="/privacy" data-i18n="support.privacy">Privacy</a><a href="/cookies" aria-current="page" data-i18n="support.cookies">Cookies</a></nav><header class="support-hero" data-english-only><p class="support-eyebrow" data-i18n="legal.eyebrow">Legal</p><h1 data-i18n="cookies.title">Cookie Policy</h1><p class="support-meta"><span data-i18n="legal.lastUpdated">Last updated:</span> <time datetime="2026-02-01">1 February 2026</time></p></header><div class="reading-layout"><aside class="reading-nav"><p data-i18n="legal.onThisPage">On this page</p><nav aria-label="On this page" lang="en"><a href="#section-1">Strictly Necessary</a><a href="#section-2">Performance &amp; Analytics</a><a href="#section-3">Functional</a><a href="#section-4">Managing Cookies</a></nav></aside><article class="policy-copy" lang="en"><p>This policy explains how <strong>Poble</strong> uses cookies and similar tracking technologies on our website and platform.</p><div><section id="section-1"><h2>Strictly Necessary</h2><p>Auth tokens, session IDs, and CSRF tokens required for secure operation. These cannot be disabled.</p></section><section id="section-2"><h2>Performance &amp; Analytics</h2><p>We use tools like Google Analytics to understand how you use our platform and improve it.</p></section><section id="section-3"><h2>Functional</h2><p>Cookies that remember your preferences (language, region) for a more personalised experience.</p></section><section id="section-4"><h2>Managing Cookies</h2><p>You can control cookies through your browser settings. Disabling some cookies may limit dashboard functionality.<!-- --> <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Opt out of Google Analytics.</a></p></section></div><div><p>Questions about this policy? Contact us at<!-- --> <a href="mailto:info@poble.com.au">info@poble.com.au</a>. ECNESOFT PTY LTD.</p><p>See also:<!-- --> <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a></p></div></article></div></div></main><footer class="ftr compact-footer"><div class="wrap"><p data-i18n="footer.copyright">© 2026 Poble. Management solution by ECNESOFT.</p><nav aria-label="Support and legal" data-i18n-attr="aria-label:footer.nav"><a href="/manual" data-i18n="support.manual">Manual</a><a href="/terms" data-i18n="support.terms">Terms</a><a href="/privacy" data-i18n="support.privacy">Privacy</a><a href="/cookies" data-i18n="support.cookies">Cookies</a></nav></div></footer>
+<script src="/legal/i18n.js"></script>
 <script src="/legal/site.js"></script>
 <script src="/legal/contact.js"></script>
 </body></html>

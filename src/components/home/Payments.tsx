@@ -1,4 +1,9 @@
+"use client";
+
 import Image from "next/image";
+
+import { useI18n } from "@/i18n/I18nProvider";
+import { format } from "@/i18n/messages";
 
 import { PartnershipButton } from "./PartnershipButton";
 
@@ -10,12 +15,14 @@ const PAYMENT_PARTNERS = [
 
 /** Payment partners and the partnership invitation, as in the export. */
 export function Payments() {
+  const { m } = useI18n();
+  const t = m.home.payments;
   return (
     <section id="integrations" className="integrations-section compact-section" aria-labelledby="integrations-h">
       <div className="wrap payment-layout">
         <div className="payment-copy">
-          <h2 id="integrations-h">Payments, connected.</h2>
-          <p>Explore payment options for your Poble setup.</p>
+          <h2 id="integrations-h">{t.heading}</h2>
+          <p>{t.intro}</p>
         </div>
         <div className="payment-logos">
           {PAYMENT_PARTNERS.map((partner) => (
@@ -24,17 +31,17 @@ export function Payments() {
               href={partner.href}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`${partner.label} — opens in a new tab`}
+              aria-label={format(m.common.opensInNewTab, { label: partner.label })}
             >
               <Image src={partner.src} alt={partner.name} width={partner.width} height={partner.height} />
-              <span>Explore {partner.label}</span>
+              <span>{format(t.explorePartner, { label: partner.label })}</span>
             </a>
           ))}
         </div>
         <div className="partnership-invite">
           <div>
-            <h3>Let’s build the next connection.</h3>
-            <p>Have a payment or technology partnership in mind? We’d like to hear from you.</p>
+            <h3>{t.partnerHeading}</h3>
+            <p>{t.partnerBody}</p>
           </div>
           <PartnershipButton />
         </div>

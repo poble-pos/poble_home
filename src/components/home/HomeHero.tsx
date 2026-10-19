@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 import { ContactButton } from "@/components/site/ContactButton";
+import { useI18n } from "@/i18n/I18nProvider";
 
 import { OWL_LID_CLIP_PATH } from "./owl-paths";
 
@@ -14,6 +15,8 @@ import { OWL_LID_CLIP_PATH } from "./owl-paths";
  */
 export function HomeHero() {
   const heroRef = useRef<HTMLElement>(null);
+  const { m } = useI18n();
+  const t = m.home.hero;
   const [reducedMotion, setReducedMotion] = useState(false);
   const [inView, setInView] = useState(true);
   const [hidden, setHidden] = useState(false);
@@ -55,17 +58,14 @@ export function HomeHero() {
           <div className="wrap hero-layout">
             <div className="hero-copy">
               <h1 id="hero-title">
-                <span className="hero-line">A calmer counter.</span>{" "}
-                <span className="hero-line">A connected venue.</span>
+                <span className="hero-line">{t.line1}</span>{" "}
+                <span className="hero-line">{t.line2}</span>
               </h1>
-              <p className="hero-description">
-                The iPad POS for Australian cafés and restaurants. Bring your counter, kitchen and back office into one
-                flow.
-              </p>
+              <p className="hero-description">{t.description}</p>
               <div className="hero-buttons">
-                <ContactButton className="btn">Contact us</ContactButton>
+                <ContactButton className="btn">{m.common.contactUs}</ContactButton>
                 <a className="link" href="#features">
-                  Explore Poble
+                  {t.explore}
                 </a>
               </div>
             </div>
@@ -74,16 +74,16 @@ export function HomeHero() {
               <div
                 className="product-film"
                 role="img"
-                aria-label="Poble POS, self ordering and Kitchen Display come together around the Poble logo. Product screens from the Poble range; optional features are billed separately."
+                aria-label={t.filmLabel}
               >
                 <div className="film-components" aria-hidden="true">
                   <div className="film-photo film-piece">
-                    <Image src="/images/home/photo-1.webp" alt="Poble at a café counter" width={970} height={941} sizes="26vw" />
+                    <Image src="/images/home/photo-1.webp" alt={t.photoAlt} width={970} height={941} sizes="26vw" />
                   </div>
                   <div className="film-pos film-piece">
                     <Image
                       src="/images/home/asset-5.webp"
-                      alt="Poble POS product screen"
+                      alt={t.posAlt}
                       width={1400}
                       height={1083}
                       priority
@@ -91,10 +91,10 @@ export function HomeHero() {
                     />
                   </div>
                   <div className="film-order film-piece">
-                    <Image src="/images/home/asset-9.webp" alt="Poble self ordering screen" width={1083} height={1400} sizes="24vw" />
+                    <Image src="/images/home/asset-9.webp" alt={t.orderAlt} width={1083} height={1400} sizes="24vw" />
                   </div>
                   <div className="film-kitchen film-piece">
-                    <Image src="/images/home/asset-7.webp" alt="Poble Kitchen Display screen" width={1400} height={1083} sizes="49vw" />
+                    <Image src="/images/home/asset-7.webp" alt={t.kitchenAlt} width={1400} height={1083} sizes="49vw" />
                   </div>
                 </div>
 
