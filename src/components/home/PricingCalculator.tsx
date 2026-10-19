@@ -3,6 +3,8 @@
 import { useState } from "react";
 
 import { ContactButton } from "@/components/site/ContactButton";
+import { useI18n } from "@/i18n/I18nProvider";
+import { format } from "@/i18n/messages";
 import {
   PLAN_BASE,
   PLAN_GROUPS,
@@ -32,25 +34,6 @@ const ICONS: Record<string, string> = {
   waitlist: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
 };
 
-const FAQS = [
-  {
-    q: "Are all features included in $60?",
-    a: "The $60 Basic plan is the starting price. Staff POS, Kitchen Display, Table Ordering and Extra POS are charged per device. Other selected options update your monthly estimate; Kiosk, Table Booking and WaitList require a quote.",
-  },
-  {
-    q: "How does the free month work?",
-    a: "The trial gives you one month on the Basic Plan. Your venue profile is verified before you begin. Contact our team for setup and billing details.",
-  },
-  {
-    q: "Can I use my own iPad?",
-    a: "Yes. Poble supports iPad 8th generation and later. Our team can help with printers, stands and payment terminals.",
-  },
-  {
-    q: "Is there a lock-in contract?",
-    a: "The software plan runs month-to-month. You can cancel at any time.",
-  },
-];
-
 function OptionCard({
   option,
   checked,
@@ -65,6 +48,9 @@ function OptionCard({
   onCount: (count: number) => void;
 }) {
   const quantityId = `plan-${option.id}-quantity`;
+  const { m } = useI18n();
+  const t = m.home.pricing;
+  const { name, note } = t.options[option.id];
   return (
     <div className={`plan-option${checked ? " is-selected" : ""}`}>
       <label className="option-select">
@@ -73,7 +59,7 @@ function OptionCard({
           type="checkbox"
           role="switch"
           value={option.id}
-          aria-label={option.name}
+          aria-label={name}
           checked={checked}
           onChange={(event) => onToggle(event.target.checked)}
         />
@@ -89,8 +75,8 @@ function OptionCard({
           dangerouslySetInnerHTML={{ __html: ICONS[option.id] }}
         />
         <span className="option-copy">
-          <strong>{option.name}</strong>
-          {option.note ? <small>{option.note}</small> : null}
+          <strong>{name}</strong>
+          {note ? <small>{note}</small> : null}
         </span>
         <span className="option-toggle" aria-hidden="true">
           <svg viewBox="0 0 12 12" fill="none">
@@ -100,11 +86,11 @@ function OptionCard({
       </label>
       {option.quantity && checked ? (
         <div className="option-quantity">
-          <label htmlFor={quantityId}>Devices</label>
+          <label htmlFor={quantityId}>{t.devices}</label>
           <div className="quantity-stepper">
             <button
               type="button"
-              aria-label={`Decrease ${option.name} devices`}
+              aria-label={format(t.decrease, { name })}
               disabled={count <= 1}
               onClick={() => onCount(count - 1)}
             >
@@ -116,7 +102,7 @@ function OptionCard({
               min={1}
               step={1}
               inputMode="numeric"
-              aria-label={`${option.name} device quantity`}
+              aria-label={format(t.quantity, { name })}
               value={count}
               onChange={(event) => {
                 const next = Number(event.target.value);
@@ -130,7 +116,7 @@ function OptionCard({
             />
             <button
               type="button"
-              aria-label={`Increase ${option.name} devices`}
+              aria-label={format(t.increase, { name })}
               onClick={() => onCount(count + 1)}
             >
               +
@@ -143,14 +129,14 @@ function OptionCard({
 }
 
 export function PricingCalculator() {
+  const { m } = useI18n();
+  const t = m.home.pricing;
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [quantities, setQuantities] = useState<Record<string, number>>({
     kds: 1,
-    "table-order": 1,
-    extra: 1,
   });
   const result = calculatePlan(selected, quantities);
-  const total = result.quote ? "Contact us" : `$${result.total}`;
+  const total = result.quote ? m.common.contactUs : `$${result.total}`;
 
   const toggle = (id: string, checked: boolean) =>
     setSelected((prev) => {
@@ -169,15 +155,15 @@ export function PricingCalculator() {
       <div className="wrap pricing-layout">
         <div className="price-summary">
           <h2 id="price-h">
-            Your venue.
-            <br /> Your setup.
+            {t.line1}
+            <br /> {t.line2}
           </h2>
           <p className="price-label">
             {result.quote
-              ? "Your tailored setup"
+              ? t.labelQuote
               : selected.size
-                ? "Your monthly estimate"
-                : "Poble Basic Plan"}
+                ? t.labelEstimate
+                : t.labelBasic}
           </p>
           <div
             className={`price${result.quote ? " is-quote" : ""}`}
@@ -185,34 +171,31 @@ export function PricingCalculator() {
             aria-atomic="true"
           >
             <strong>{total}</strong>
-            {result.quote ? null : <span>/month</span>}
+            {result.quote ? null : <span>{t.perMonth}</span>}
           </div>
-          <p className="price-meta">AUD per venue · Month-to-month</p>
+          <p className="price-meta">{t.meta}</p>
           <p className="plan-breakdown">
             {result.quote
-              ? "Your selected tools require a quote. Your other selections are saved."
-              : `Poble Basic $${PLAN_BASE} + selected options $${result.addOns}`}
+              ? t.breakdownQuote
+              : format(t.breakdown, { base: PLAN_BASE, addOns: result.addOns })}
           </p>
-          <p className="trial-note">1-month free trial</p>
-          <ContactButton className="btn">Contact us</ContactButton>
+          <p className="trial-note">{t.trial}</p>
+          <ContactButton className="btn">{m.common.contactUs}</ContactButton>
         </div>
 
         <div className="plan-content">
           <div className="mobile-estimate" aria-hidden="true">
-            <span>Monthly estimate</span>
+            <span>{t.mobileEstimate}</span>
             <strong>
               {total}
-              {result.quote ? null : <span data-plan-suffix>/month</span>}
+              {result.quote ? null : <span data-plan-suffix>{t.perMonth}</span>}
             </strong>
           </div>
-          <h3>Add the tools your venue needs.</h3>
-          <p className="addon-intro">
-            Start with Poble Basic at ${PLAN_BASE}/month. Select your options to
-            see your monthly estimate. All prices are in AUD.
-          </p>
+          <h3>{t.addHeading}</h3>
+          <p className="addon-intro">{format(t.addIntro, { base: PLAN_BASE })}</p>
 
           <fieldset className="plan-options">
-            <legend className="sr-only">Choose your monthly options</legend>
+            <legend className="sr-only">{t.legend}</legend>
             {PLAN_GROUPS.map((group, index) => (
               <section
                 className="plan-option-group"
@@ -220,7 +203,7 @@ export function PricingCalculator() {
                 aria-labelledby={`plan-group-${index}`}
               >
                 <h4 className="option-group-heading" id={`plan-group-${index}`}>
-                  {group}
+                  {t.groups[group]}
                 </h4>
                 <div className="option-grid">
                   {PLAN_OPTIONS.filter((option) => option.group === group).map(
@@ -245,15 +228,12 @@ export function PricingCalculator() {
             ))}
           </fieldset>
 
-          <p className="addon-note">
-            Kiosk, Table Booking and WaitList are quoted to suit your venue.
-            Your other selections stay on this page while you enquire.
-          </p>
+          <p className="addon-note">{t.addNote}</p>
 
           <section className="compact-faq" aria-labelledby="faq-h">
-            <h3 id="faq-h">Before you get started</h3>
-            {FAQS.map((item) => (
-              <details key={item.q}>
+            <h3 id="faq-h">{t.faqHeading}</h3>
+            {t.faqs.map((item, index) => (
+              <details key={index}>
                 <summary>{item.q}</summary>
                 <p>{item.a}</p>
               </details>

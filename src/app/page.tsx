@@ -1,20 +1,25 @@
 import type { Metadata } from "next";
 
 import { HomeView } from "@/components/home/HomeView";
+import { OG_LOCALES } from "@/i18n/config";
+import { getI18n } from "@/i18n/server";
 import { SALES_EMAIL, SALES_PHONE, SITE_NAME, SITE_URL } from "@/lib/site";
 
-const TITLE = "Poble — The lightweight POS built for Australian hospitality";
-const DESCRIPTION =
-  "The iPad POS for Australian cafés and restaurants. Bring your counter, kitchen and back office into one flow.";
-
-/** Document title matches the export's index.html and does not change while scrolling. */
-export const metadata: Metadata = {
-  title: { absolute: TITLE },
-  description: DESCRIPTION,
-  alternates: { canonical: "/" },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: "/", type: "website" },
-  twitter: { title: TITLE, description: DESCRIPTION },
-};
+/**
+ * Document title matches the export's index.html, in the visitor's language, and
+ * does not change while scrolling. The canonical URL is the same for every language.
+ */
+export async function generateMetadata(): Promise<Metadata> {
+  const { locale, m } = await getI18n();
+  const { title, description } = m.meta.home;
+  return {
+    title: { absolute: title },
+    description,
+    alternates: { canonical: "/" },
+    openGraph: { title, description, url: "/", type: "website", locale: OG_LOCALES[locale] },
+    twitter: { title, description },
+  };
+}
 
 /** Organization and WebSite details, taken from the site's own contact information. */
 const STRUCTURED_DATA = {

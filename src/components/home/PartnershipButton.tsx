@@ -2,8 +2,12 @@
 
 import { useRef, useState, type FormEvent } from "react";
 
+import { useI18n } from "@/i18n/I18nProvider";
+import { format } from "@/i18n/messages";
 import { postJson } from "@/lib/api";
 import type { SubmitStatus } from "@/types/forms";
+
+const PARTNERSHIP_EMAIL = "support@posnet.com.au";
 
 /**
  * "Partner with Poble" control and its proposal dialog, as in the export. The dialog
@@ -13,6 +17,8 @@ export function PartnershipButton() {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const opener = useRef<HTMLButtonElement>(null);
   const [status, setStatus] = useState<SubmitStatus>("idle");
+  const { m } = useI18n();
+  const t = m.partnership;
 
   const open = () => {
     setStatus("idle");
@@ -55,7 +61,7 @@ export function PartnershipButton() {
   return (
     <>
       <button ref={opener} type="button" className="partnership-link" onClick={open}>
-        Partner with Poble
+        {t.open}
       </button>
       <dialog
         ref={dialogRef}
@@ -65,8 +71,8 @@ export function PartnershipButton() {
         onClick={handleBackdropClick}
       >
         <div className="inquiry-heading">
-          <h2 id="partnership-title">Partner with Poble</h2>
-          <button type="button" className="inquiry-close" aria-label="Close partnership enquiry" onClick={close}>
+          <h2 id="partnership-title">{t.title}</h2>
+          <button type="button" className="inquiry-close" aria-label={t.close} onClick={close}>
             <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth={1.6}>
               <path d="m6 6 12 12M18 6 6 18" />
             </svg>
@@ -75,35 +81,35 @@ export function PartnershipButton() {
 
         {status === "done" ? (
           <div className="inquiry-success" role="status">
-            <h3>Thank you for your proposal.</h3>
-            <p>Your partnership enquiry has been submitted. For follow-up, contact support@posnet.com.au.</p>
+            <h3>{t.successTitle}</h3>
+            <p>{format(t.successBody, { email: PARTNERSHIP_EMAIL })}</p>
             <button type="button" className="inquiry-submit inquiry-done" onClick={close}>
-              Done
+              {m.common.done}
             </button>
           </div>
         ) : (
           <>
-            <p className="inquiry-intro">Tell us about your company and how we could work together.</p>
+            <p className="inquiry-intro">{t.intro}</p>
             <form className="inquiry-form" onSubmit={handleSubmit} aria-busy={status === "sending"}>
               <label>
-                Your name
+                {t.name}
                 <input name="name" autoComplete="name" maxLength={120} required />
               </label>
               <label>
-                Phone number
+                {t.phone}
                 <input name="phone" type="tel" autoComplete="tel" inputMode="tel" placeholder="04xx xxx xxx" maxLength={24} required />
               </label>
               <label>
-                Email address
+                {t.email}
                 <input name="email" type="email" autoComplete="email" placeholder="you@company.com.au" maxLength={254} required />
               </label>
               <label>
-                Company name
+                {t.company}
                 <input name="company" autoComplete="organization" maxLength={200} required />
               </label>
               <label>
-                Your partnership proposal
-                <textarea name="message" rows={5} placeholder="Tell us about the partnership you have in mind" maxLength={4000} required />
+                {t.proposal}
+                <textarea name="message" rows={5} placeholder={t.proposalPlaceholder} maxLength={4000} required />
               </label>
               <label className="partnership-honey" aria-hidden="true">
                 Website
@@ -112,22 +118,21 @@ export function PartnershipButton() {
 
               {status === "error" && (
                 <p className="inquiry-status" role="alert">
-                  We could not confirm your proposal was sent. Your details are still here. Please try again or email
-                  support@posnet.com.au.
+                  {format(t.error, { email: PARTNERSHIP_EMAIL })}
                 </p>
               )}
 
               <button className="inquiry-submit" type="submit" disabled={status === "sending"}>
-                {status === "sending" ? "Sending…" : "Send inquiry"}
+                {status === "sending" ? m.common.sending : t.submit}
               </button>
               <p className="inquiry-consent">
-                Your details will be sent to support@posnet.com.au via FormSubmit to respond to your proposal.
+                {format(t.consent, { email: PARTNERSHIP_EMAIL })}
               </p>
             </form>
             <p className="inquiry-help">
-              Prefer email?{" "}
-              <a className="inquiry-fallback" href="mailto:support@posnet.com.au?subject=Poble%20partnership%20enquiry">
-                support@posnet.com.au
+              {t.preferEmail}{" "}
+              <a className="inquiry-fallback" href={`mailto:${PARTNERSHIP_EMAIL}?subject=Poble%20partnership%20enquiry`}>
+                {PARTNERSHIP_EMAIL}
               </a>
             </p>
           </>

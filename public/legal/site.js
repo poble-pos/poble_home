@@ -5,12 +5,13 @@
   const drawer = document.getElementById('drawer');
   const main = document.querySelector('main');
   const footer = document.querySelector('footer');
-  const headerCta = document.querySelector('.box-cta');
+  const headerCta = document.querySelector('.hdr-actions');
+  const t = key => window.PobleI18n?.t(key) || (key === 'nav.closeMenu' ? 'Close menu' : 'Open menu');
   if (!button || !drawer) return;
   const links = [...drawer.querySelectorAll('a[href]')];
   const setOpen = (open, restoreFocus = true) => {
     button.setAttribute('aria-expanded', String(open));
-    button.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    button.setAttribute('aria-label', t(open ? 'nav.closeMenu' : 'nav.openMenu'));
     drawer.dataset.open = String(open);
     drawer.inert = !open;
     [main, footer, headerCta].forEach(el => { if (el) el.inert = open; });

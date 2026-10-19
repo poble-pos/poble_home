@@ -6,6 +6,7 @@
   const articles = [...document.querySelectorAll('.manual-article')];
   const status = document.getElementById('searchStatus');
   const clear = document.getElementById('clearSearch');
+  const t = (key, values) => window.PobleI18n.t(key, values);
   const normalise = value => value.toLocaleLowerCase('en-AU').normalize('NFKD').replace(/[\u0300-\u036f]/g, '');
   const searchable = new Map(articles.map(article => [article, normalise(article.closest('.manual-group').querySelector('h2').textContent + ' ' + article.textContent)]));
   function filter() {
@@ -20,7 +21,7 @@
     groups.forEach(group => { group.hidden = ![...group.querySelectorAll('.manual-article')].some(article => !article.hidden); });
     clear.hidden = !query;
     document.getElementById('noResults').hidden = count > 0;
-    status.textContent = query ? `${count} ${count === 1 ? 'topic' : 'topics'} found.` : 'Browse the topics below or search for help.';
+    status.textContent = query ? t(count === 1 ? 'manual.foundOne' : 'manual.foundMany', { count }) : t('manual.browseStatus');
   }
   function reset(focus = true) { input.value = ''; filter(); if (focus) input.focus(); }
   input.addEventListener('input', filter);

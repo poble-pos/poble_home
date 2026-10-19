@@ -1,5 +1,16 @@
 import { NextResponse } from "next/server";
 
+import {
+  FEATURES,
+  POSTCODE_RE,
+  REASONS,
+  TIMINGS,
+  VENUE_COUNTS,
+  VENUE_TYPES,
+  type Feature,
+} from "@/data/enquiry-options";
+import { isLocale, type Locale } from "@/i18n/config";
+import { en } from "@/i18n/messages/en";
 import { NOTIFY_EMAIL, detailTableHtml, escapeHtml, sendMail } from "@/lib/mailer";
 
 /**
@@ -7,6 +18,11 @@ import { NOTIFY_EMAIL, detailTableHtml, escapeHtml, sendMail } from "@/lib/maile
  * Receives a venue enquiry from the "Send inquiry" form, then sends:
  *   1) a receipt/confirmation email to the customer, and
  *   2) a copy of the enquiry to the sales inbox (INQUIRY_NOTIFY_EMAIL).
+ *
+ * The /enquiry page also sends its answers as canonical ids (see
+ * data/enquiry-options.ts). They are optional, so the original contract still
+ * works; when present they are checked and written into both emails in English,
+ * whatever language the visitor used. Free text is sent as typed, never translated.
  */
 
 interface InquiryBody {
@@ -16,6 +32,28 @@ interface InquiryBody {
   shop?: string;
   suburb?: string;
   message?: string;
+  postcode?: string;
+  venueType?: string;
+  reason?: string;
+  features?: unknown;
+  otherRequirements?: string;
+  venues?: string;
+  timing?: string;
+  locale?: string;
+}
+
+/** Visitor languages as named in the English report. */
+const REPORT_LANGUAGES: Record<Locale, string> = {
+  en: "English",
+  ko: "Korean",
+  "zh-CN": "Chinese (Simplified)",
+  ja: "Japanese",
+};
+
+/** A known id, undefined when absent, or null when the value is not one of the ids. */
+function pick<T extends string>(value: unknown, ids: readonly T[]): T | undefined | null {
+  if (value === undefined || value === "") return undefined;
+  return ids.includes(value as T) ? (value as T) : null;
 }
 
 const EMAIL_RE = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -34,6 +72,18 @@ export async function POST(request: Request) {
   const shop = (body.shop || "").trim();
   const suburb = (body.suburb || "").trim();
   const message = (body.message || "").trim();
+  const postcode = (body.postcode || "").trim();
+  const otherRequirements = (body.otherRequirements || "").trim();
+  const venueType = pick(body.venueType, VENUE_TYPES);
+  const reason = pick(body.reason, REASONS);
+  const venues = pick(body.venues, VENUE_COUNTS);
+  const timing = pick(body.timing, TIMINGS);
+  const features =
+    body.features === undefined
+      ? []
+      : Array.isArray(body.features) && body.features.every((id) => FEATURES.includes(id as Feature))
+        ? [...new Set(body.features as Feature[])]
+        : null;
 
   if (!name || !mobile || !email || !shop) {
     return NextResponse.json(
@@ -49,8 +99,12 @@ export async function POST(request: Request) {
     );
   }
 
+  if ([venueType, reason, venues, timing, features].includes(null) || (postcode && !POSTCODE_RE.test(postcode))) {
+    return NextResponse.json({ error: "Please check your answers and try again." }, { status: 400 });
+  }
+
   // Guard against oversized payloads.
-  if (message.length > 4000 || name.length > 200 || shop.length > 500) {
+  if (message.length > 4000 || otherRequirements.length > 2000 || name.length > 200 || shop.length > 500) {
     return NextResponse.json(
       { error: "One of the fields is too long." },
       { status: 400 },
@@ -58,7 +112,7 @@ export async function POST(request: Request) {
   }
 
   const submittedAt = new Date().toISOString();
-  const rows: Array<[string, string]> = [
+  let rows: Array<[string, string]> = [
     ["Name", name],
     ["Mobile", mobile],
     ["Email", email],
@@ -66,6 +120,24 @@ export async function POST(request: Request) {
     ["Suburb", suburb || "—"],
     ["Message", message || "—"],
   ];
+  const q = en.enquiry;
+  const answers: Array<[string, string | undefined]> = [
+    ["Postcode", postcode || undefined],
+    ["Venue type", venueType ? q.options.venue[venueType] : undefined],
+    ["Reason for enquiry", reason ? q.options.reason[reason] : undefined],
+    ["Selected features", features?.length ? features.map((id) => q.features[id]).join(", ") : undefined],
+    ["Other requirements", otherRequirements || undefined],
+    ["Number of venues", venues ? q.options.venues[venues] : undefined],
+    ["Preferred start", timing ? q.options.timing[timing] : undefined],
+    ["Customer language", isLocale(body.locale) ? REPORT_LANGUAGES[body.locale] : undefined],
+  ];
+  // The /enquiry page has no suburb or message field, so leave those rows out of its emails.
+  if (answers.some(([, value]) => value)) {
+    rows = rows
+      .filter(([, value]) => value !== "—")
+      .map(([label, value]): [string, string] => [label === "Shop Name & Address" ? "Venue or business name" : label, value]);
+    for (const [label, value] of answers) if (value) rows.push([label, value]);
+  }
 
   const tableHtml = detailTableHtml(rows);
 

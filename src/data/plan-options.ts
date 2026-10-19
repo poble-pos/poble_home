@@ -5,29 +5,33 @@
  * and `fee: null` options are quoted on enquiry.
  */
 
+import type { Messages } from "@/i18n/messages";
+
 export const PLAN_BASE = 60;
 
+export type PlanOptionId = keyof Messages["home"]["pricing"]["options"];
+export type PlanGroup = keyof Messages["home"]["pricing"]["groups"];
+
+/** Option names, notes and group headings are in the dictionaries under `home.pricing`. */
 export interface PlanOption {
-  id: string;
-  name: string;
+  id: PlanOptionId;
   fee: number | null;
-  group: string;
-  note?: string;
+  group: PlanGroup;
   quantity?: boolean;
 }
 
 export const PLAN_OPTIONS: PlanOption[] = [
-  { id: "staff", name: "Staff POS", fee: 10, quantity: true, group: "Devices" },
-  { id: "kds", name: "Kitchen Display (KDS)", fee: 10, quantity: true, note: "Tablet required", group: "Devices" },
-  { id: "table-order", name: "Table Ordering", fee: 30, quantity: true, group: "Devices" },
-  { id: "extra", name: "Extra POS Device", fee: 50, quantity: true, group: "Devices" },
-  { id: "crm", name: "Membership & Loyalty", fee: 30, note: "CRM / Rewards", group: "Operations" },
-  { id: "online", name: "Online Ordering (QR)", fee: 30, group: "Operations" },
-  { id: "uber", name: "Uber Eats Integration", fee: 30, group: "Operations" },
-  { id: "management", name: "Table Management", fee: 10, group: "Operations" },
-  { id: "kiosk", name: "Self Ordering Kiosk", fee: null, note: "Ask us for a quote", group: "By enquiry" },
-  { id: "booking", name: "Table Booking", fee: null, note: "Ask us for a quote", group: "By enquiry" },
-  { id: "waitlist", name: "WaitList", fee: null, note: "Ask us for a quote", group: "By enquiry" },
+  { id: "staff", fee: 10, quantity: true, group: "devices" },
+  { id: "kds", fee: 10, quantity: true, group: "devices" },
+  { id: "table-order", fee: null, group: "devices" },
+  { id: "extra", fee: null, group: "devices" },
+  { id: "crm", fee: null, group: "operations" },
+  { id: "online", fee: 30, group: "operations" },
+  { id: "uber", fee: 30, group: "operations" },
+  { id: "management", fee: 10, group: "operations" },
+  { id: "kiosk", fee: null, group: "enquiry" },
+  { id: "booking", fee: null, group: "enquiry" },
+  { id: "waitlist", fee: null, group: "enquiry" },
 ];
 
 export const PLAN_GROUPS = [...new Set(PLAN_OPTIONS.map((option) => option.group))];

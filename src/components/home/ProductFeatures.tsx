@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { useId, useRef, useState, type KeyboardEvent } from "react";
 
-import { ContactButton } from "@/components/site/ContactButton";
 import { HOME_PRODUCTS } from "@/data/home-products";
+import { useI18n } from "@/i18n/I18nProvider";
 
 /**
  * Seven products from the export. Desktop uses the vertical tablist with
@@ -13,12 +13,17 @@ import { HOME_PRODUCTS } from "@/data/home-products";
  */
 export function ProductFeatures() {
   const [active, setActive] = useState(0);
+  const { m } = useI18n();
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const baseId = useId();
   const product = HOME_PRODUCTS[active];
+  const copy = m.products[product.id];
   const lastIndex = HOME_PRODUCTS.length - 1;
 
-  function onTabKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
+  function onTabKeyDown(
+    event: KeyboardEvent<HTMLButtonElement>,
+    index: number,
+  ) {
     let next: number;
     switch (event.key) {
       case "ArrowDown":
@@ -44,22 +49,31 @@ export function ProductFeatures() {
   }
 
   return (
-    <section id="features" className="feature-section compact-section" aria-labelledby="sol-h">
+    <section
+      id="features"
+      className="feature-section compact-section"
+      aria-labelledby="sol-h"
+    >
       <div className="wrap">
         <div className="section-heading">
           <div>
             <h2 id="sol-h">
-              One system.
-              <br /> Every part of your venue.
+              {m.home.features.line1}
+              <br /> {m.home.features.line2}
             </h2>
           </div>
           <a className="link" href="#pricing">
-            View pricing &amp; add-ons
+            {m.home.features.viewPricing}
           </a>
         </div>
 
         <div className="product-workbench">
-          <div className="product-tabs" role="tablist" aria-label="Poble products" aria-orientation="vertical">
+          <div
+            className="product-tabs"
+            role="tablist"
+            aria-label={m.home.features.tabsLabel}
+            aria-orientation="vertical"
+          >
             {HOME_PRODUCTS.map((item, index) => {
               const selected = index === active;
               return (
@@ -77,18 +91,21 @@ export function ProductFeatures() {
                   onClick={() => setActive(index)}
                   onKeyDown={(event) => onTabKeyDown(event, index)}
                 >
-                  {item.tab}
+                  {m.products[item.id].name}
                 </button>
               );
             })}
           </div>
 
           <label className="product-picker">
-            Explore a product
-            <select value={active} onChange={(event) => setActive(Number(event.target.value))}>
+            {m.home.features.picker}
+            <select
+              value={active}
+              onChange={(event) => setActive(Number(event.target.value))}
+            >
               {HOME_PRODUCTS.map((item, index) => (
                 <option key={item.id} value={index}>
-                  {item.tab}
+                  {m.products[item.id].name}
                 </option>
               ))}
             </select>
@@ -104,23 +121,23 @@ export function ProductFeatures() {
               tabIndex={0}
             >
               <div className="product-copy">
-                <p className="product-label">{product.label}</p>
-                <h3>{product.title}</h3>
-                <p className="product-description">{product.description}</p>
+                <p className="product-label">{copy.name}</p>
+                <h3>{copy.title}</h3>
+                <p className="product-description">{copy.lede}</p>
                 <ul className="product-points">
-                  {product.points.map((point) => (
+                  {copy.points.map((point) => (
                     <li key={point.title}>
                       <strong>{point.title}</strong>
                       <span>{point.body}</span>
                     </li>
                   ))}
                 </ul>
-                <ContactButton className="link">Talk about your setup</ContactButton>
+                {/* <ContactButton className="link">Talk about your setup</ContactButton> */}
               </div>
               <div className="product-screen">
                 <Image
                   src={product.image.src}
-                  alt={product.image.alt}
+                  alt={copy.imageAlt}
                   width={product.image.width}
                   height={product.image.height}
                   sizes="(min-width: 1100px) 40vw, 90vw"

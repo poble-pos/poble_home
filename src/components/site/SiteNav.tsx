@@ -5,31 +5,36 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-import { useInquiry } from "@/context/InquiryContext";
+import { useI18n } from "@/i18n/I18nProvider";
 
+import { LanguageSelector } from "./LanguageSelector";
 import { OwlSymbols } from "./OwlSymbols";
 
-const SECTION_LINKS = [
-  { id: "features", label: "Products" },
-  { id: "pricing", label: "Pricing" },
-  { id: "customers", label: "Customers" },
-  { id: "about", label: "About" },
+type NavKey = "products" | "pricing" | "customers" | "about";
+
+const SECTION_LINKS: { id: string; key: NavKey }[] = [
+  { id: "features", key: "products" },
+  { id: "pricing", key: "pricing" },
+  { id: "customers", key: "customers" },
+  { id: "about", key: "about" },
 ];
 
 // Inner pages: the export's header links to the pages, not to homepage sections.
-const PAGE_LINKS = [
-  { href: "/features", label: "Products" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/customers", label: "Customers" },
+const PAGE_LINKS: { href: string; key: NavKey }[] = [
+  { href: "/features", key: "products" },
+  { href: "/pricing", key: "pricing" },
+  { href: "/customers", key: "customers" },
 ];
 
 /**
  * Site header and mobile menu from the approved export. The homepage uses the
  * compact header with section links; inner pages use the export's page header
- * with page links. Contact us opens the shared enquiry panel.
+ * with page links. Both headers carry the language selector (on the homepage it
+ * takes the place of the old Contact us button); Contact us stays in the
+ * homepage menu and jumps to the contact section.
  */
 export function SiteNav({ variant = "page" }: { variant?: "home" | "page" }) {
-  const { openInquiry } = useInquiry();
+  const { m } = useI18n();
   const pathname = usePathname();
   const isHome = variant === "home";
   const [menuOpen, setMenuOpen] = useState(false);
@@ -113,7 +118,7 @@ export function SiteNav({ variant = "page" }: { variant?: "home" | "page" }) {
   const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   const brand = (
-    <Link className={isHome ? "compact-brand" : "brand"} href="/" aria-label="Poble, home">
+    <Link className={isHome ? "compact-brand" : "brand"} href="/" aria-label={m.nav.homeLabel}>
       <Image src="/logo-full.png" alt="" width={500} height={192} priority />
     </Link>
   );
@@ -126,7 +131,7 @@ export function SiteNav({ variant = "page" }: { variant?: "home" | "page" }) {
       id="menuBtn"
       aria-expanded={menuOpen}
       aria-controls="drawer"
-      aria-label={menuOpen ? "Close menu" : "Open menu"}
+      aria-label={menuOpen ? m.nav.closeMenu : m.nav.openMenu}
       onClick={() => setMenuOpen((open) => !open)}
     >
       <i aria-hidden="true"></i>
@@ -140,10 +145,10 @@ export function SiteNav({ variant = "page" }: { variant?: "home" | "page" }) {
       {isHome ? (
         <header className="hdr" id="hdr">
           <a className="skip-link" href="#top">
-            Skip to content
+            {m.common.skipToContent}
           </a>
           {brand}
-          <nav className="compact-nav" aria-label="Main">
+          <nav className="compact-nav" aria-label={m.nav.mainLabel}>
             {SECTION_LINKS.map((link) => (
               <a
                 key={link.id}
@@ -151,28 +156,26 @@ export function SiteNav({ variant = "page" }: { variant?: "home" | "page" }) {
                 data-section-link={link.id}
                 aria-current={activeId === link.id ? "location" : undefined}
               >
-                {link.label}
+                {m.nav[link.key]}
               </a>
             ))}
           </nav>
           <div className="compact-actions box-cta">
             <a className="signin" href="https://backoffice.poble.com.au/">
-              Sign in
+              {m.nav.signIn}
             </a>
-            <button type="button" className="nav-contact" onClick={openInquiry}>
-              Contact us
-            </button>
+            <LanguageSelector />
             {menuToggle}
           </div>
         </header>
       ) : (
         <header className="hdr" id="hdr">
           <a className="skip-link" href="#top">
-            Skip to content
+            {m.common.skipToContent}
           </a>
           <div className="box">
             {brand}
-            <nav className="nav" aria-label="Main" style={{ display: "contents" }}>
+            <nav className="nav" aria-label={m.nav.mainLabel} style={{ display: "contents" }}>
               {PAGE_LINKS.map((link) => (
                 <Link
                   key={link.href}
@@ -180,22 +183,25 @@ export function SiteNav({ variant = "page" }: { variant?: "home" | "page" }) {
                   href={link.href}
                   aria-current={isCurrent(link.href) ? "page" : undefined}
                 >
-                  {link.label}
+                  {m.nav[link.key]}
                 </Link>
               ))}
             </nav>
             {menuToggle}
           </div>
-          <div className="box box-cta">
-            <Link href="/pricing">
-              View pricing <svg aria-hidden="true"><use href="#arrow" /></svg>
-            </Link>
+          <div className="hdr-actions">
+            <LanguageSelector />
+            <div className="box box-cta">
+              <Link href="/pricing">
+                {m.common.viewPricing} <svg aria-hidden="true"><use href="#arrow" /></svg>
+              </Link>
+            </div>
           </div>
         </header>
       )}
 
       {isHome ? (
-        <nav className="home-menu" id="drawer" data-open={String(menuOpen)} aria-label="More navigation" inert={!menuOpen}>
+        <nav className="home-menu" id="drawer" data-open={String(menuOpen)} aria-label={m.nav.moreLabel} inert={!menuOpen}>
           {SECTION_LINKS.map((link, index) => (
             <a
               key={link.id}
@@ -205,7 +211,7 @@ export function SiteNav({ variant = "page" }: { variant?: "home" | "page" }) {
               }}
               onClick={closeMenu}
             >
-              {link.label}
+              {m.nav[link.key]}
             </a>
           ))}
           <a
@@ -215,24 +221,20 @@ export function SiteNav({ variant = "page" }: { variant?: "home" | "page" }) {
             }}
             onClick={closeMenu}
           >
-            Sign in
+            {m.nav.signIn}
           </a>
           <a
             href="#contact"
             ref={(node) => {
               menuLinks.current[SECTION_LINKS.length + 1] = node;
             }}
-            onClick={(event) => {
-              event.preventDefault();
-              closeMenu();
-              openInquiry();
-            }}
+            onClick={closeMenu}
           >
-            Contact us
+            {m.common.contactUs}
           </a>
         </nav>
       ) : (
-        <div className="drawer" id="drawer" data-open={String(menuOpen)} aria-label="Mobile navigation" inert={!menuOpen}>
+        <div className="drawer" id="drawer" data-open={String(menuOpen)} aria-label={m.nav.mobileLabel} inert={!menuOpen}>
           {PAGE_LINKS.map((link, index) => (
             <Link
               key={link.href}
@@ -242,7 +244,7 @@ export function SiteNav({ variant = "page" }: { variant?: "home" | "page" }) {
               }}
               onClick={closeMenu}
             >
-              {link.label}
+              {m.nav[link.key]}
             </Link>
           ))}
           <div className="foot">

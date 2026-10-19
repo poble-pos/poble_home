@@ -1,12 +1,11 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import type { CSSProperties, ReactNode } from "react";
 
-import { useInquiry } from "@/context/InquiryContext";
-
 /**
- * "Contact us" control for export markup. Opens the shared enquiry panel where the
- * export opened its contact form (data-contact links).
+ * "Contact us" control for export markup. Scrolls to the page's contact section
+ * (`#contact`, on the homepage) when there is one; otherwise opens the enquiry page.
  */
 export function ContactButton({
   className,
@@ -17,9 +16,18 @@ export function ContactButton({
   style?: CSSProperties;
   children: ReactNode;
 }) {
-  const { openInquiry } = useInquiry();
+  const router = useRouter();
+  const onClick = () => {
+    const section = document.getElementById("contact");
+    if (!section) {
+      router.push("/enquiry");
+      return;
+    }
+    section.scrollIntoView();
+    history.replaceState(null, "", "#contact");
+  };
   return (
-    <button type="button" className={className} style={style} onClick={openInquiry}>
+    <button type="button" className={className} style={style} onClick={onClick}>
       {children}
     </button>
   );
